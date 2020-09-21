@@ -1,2 +1,5 @@
 # TeamProofpoint
-CSE 498 Project Repo
+MSU Capstone Project
+
+
+**this readme will be updated as the project develops**
