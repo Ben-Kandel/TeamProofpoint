@@ -43,8 +43,8 @@
 }
 
 .item5{
-    grid-row: 2/4;
-    grid-column: 2/3;
-    background-color: floralwhite;
+    grid-column: 3/4;
+    grid-row: 2/5;
+    /* background-color: floralwhite; */
     border-radius: 10px;
 }
