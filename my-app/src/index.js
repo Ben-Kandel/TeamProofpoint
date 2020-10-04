@@ -1,69 +1,56 @@
-//components
-import React, { Component } from 'react';
+//react
+import React from 'react';
 import ReactDOM from 'react-dom';
-//import { BrowserRouter, Route, Switch } from "react-router-dom";
-import InfoCard from "./InfoCard";
-import InfoButton from "./InfoButton";
-import {CustomChart} from "./CustomChart";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-//css stuff
+//css
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-ReactDOM.render(
-  <div class="grid-container">
+//pages
+import SystemHealth from "./pages/SystemHealth";
 
-    <div class="grid-header">
-      <h1>System Health and Status</h1>
-    </div>
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div>
+        <nav>
+          <a href="/"> Home </a>
+          <a href="/about"> About </a>
+          <a href="/health"> Health </a>
+        </nav>
 
-    <div class="item1">
-      <InfoCard title="Emails Processed" text="4,593,238" width="15rem"/>
-    </div>
-    <div class="item2">
-      <InfoCard title="Last Data Upload" text="2 days ago" width="15rem"/>
-    </div>
-    <div class="item3">
-      <InfoCard title="Runtime" text="0.45 ms" width="15rem"/>
-    </div>
-    <div class="item4">
-      <InfoButton text="Go Back"/>
-    </div>
-    <div class="item5">
-      <CustomChart></CustomChart>
-    </div>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/health">
+            <SystemHealth />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
+  );
+}
 
-  </div>
-  ,
-  document.getElementById('root')
-);
+//this is just temporary, this will be a class in the pages directory.
+function Home() {
+  return(
+    <h1>this is the home page!</h1>
+  );
+}
 
-/*
-import Home from "./components/Home";
-import About from "./components/About";
-import Navigation from './components/Navigation';
-
-class App extends Component{
-  render(){
-    return(
-      <BrowserRouter>
-        <div>
-          <Navigation>
-            <Switch>
-              <Route path="/" component={Home} exact/>
-              <Route path="/about" component={About}/>
-            </Switch>
-          </Navigation>
-        </div>
-      </BrowserRouter>
-    );
-  }
+//this is just temporary, this will be a class in the pages directory.
+function About() {
+  return <h2>this is the about page...</h2>;
 }
 
 ReactDOM.render(
-  <div>
-    <p1>Fuck!</p1>
-  </div>,
+  <App/>,
   document.getElementById("root")
 )
-*/
