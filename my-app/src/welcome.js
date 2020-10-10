@@ -11,3 +11,7 @@ $('#box2 > div:first')
 },  3000);
 
 
+
+function changeElection(){
+    window.location.href = "results.html";
+}

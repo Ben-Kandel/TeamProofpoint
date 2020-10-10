@@ -43,15 +43,11 @@ img{
     
     font-size: 20px;
 }
-#box2 > div{
-    position:absolute;
-    margin-left: -3em;
-    padding-top: 10em;
-    
-}
+
 #box2 h2{
     color: rgb(104, 101, 101);
     font-size: 40px;
+    text-align: center;
 }
 
 #box3{
@@ -60,7 +56,7 @@ img{
     background-color: rgb(233, 230, 230);
     border: 1px solid lightgray;
     position: absolute;
-    margin-top: 40em;
+    margin-top: 39em;
     width : 88%;
    
     
@@ -73,7 +69,7 @@ img{
 
 
 #myCarousel{
-    margin-top: 4em;
+    margin-top: 6em;
     margin-right: 0em;
 }
 
@@ -83,3 +79,46 @@ img{
     width:450px;
   }
 
+.system{
+    border: 2px solid darkgray;
+    border-radius : 5px;
+    background-color: darkgray;
+    color: blue;
+    font-size: 0.75em;
+    position:absolute;
+    bottom: 1em;
+    right: 1em;
+}
+
+.sqlite{
+    position:absolute;
+    padding-top: 5em;
+    left: -3em;
+    transform : rotate(-10deg)
+}
+
+.apache{
+    position: absolute;
+    padding-top: 9em;
+    right: -2em;
+    transform: rotate(10deg)
+}
+.django{
+    position: absolute;
+    padding-top: 14em;
+    left: -5em;
+    transform: rotate(-10deg)
+}
+.email{
+    position:absolute;
+    padding-top: 17em;
+    right: -1em;
+    transform: rotate(10deg)
+}
+
+.flair{
+    position:absolute;
+    padding-top:19em;
+    left: -4em;
+    transform: rotate(-10deg)
+}
