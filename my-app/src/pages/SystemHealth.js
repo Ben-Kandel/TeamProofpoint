@@ -1,28 +1,36 @@
 import React from "react";
-//import InfoButton from "../components/InfoButton"; right now we are not using this button...
-import InfoCard from "../components/InfoCard";
-import {CustomChart} from "../components/CustomChart";
+import MyChart from "../components/MyChart";
 
+//css
 import "./SystemHealth.css";
 
 class SystemHealth extends React.Component{
     render(){
         return(
-            <div class="grid-container">
-                <div class="grid-header">
+            <div>
+                <div class="header">
                     <h1>System Health and Status</h1>
                 </div>
-                <div class="item1">
-                    <InfoCard title="Emails Processed" text="4,593,238" width="15rem"></InfoCard>
-                </div>
-                <div class="item2">
-                    <InfoCard title="Last Data Upload" text="2 days ago" width="15rem"></InfoCard>
-                </div>
-                <div class="item3">
-                    <InfoCard title="Runtime" text="0.45ms" width="15rem"></InfoCard>
-                </div>
-                <div class="item4">
-                    <CustomChart></CustomChart>
+                <div class="grid-container">
+                    <div class="grid-item emails">
+                        <h1>Total Emails Processed</h1>
+                        <hr></hr>
+                        <p1>1,348</p1>
+                    </div>
+                    <div class="grid-item election">
+                        <h1>Election Emails Processed</h1>
+                        <hr></hr>
+                        <p1>600</p1>
+                    </div>
+                    <div class="grid-item stocks">
+                        <h1>Stock Market Emails Processed</h1>
+                        <hr></hr>
+                        <p1>748</p1>
+                    </div>
+                    <div class="grid-item line-graph">
+                        <h1>Frequency of Incoming Emails Over Time</h1>
+                        <MyChart></MyChart>
+                    </div>
                 </div>
             </div>
         );

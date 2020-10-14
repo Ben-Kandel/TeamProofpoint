@@ -5,7 +5,7 @@ class InfoCard extends Component{
     render(){
         return(
             <div class="grid-item">
-                <Card className="text-center" style={{width: this.props.width}}>
+                <Card className="text-center" style={{width: this.props.width, height: this.props.height}}>
                     <div class="grid-item-header">
                         <Card.Header>
                             {this.props.title}
