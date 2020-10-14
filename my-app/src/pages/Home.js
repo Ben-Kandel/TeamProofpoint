@@ -3,8 +3,9 @@ import InfoCard from "../components/InfoCard";
 
 //css
 import "./Home.css";
-
+import { useHistory } from 'react-router-dom';
 class Home extends React.Component{
+
     render(){
         return(
 <html lang="en">
@@ -34,7 +35,8 @@ class Home extends React.Component{
     <img src = "./images/django.png" alt = "django" class = "django" width = "200"/>
     <img src = "./images/react.png" alt = "email" class = "email" width = "150"/>
     <img src = "./images/flair.png" alt = "flair" class = "flair" width = "150"/>
-    <button class = "system">Learn More</button>
+
+    <a href="/health" class = "system"> Learn More </a>
 </div>
 
 <div id = "box3">  
@@ -51,15 +53,15 @@ class Home extends React.Component{
         
         <div class="carousel-inner">
           <div class="item active">
-            <img src="./images/election2020.png" alt="Los Angeles" width= "500" height = "200px" onclick="changeElection();"/>
+            <img src="./images/election2020.png" alt="election" width= "500" height = "200px" onClick={event=> window.location.href='/results'}/>
           </div>
       
           <div class="item">
-            <img src="./images/stockmarket.jpg" alt="Chicago"  width= "500" height = "200px"/>
+            <img src="./images/stockmarket.jpg" alt="stock"  width= "500" height = "200px"/>
           </div>
       
           <div class="item">
-            <img src="./images/test_pic3.png" alt="New York"  width= "500" height = "200px"/>
+            <img src="./images/test_pic3.png" alt="test"  width= "500" height = "200px"/>
           </div>
         </div>
       
@@ -73,7 +75,7 @@ class Home extends React.Component{
           <span class="sr-only">Next</span>
         </a>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src = "jquery-3.3.1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
       </div>
       
