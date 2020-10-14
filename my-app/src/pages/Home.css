@@ -2,6 +2,7 @@ img{
     margin-top: -5em;
     margin-left: 3em;
 }
+
 .container{
     position:relative;
     margin-top: -4em;
@@ -12,6 +13,7 @@ img{
     margin-right: 2em;
     height: 800px;
 }
+
 #box1 {
     position: relative;
     border: 1px solid lightgray;
@@ -25,6 +27,7 @@ img{
     height: 500px;
     float: left;
 }
+
 #box1 h1 {
     color: rgb(104, 101, 101);
     font-size: 40px;
@@ -51,15 +54,11 @@ img{
 }
 
 #box3{
-    
-   
     background-color: rgb(233, 230, 230);
     border: 1px solid lightgray;
     position: absolute;
     margin-top: 39em;
     width : 88%;
-   
-    
     height: 300px;
 }
 #box3 h3 {

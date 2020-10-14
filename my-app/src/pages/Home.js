@@ -16,7 +16,6 @@ class Home extends React.Component{
     <script src="welcome.js"></script>
 </head>
 <body>
-    <img src="./images/proofpoint.png" alt="proofpoint logo"/>
 <div class = "container" >
 <div id = "box1">
     <h1>Leveraging SPAM to Make Bold Societal Predictions</h1>
@@ -34,7 +33,7 @@ class Home extends React.Component{
     <img src = "./images/django.png" alt = "django" class = "django" width = "200"/>
     <img src = "./images/react.png" alt = "email" class = "email" width = "150"/>
     <img src = "./images/flair.png" alt = "flair" class = "flair" width = "150"/>
-    <button class = "system">Learn More</button>
+    <a class="system" href="/health">Learn More</a>
 </div>
 
 <div id = "box3">  
