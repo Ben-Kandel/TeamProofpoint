@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { hot } from 'react-hot-loader/root';
 
 class App extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class App extends Component {
         {this.state.data.map(contact =>{
           return (
               <li key={contact.id}>
-                {contact.name} - {contact.score} - ({contact.subject})
+                {contact.name}: {contact.score} - ({contact.subject})
               </li>
           );
     })}
@@ -50,3 +51,5 @@ export default App;
 
 const container = document.getElementById("app");
 render(<App />, container);
+
+export default hot(module) (App);

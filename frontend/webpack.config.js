@@ -1,4 +1,5 @@
 module.exports = {
+  entry: ['react-hot-loader/patch', './src'],
   module: {
     rules: [
       {
@@ -9,5 +10,10 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
 };
