@@ -3,7 +3,7 @@ import InfoCard from "../components/InfoCard";
 
 //css
 import "./Home.css";
-import { useHistory } from 'react-router-dom';
+import Carousel from 'react-bootstrap/Carousel'
 class Home extends React.Component{
 
     render(){
@@ -17,6 +17,7 @@ class Home extends React.Component{
     <script src="welcome.js"></script>
 </head>
 <body>
+<img src="./images/proofpoint.png" alt="proofpoint logo"/>
 <div class = "container" >
 <div id = "box1">
     <h1>Leveraging SPAM to Make Bold Societal Predictions</h1>
@@ -39,46 +40,32 @@ class Home extends React.Component{
     <a href="/health" class = "system"> Learn More </a>
 </div>
 
-<div id = "box3">  
+<div id = "box3">
     <h3>Select a topic</h3>
-    
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-      
-        
-        <div class="carousel-inner">
-          <div class="item active">
-            <img src="./images/election2020.png" alt="election" width= "500" height = "200px" onClick={event=> window.location.href='/results'}/>
-          </div>
-      
-          <div class="item">
-            <img src="./images/stockmarket.jpg" alt="stock"  width= "500" height = "200px"/>
-          </div>
-      
-          <div class="item">
-            <img src="./images/test_pic3.png" alt="test"  width= "500" height = "200px"/>
-          </div>
-        </div>
-      
-        
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
-        </a>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
-        <script src = "jquery-3.3.1.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-      </div>
-      
+    <Carousel class = "carousel">
+        <Carousel.Item>
+            <img
+                className="election"
+                src="./images/election2020.png"
+                alt="Election"
+                width = "500px"
+                height = "300px"
+                onClick={event=> window.location.href='/results'}
+            />
+
+        </Carousel.Item>
+        <Carousel.Item>
+            <img
+                className="d-block w-100"
+                src="./images/stockmarket.jpg"
+                alt="Third slide"
+                width = "400px"
+                height = "300px"
+            />
+        </Carousel.Item>
+
+    </Carousel>
+
 </div>
 </div>
 

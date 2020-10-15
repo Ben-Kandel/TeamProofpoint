@@ -4,7 +4,8 @@ img{
 }
 
 .container{
-    position:relative;
+
+    position:absolute;
     margin-top: -4em;
     padding-left: 1em;
     padding-right: 1em;
@@ -12,6 +13,7 @@ img{
     margin-left: 2em;
     margin-right: 2em;
     height: 800px;
+    left: 25%;
 }
 
 #box1 {
@@ -63,20 +65,13 @@ img{
 }
 #box3 h3 {
     font-size: 20px;
-    padding-left: 1em;
+
+    padding-top: 1em;
+    text-align:center;
 }
 
 
-#myCarousel{
-    margin-top: 6em;
-    margin-right: 0em;
-}
 
-.carousel-inner > .item > img {
-    margin-left: auto;
-    margin-right:auto;
-    width:450px;
-  }
 
 .system{
     border: 2px solid darkgray;
@@ -122,4 +117,9 @@ img{
     padding-top:19em;
     left: -4em;
     transform: rotate(-10deg)
+}
+.carousel{
+   text-align: center;
+   margin-top: 2em;
+   padding-right: 2em;
 }

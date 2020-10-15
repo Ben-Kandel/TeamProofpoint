@@ -47,10 +47,10 @@
   .card5{
     background-color: rgba(204, 204, 204, 0.8);
     border-radius : 1em;
-    height:  18em;
-    margin-top: 5em;
+    height:  24em;
+    margin-top: 13em;
     font-size: 15px;
-    
+    width: 175%;
     padding-left: 2em;
     padding-right: 2em;
     text-align: center;
@@ -64,4 +64,7 @@
       margin-top: -0.5em;
   }
 
+  hr {
+      background-color: white;
+  }
   
