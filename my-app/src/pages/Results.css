@@ -47,7 +47,7 @@
   .card5{
     background-color: rgba(204, 204, 204, 0.8);
     border-radius : 1em;
-    height:  24em;
+    height:  14em;
     margin-top: 13em;
     font-size: 15px;
     width: 175%;
@@ -66,5 +66,19 @@
 
   hr {
       background-color: white;
+  }
+
+  .back{
+      border: 2px solid darkgray;
+      border-radius : 5px;
+      background-color: darkgray;
+      color: blue;
+      font-size: 0.75em;
+      position:absolute;
+
+      font-size: 1.5em;
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+
   }
   

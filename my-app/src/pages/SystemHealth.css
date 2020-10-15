@@ -83,3 +83,17 @@
     grid-column: 1/4;
     margin: auto;
 }
+
+.next{
+    position:absolute;
+    right: 5em;
+    bottom: 1em;
+    border: 2px solid darkgray;
+    border-radius : 5px;
+    background-color: darkgray;
+    color: blue;
+    font-size: 0.75em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+
+}

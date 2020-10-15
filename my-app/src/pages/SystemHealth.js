@@ -31,6 +31,8 @@ class SystemHealth extends React.Component{
                         <h1>Frequency of Incoming Emails Over Time</h1>
                         <MyChart></MyChart>
                     </div>
+                    <a className="system" href="/">Back</a>
+                    <a className="next" href="/health2">Next</a>
                 </div>
             </div>
         );

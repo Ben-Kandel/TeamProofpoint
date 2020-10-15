@@ -45,7 +45,10 @@ class SystemHealth2 extends React.Component{
                     <div class="grid-item-2 bar-graph">
                         <SystemBarChart/>
                     </div>
+                    <a className="system" href="/health">Back</a>
+                    <a className="next" href="/">Home</a>
                 </div>
+
             </div>
         );
     }
