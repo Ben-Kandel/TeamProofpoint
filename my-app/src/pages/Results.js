@@ -7,6 +7,28 @@ import StockMarket from "../components/StockMarket";
 import "./Results.css";
 
 class Model extends React.Component{
+
+    componentDidMount(){
+
+         var requestOptions = {
+
+             method: 'GET',
+
+             redirect: 'follow'
+
+         };
+
+
+         fetch("http://127.0.0.1:8000/api/leads/", requestOptions)
+
+         .then(response => response.text())
+
+         .then(result => console.log(result))
+
+         .catch(error => console.log('error', error));
+
+     }
+
     render(){
         return(
             <html lang="en">
