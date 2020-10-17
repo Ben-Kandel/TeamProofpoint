@@ -1,8 +1,10 @@
 from leads.models import Lead
 from rest_framework import viewsets, permissions
 from .serializers import LeadSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Lead Viewset
+# overided by api.py
 
 class LeadViewSet(viewsets.ModelViewSet):
     queryset = Lead.objects.all()
@@ -10,3 +12,6 @@ class LeadViewSet(viewsets.ModelViewSet):
         permissions.AllowAny
     ]
     serializer_class = LeadSerializer
+
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id', 'subject', 'sentiment_score', 'keywords', 'date', 'pn']

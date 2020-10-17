@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'leads.apps.LeadsConfig',
     'rest_framework',
     'corsheaders',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
