@@ -1,4 +1,33 @@
 
+.positive{  
+  color: green;
+}
+
+.negative{
+  color: red;
+}
+
+.pp{
+  font-size: 20px;
+  margin-bottom: 50em;
+}
+
+.poop{
+  font-size: 20px;
+  border-bottom: 1px solid black;
+}
+
+td{
+  
+}
+
+
+table{
+  margin-left: auto;
+  margin-right: auto;
+  /* border: 2px solid black; */
+}
+
 #header {
     background-color : rgb(233, 230, 230);
     text-align: center;
@@ -8,6 +37,7 @@
     padding-bottom: 1em;
     padding-top: 1em;
 }
+
 
 
 .grid-container {

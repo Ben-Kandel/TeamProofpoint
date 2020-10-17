@@ -5,6 +5,76 @@ import MyChart from "../components/MyChart";
 import "./SystemHealth.css";
 
 class SystemHealth extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            totalEmails: 0,
+            electionEmails: 0,
+            dates: [],
+        };
+
+        this.requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+    }
+
+    getTotalEmailsProcessed(){
+        fetch("http://127.0.0.1:8000/api/leads/", this.requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            this.setState({
+                totalEmails: result.length
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    getElectionEmailsProcessed(){
+        fetch("http://127.0.0.1:8000/api/leads/?subject=Election", this.requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            this.setState({
+                electionEmails: result.length
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    getChartData(){
+        fetch("http://127.0.0.1:8000/api/leads/", this.requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            let dates = new Map(); //keys are dates, values are # of emails on that date
+            result.forEach(element => {
+                if(dates.get(element.date)){
+                    dates.set(element.date, dates.get(element.date) + 1);
+                }else{
+                    dates.set(element.date, 1);
+                }
+            });
+
+            let formattedData = [];
+            //for some reason we have to swap the key and values
+            dates.forEach((value, key) => {
+                let date = new Date(key);
+                formattedData.push([date, value]);
+            });
+            console.log(formattedData);
+            this.setState({
+                dates: formattedData
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    componentDidMount(){
+        this.getTotalEmailsProcessed();
+        this.getElectionEmailsProcessed();
+        this.getChartData();
+    }
+
     render(){
         return(
             <div>
@@ -15,21 +85,21 @@ class SystemHealth extends React.Component{
                     <div class="grid-item emails">
                         <h1>Total Emails Processed</h1>
                         <hr></hr>
-                        <p1>1,348</p1>
+                        <p1>{this.state.totalEmails}</p1>
                     </div>
                     <div class="grid-item election">
                         <h1>Election Emails Processed</h1>
                         <hr></hr>
-                        <p1>600</p1>
+                        <p1>{this.state.electionEmails}</p1>
                     </div>
                     <div class="grid-item stocks">
                         <h1>Stock Market Emails Processed</h1>
                         <hr></hr>
-                        <p1>748</p1>
+                        <p1>0</p1>
                     </div>
                     <div class="grid-item line-graph">
                         <h1>Frequency of Incoming Emails Over Time</h1>
-                        <MyChart></MyChart>
+                        <MyChart data={this.state.dates}/>
                     </div>
                     <a className="system" href="/">Back</a>
                     <a className="next" href="/health2">Next</a>

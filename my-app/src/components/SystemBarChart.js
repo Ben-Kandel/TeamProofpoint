@@ -1,9 +1,7 @@
 import React from "react";
+import { HorizontalBar } from "react-chartjs-2";
 
-
-import { Bar, HorizontalBar } from "react-chartjs-2";
-
-export default function SystemBarChart() {
+export default function SystemBarChart(props) {
 
     const data = {
         labels: ["Positive", "Neutral", "Negative"],
@@ -15,13 +13,14 @@ export default function SystemBarChart() {
               borderWidth: 1,
               hoverBackgroundColor: 'rgba(255,99,132,0.4)',
               hoverBorderColor: 'rgba(255,99,132,1)',
-              data: [533, 33, 780],
+              data: [props.data.positiveEmails, 0, props.data.negativeEmails],
               
           }
         ]
       };
 
     const options = {
+        
         scales: {
             xAxes: [{
                 gridLines: {
