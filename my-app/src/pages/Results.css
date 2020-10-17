@@ -1,0 +1,84 @@
+
+#header {
+    background-color : rgb(233, 230, 230);
+    text-align: center;
+    margin-top: -1em;
+    margin-right: -0.5em;
+    margin-left: -0.5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+
+.grid-container {
+    margin : -0.5em;
+
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: gray;
+    padding: 4em;
+    
+    
+  }
+  .card1 {
+    background-color: rgba(204, 204, 204, 0.8);
+    border-radius : 1em;
+    height: 24em;  
+    font-size: 15px;
+    padding-left: 2em;
+    width: 175%;
+    padding-right: 2em;
+    text-align: center;
+    
+  }
+
+  .card4 {
+    background-color: rgba(204, 204, 204, 0.8);
+    border-radius : 1em;
+    height: 24em;
+    padding-left: 2em;
+    font-size: 15px;
+    padding-right: 2em;
+   
+    text-align: center;
+    width: 75%;
+  }
+
+  .card5{
+    background-color: rgba(204, 204, 204, 0.8);
+    border-radius : 1em;
+    height:  14em;
+    margin-top: 13em;
+    font-size: 15px;
+    width: 175%;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+  }
+
+  .line{
+      position: relative;
+      border-left: 0.75px solid white;
+      height: 18em;
+      left: 50%;
+      margin-top: -0.5em;
+  }
+
+  hr {
+      background-color: white;
+  }
+
+  .back{
+      border: 2px solid darkgray;
+      border-radius : 5px;
+      background-color: darkgray;
+      color: blue;
+      font-size: 0.75em;
+      position:absolute;
+
+      font-size: 1.5em;
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+
+  }
+  

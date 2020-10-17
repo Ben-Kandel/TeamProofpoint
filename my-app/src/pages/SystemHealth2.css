@@ -1,0 +1,98 @@
+
+/* the background color that everything will have by default */
+#root{
+    background: floralwhite;
+}
+
+/* the header at the top of the page */
+.header{
+    background-color : rgb(233, 230, 230);
+    text-align: center;
+    margin-top: -1em;
+    margin-right: -0.5em;
+    margin-left: -0.5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+/* setting the container up as a grid */
+.grid-container-2{    
+    margin : -0.5em;
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    grid-template-rows: 200px 200px 200px 200px;
+    background-color: gray;
+    padding: 4em;
+    padding-top: 1em;
+    
+    grid-row-gap: 25px;
+    grid-column-gap: 20px;
+    height: 92vh;
+}
+
+/* each grid item has these basic properties */
+.grid-item-2{
+    background-color: rgba(204, 204, 204, 0.8);
+    border-radius : 1em;
+    padding: 20px;
+    padding-bottom: 5em;
+    text-align: center;
+}
+
+/* h1 tags on each grid item */
+.grid-item-2 h1{
+    font-size: 25px;
+}
+
+/* p1 tags on each grid item */
+.grid-item-2 p1{
+    font-size: 22px;    
+    justify-content: center;
+    display: flex;
+    margin-top: 40px;
+}
+
+/* specifically item-1 in the grid */
+.data-upload{
+    grid-row: 1;  
+    grid-column: 2;
+}
+
+.runtime{
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.bar-graph{
+    grid-row: 2/4;
+    grid-column: 2/4;
+    margin: auto;
+    padding-bottom: 0px;
+}
+
+.positive-sentiment{
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.positive-sentiment p1{
+    color: green;
+}
+
+.neutral-sentiment{
+    grid-row: 3;
+    grid-column: 1;
+}
+
+.neutral-sentiment p1{
+    color: blue;
+}
+
+.negative-sentiment{
+    grid-row: 4;
+    grid-column: 1;
+}
+
+.negative-sentiment p1{
+    color: red;
+}

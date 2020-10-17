@@ -1,0 +1,125 @@
+img{
+    margin-top: -5em;
+    margin-left: 3em;
+}
+
+.container{
+
+    position:absolute;
+    margin-top: -4em;
+    padding-left: 1em;
+    padding-right: 1em;
+    width: 100%;
+    margin-left: 2em;
+    margin-right: 2em;
+    height: 800px;
+    left: 25%;
+}
+
+#box1 {
+    position: relative;
+    border: 1px solid lightgray;
+    background-color: rgb(233, 230, 230);
+    
+    padding-left: 1em;
+    padding-right: 1em;
+    
+    width: 55%;  
+    font-size: 20px;
+    height: 500px;
+    float: left;
+}
+
+#box1 h1 {
+    color: rgb(104, 101, 101);
+    font-size: 40px;
+}
+
+#box2{
+    position: relative;
+    border: 1px solid lightgray;
+    background-color: rgb(233, 230, 230);
+    float: left;
+    width: 30%;
+    margin-left: 3em;
+    height: 500px;
+    padding-left: 1em;
+    padding-right: 1em;
+    
+    font-size: 20px;
+}
+
+#box2 h2{
+    color: rgb(104, 101, 101);
+    font-size: 40px;
+    text-align: center;
+}
+
+#box3{
+    background-color: rgb(233, 230, 230);
+    border: 1px solid lightgray;
+    position: absolute;
+    margin-top: 39em;
+    width : 88%;
+    height: 300px;
+}
+#box3 h3 {
+    font-size: 20px;
+
+    padding-top: 1em;
+    text-align:center;
+}
+
+
+
+
+.system{
+    border: 2px solid darkgray;
+    border-radius : 5px;
+    background-color: darkgray;
+    color: blue;
+    font-size: 0.75em;
+    position:absolute;
+    bottom: 1em;
+    right: 1em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
+
+.sqlite{
+    position:absolute;
+    padding-top: 5em;
+    left: -3em;
+    transform : rotate(-10deg)
+}
+
+.apache{
+    position: absolute;
+    padding-top: 9em;
+    right: -2em;
+    transform: rotate(10deg)
+}
+.django{
+    position: absolute;
+    padding-top: 14em;
+    left: -5em;
+    transform: rotate(-10deg)
+}
+.email{
+    position:absolute;
+    padding-top: 17em;
+    right: -1em;
+    transform: rotate(10deg)
+}
+
+.flair{
+    position:absolute;
+    padding-top:19em;
+    left: -4em;
+    transform: rotate(-10deg)
+}
+.carousel{
+   text-align: center;
+   margin-top: 2em;
+   padding-right: 2em;
+}

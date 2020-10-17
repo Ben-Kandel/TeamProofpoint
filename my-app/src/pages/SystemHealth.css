@@ -1,0 +1,99 @@
+
+/* the background color that everything will have by default */
+#root{
+    background: floralwhite;
+}
+
+/* the header at the top of the page */
+.header{
+    background-color : rgb(233, 230, 230);
+    text-align: center;
+    margin-top: -1em;
+    margin-right: -0.5em;
+    margin-left: -0.5em;
+    padding-bottom: 1em;
+    padding-top: 1em;
+}
+
+/* setting the container up as a grid */
+.grid-container{    
+    margin : -0.5em;
+    display: grid;
+    background-color: gray;
+    padding: 4em;
+    padding-top: 1em;
+    grid-template-rows: 250px 400px;
+    grid-template-columns: auto auto auto auto;
+    grid-row-gap: 25px;
+    grid-column-gap: 20px;
+    height: 90vh;
+}
+
+/* each grid item has these basic properties */
+.grid-item{
+    background-color: rgba(204, 204, 204, 0.8);
+    border-radius : 1em;
+    padding: 20px;
+    padding-bottom: 5em;
+    text-align: center;
+}
+
+/* h1 tags on each grid item */
+.grid-item h1{
+    font-size: 25px;
+}
+
+/* p1 tags on each grid item */
+.grid-item p1{
+    font-size: 22px;    
+    justify-content: center;
+    display: flex;
+    margin-top: 55px;
+}
+
+.emails{
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.emails p1{
+    color: blue;
+}
+
+.election{
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.election p1{
+    color: red;
+}
+
+.stocks{
+    grid-row: 1;
+    grid-column: 3;
+}
+
+.stocks p1{
+    color: green;
+}
+
+.line-graph{
+    grid-row: 2;
+    grid-column: 1/4;
+    margin: auto;
+}
+
+.next{
+    position:absolute;
+    right: 5em;
+    bottom: 1em;
+    border: 2px solid darkgray;
+    border-radius : 5px;
+    background-color: darkgray;
+    color: blue;
+    font-size: 0.75em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+
+}
