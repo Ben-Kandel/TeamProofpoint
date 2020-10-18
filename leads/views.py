@@ -12,3 +12,4 @@ class LeadListCreate(generics.ListCreateAPIView):
     filter_backends = [filters.SearchFilter]
     search_fields = ['id', 'subject', 'sentiment_score', 'keywords', 'date', 'pn']
     #filterset_fields = ['id', 'subject', 'sentiment_score', 'keywords', 'date', 'pn']
+

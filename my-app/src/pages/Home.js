@@ -4,6 +4,9 @@ import InfoCard from "../components/InfoCard";
 //css
 import "./Home.css";
 import Carousel from 'react-bootstrap/Carousel'
+
+import $ from 'jquery';
+
 class Home extends React.Component{
 
     render(){
@@ -36,7 +39,7 @@ class Home extends React.Component{
     <img src = "./images/react.png" alt = "email" class = "email" width = "150"/>
     <img src = "./images/flair.png" alt = "flair" class = "flair" width = "150"/>
     <a class="system" href="/health">Learn More</a>
-
+    <button type="button" class = "runscript" onClick={this.runOnPython}>Update Database</button>
     <a href="/health" class = "system"> Learn More </a>
 </div>
 
@@ -74,6 +77,20 @@ class Home extends React.Component{
 
         );
     }
+
+    runOnPython(){
+    $.ajax({
+        url: "http://127.0.0.1:8000/transfer",
+        headers: {
+          'proofpoint': 'proofpoint'
+        },
+        context: document.body,
+
+    }).done(function() {
+        alert('Database has been updated!');
+    });
+
+}
 }
 
 export default Home;

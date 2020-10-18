@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'stocks.apps.StocksConfig',
+    'consumers.apps.ConsumersConfig',
 ]
 
 MIDDLEWARE = [
@@ -113,10 +115,12 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
+# changed this for dateformat if datetimeformat uncommented
 USE_L10N = True
-
+# changed this for dateformat same
 USE_TZ = True
+
+# DATETIME_FORMAT="%Y/%m/%d %H:%M:%S"
 
 
 # Static files (CSS, JavaScript, Images)
@@ -133,4 +137,17 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000'
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'proofpoint'
 ]

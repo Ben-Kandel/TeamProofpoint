@@ -123,3 +123,16 @@ img{
    margin-top: 2em;
    padding-right: 2em;
 }
+
+.runscript{
+    border: 2px solid darkgray;
+    border-radius : 5px;
+    background-color: darkgray;
+    color: blue;
+    font-size: 0.70em;
+    position:absolute;
+    bottom: 1em;
+    left: 1em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
