@@ -61,6 +61,7 @@ class SystemHealth extends React.Component{
                 let date = new Date(key);
                 formattedData.push([date, value]);
             });
+            formattedData = formattedData.sort((a, b) => a[0] - b[0]);
             console.log(formattedData);
             this.setState({
                 dates: formattedData
