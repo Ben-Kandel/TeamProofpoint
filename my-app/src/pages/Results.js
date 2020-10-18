@@ -244,7 +244,7 @@ class Model extends React.Component{
                     <div class="card2"></div>
                     <div class="card3"></div>
                     <div class="card4">
-                        <h2>Statistics</h2>
+                        <h2>Email Totals</h2>
                         <hr/>
                         <table>
                             <tr class="pp">
@@ -284,7 +284,13 @@ class Model extends React.Component{
                     </div>
                     <div class="card6"></div>
                     <div class="card7"></div>
-                    <div class="card8"></div>
+                    <div class="card8">
+                        <h2>Statistics</h2>
+                        <hr/>
+                        <table>
+                            
+                        </table>
+                    </div>
 
                     <a className="system" href="/">Back</a>
                     <a className="usecase" href = "results1"> Case 2 </a>
