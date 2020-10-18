@@ -4,6 +4,8 @@ import { Bar } from "react-chartjs-2";
 //css   
 import "./Results.css";
 import MyChart from "../components/MyChart";
+import { Chart } from "react-charts";
+import ResizableBox from "../components/ResizableBox";
 
 class Model extends React.Component{
     constructor(props){
@@ -119,7 +121,7 @@ class Model extends React.Component{
                         }
 
                     }
-                    }
+                    
                     else if (element.pn === "Negative"){
                         if (dateMap.get("BN")){ //if Biden negative exists in the dictionary
                             if (dateMap.get("BN").get(element.date)){ //Biden Negative, check if date exists
@@ -135,6 +137,7 @@ class Model extends React.Component{
                         }
 
                     }
+                }
                 else if (element.keywords === "Trump"){
                     if (element.pn === "Positive"){
                         if (dateMap.get("TP")){ //If Trump positive exists in the dictionary
@@ -151,7 +154,7 @@ class Model extends React.Component{
                         }
 
                     }
-                    }
+                    
                     else if (element.pn === "Negative"){
                         if (dateMap.get("TN")){ //If Trump negative exists in the dictionary
                             if (dateMap.get("TN").get(element.date)){ //Trump Negative, check if date exists
@@ -166,37 +169,46 @@ class Model extends React.Component{
                             dateMap.get("TN").set(element.date, 1); //initialize one at date
                         }
                     }
+                }
             });
+            console.log(dateMap);
             let bidenP = [];
             let bidenN = [];
             let trumpP = [];
             let trumpN = [];
             dateMap.forEach((value, key) => {
-                value.forEach((dates, incremented) =>{
+                value.forEach((incremented, dates) =>{
                     if (key === "BP"){
                         let date = new Date(dates);
                         bidenP.push([date, incremented]);
                     }
                     else if (key === "BN"){
                         let date = new Date(dates);
-                        bidenN.push([date, incremented]);
+                        bidenN.push([date, -1 * incremented]);
                     }
                     else if (key === "TP"){
                         let date = new Date(dates);
                         trumpP.push([date, incremented]);
                     }
                     else if (key === "TN"){
+                        console.log("hello");
                         let date = new Date(dates);
-                        trumpN.push([date, incremented]);
+                        trumpN.push([date, -1 * incremented]);
                     }
                 })
             })
+
+
                 this.setState({
                     negativeBidenDates : bidenN,
                     positiveBidenDates : bidenP,
                     negativeTrumpDates : trumpN,
                     positiveTrumpDates : trumpP
                 })
+                console.log(this.state.negativeBidenDates);
+                console.log(this.state.positiveBidenDates);
+                console.log(this.state.negativeTrumpDates);
+                console.log(this.state.positiveTrumpDates);
         })
             .catch(error => console.log('error', error));
     }
@@ -227,7 +239,7 @@ class Model extends React.Component{
                     <div class="card1">
                         <h2>Our Model</h2>
                         <hr/>
-
+                        
                     </div>
                     <div class="card2"></div>
                     <div class="card3"></div>
@@ -279,7 +291,7 @@ class Model extends React.Component{
                     <a className="usecase" href = "results1"> Case 2 </a>
                 </div>
 
-
+                <SomeChart pt={this.state.positiveTrumpDates} nt={this.state.negativeTrumpDates} pb={this.state.positiveBidenDates} nb={this.state.negativeBidenDates}/>
             </body>
             </html>
         );
@@ -296,42 +308,45 @@ export default class Results extends React.Component{
     }
 }
 
-function TheChart(props) {
+function SomeChart(props){
 
-    const data = {
-        labels: ["Positive", "Negative"],
-        datasets: [
+    const data = React.useMemo(
+        () => [
           {
-              label: "Trump Sentiments",
-              backgroundColor: ["green", "red"],
-              borderColor: 'rgba(1,1,1,1)', 
-              borderWidth: 1,
-              hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-              hoverBorderColor: 'rgba(255,99,132,1)',
-              data: [props.posTrump, props.negTrump],
+            label: "Positive Trump Emails",
+            data: props.pt
+          },
+          {
+            label: "Negative Trump Emails",
+            data: props.nt,
+          },
+          {
+            label: "Positive Biden Emails",
+            data: props.pb,
+          },
+          {
+            label: "Negative Biden Emails",
+            data: props.nb,
+          },
+          {
+              label: "fake",
+              data: [[new Date(2020, 8, 15), 21]],
           }
-        ]
-      };
+        ],
+        [props.pt, props.nt]
+    );
 
-    const options = {
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    display: false,
-                }
-            }],
-            yAxes: [{
-                gridLines: {
-                    display: true,
-                },
-                ticks: {
-                    beginAtZero: true,
-                }
-            }]
-        }
-    };
+    const axes = React.useMemo(
+    () => [
+        { primary: true, type: "time", position: "bottom"},
+        { type: "linear", position: "left"}
+    ],
+    []
+    );
 
     return(
-        <Bar data={data} options={options} width={500} height={200}></Bar>
+        <ResizableBox resizable={true} width="600" height="400">
+            <Chart data={data} axes={axes}/>
+        </ResizableBox>
     )
 }
