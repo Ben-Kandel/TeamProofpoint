@@ -53,10 +53,10 @@ table{
   .card1 {
     background-color: rgba(204, 204, 204, 0.8);
     border-radius : 1em;
-    height: 24em;  
+    height: 220%;
     font-size: 15px;
     padding-left: 2em;
-    width: 175%;
+    width: 150%;
     padding-right: 2em;
     text-align: center;
     
@@ -65,26 +65,16 @@ table{
   .card4 {
     background-color: rgba(204, 204, 204, 0.8);
     border-radius : 1em;
-    height: 24em;
+    height: 120%;
     padding-left: 2em;
     font-size: 15px;
     padding-right: 2em;
-   
+
     text-align: center;
     width: 75%;
   }
 
-  .card5{
-    background-color: rgba(204, 204, 204, 0.8);
-    border-radius : 1em;
-    height:  14em;
-    margin-top: 13em;
-    font-size: 15px;
-    width: 175%;
-    padding-left: 2em;
-    padding-right: 2em;
-    text-align: center;
-  }
+
 
   .line{
       position: relative;

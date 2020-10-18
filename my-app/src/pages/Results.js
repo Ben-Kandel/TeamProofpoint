@@ -239,7 +239,7 @@ class Model extends React.Component{
                     <div class="card1">
                         <h2>Our Model</h2>
                         <hr/>
-                        
+                        <SomeChart class ="chart" pt={this.state.positiveTrumpDates} nt={this.state.negativeTrumpDates} pb={this.state.positiveBidenDates} nb={this.state.negativeBidenDates}/>
                     </div>
                     <div class="card2"></div>
                     <div class="card3"></div>
@@ -280,8 +280,7 @@ class Model extends React.Component{
                         </table>
                     </div>
                     <div class="card5">
-                        <h2>Common Words</h2>
-                        <hr/>
+
                     </div>
                     <div class="card6"></div>
                     <div class="card7"></div>
@@ -291,7 +290,7 @@ class Model extends React.Component{
                     <a className="usecase" href = "results1"> Case 2 </a>
                 </div>
 
-                <SomeChart pt={this.state.positiveTrumpDates} nt={this.state.negativeTrumpDates} pb={this.state.positiveBidenDates} nb={this.state.negativeBidenDates}/>
+
             </body>
             </html>
         );
