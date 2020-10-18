@@ -111,4 +111,15 @@ table{
       padding-right: 0.75em;
 
   }
-  
+  .usecase{
+      border: 2px solid darkgray;
+      border-radius : 5px;
+      background-color: darkgray;
+      color: blue;
+      font-size: 0.75em;
+      position:absolute;
+      bottom: 1em;
+      right: 5em;
+      padding-left: 0.75em;
+      padding-right: 0.75em;
+  }

@@ -160,7 +160,9 @@ class Model extends React.Component{
                     <div class="card6"></div>
                     <div class="card7"></div>
                     <div class="card8"></div>
+
                     <a className="system" href="/">Back</a>
+                    <a className="usecase" href = "results1"> Case 2 </a>
                 </div>
 
 
