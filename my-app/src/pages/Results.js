@@ -198,17 +198,22 @@ class Model extends React.Component{
                 })
             })
 
-
+                //making sure the dates are in the right order for the graph
+                bidenP = bidenP.sort((a, b) => a[0] - b[0]);
+                bidenN = bidenN.sort((a, b) => a[0] - b[0]);
+                trumpP = trumpP.sort((a, b) => a[0] - b[0]);
+                trumpN = trumpN.sort((a, b) => a[0] - b[0]);
                 this.setState({
                     negativeBidenDates : bidenN,
                     positiveBidenDates : bidenP,
                     negativeTrumpDates : trumpN,
                     positiveTrumpDates : trumpP
                 })
-                console.log(this.state.negativeBidenDates);
+
+                /* console.log(this.state.negativeBidenDates);
                 console.log(this.state.positiveBidenDates);
                 console.log(this.state.negativeTrumpDates);
-                console.log(this.state.positiveTrumpDates);
+                console.log(this.state.positiveTrumpDates); */
         })
             .catch(error => console.log('error', error));
     }
@@ -264,7 +269,10 @@ class Model extends React.Component{
                                 <td>Negative Trump Emails</td>
                                 <td>{this.state.negTrumpEmails}</td>
                             </tr>
-                            
+                            <tr>
+                                <td>Ratio:</td>
+                                <td>{(this.state.posTrumpEmails / this.state.negTrumpEmails).toFixed(3)}</td>
+                            </tr>
                             <tr class="poop">
                                 <td>Biden Emails</td>
                                 <td>{this.state.bidenEmails}</td>
@@ -276,6 +284,10 @@ class Model extends React.Component{
                             <tr class="negative">
                                 <td>Negative Biden Emails</td>
                                 <td>{this.state.negBidenEmails}</td>
+                            </tr>
+                            <tr>
+                                <td>Ratio:</td>
+                                <td>{(this.state.posBidenEmails / this.state.negBidenEmails).toFixed(3)}</td>
                             </tr>
                         </table>
                     </div>
