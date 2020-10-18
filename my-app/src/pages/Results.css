@@ -73,7 +73,17 @@ table{
     text-align: center;
     width: 75%;
   }
-
+  .card8{
+      background-color: rgba(204, 204, 204, 0.8);
+      border-radius : 1em;
+      height: 120%;
+      padding-left: 2em;
+      font-size: 15px;
+      padding-right: 2em;
+      margin-top: 3em;
+      text-align: center;
+      width: 75%;
+  }
 
 
   .line{
