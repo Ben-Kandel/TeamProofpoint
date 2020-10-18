@@ -19,15 +19,6 @@ export default function App() {
   return (
     <BrowserRouter>
       <div>
-        <nav>
-          <a href="/"> Home </a>
-          <a href="/about"> About </a>
-          <a href="/health"> Health </a>
-          <a href="/health2"> Health 2 </a>
-          <a href="/results">Results Page</a>
-          <a href="/results1">Usecase 2</a>
-          <a href="/results2">Usecase 3</a>
-        </nav>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
