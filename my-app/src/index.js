@@ -12,6 +12,8 @@ import SystemHealth from "./pages/SystemHealth";
 import SystemHealth2 from "./pages/SystemHealth2";
 import Home from "./pages/Home"; 
 import Results from "./pages/Results";
+import Results1 from "./pages/Results1.js";
+import Results2 from "./pages/Results2.js";
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
           <a href="/health"> Health </a>
           <a href="/health2"> Health 2 </a>
           <a href="/results">Results Page</a>
+          <a href="/results1">Usecase 2</a>
+          <a href="/results2">Usecase 3</a>
         </nav>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
@@ -39,9 +43,16 @@ export default function App() {
           <Route path="/results">
             <Results/>
           </Route>
+            <Route path = "/results1">
+            <Results1/>
+            </Route>
+            <Route path = "/results2">
+            <Results2/>
+            </Route>
           <Route path="/">
             <Home />
           </Route>
+
         </Switch>
       </div>
     </BrowserRouter>

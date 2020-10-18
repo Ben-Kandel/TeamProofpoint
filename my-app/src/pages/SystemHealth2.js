@@ -5,6 +5,60 @@ import SystemBarChart from "../components/SystemBarChart";
 import "./SystemHealth2.css"
 
 class SystemHealth2 extends React.Component{
+
+    constructor(props){
+        super(props);
+        this.state = {
+            totalEmails: 0,
+            positiveEmails: 0,
+            negativeEmails: 0,
+        };
+
+        this.requestOptions = {
+            method: 'GET',
+            redirect: 'follow'
+        };
+    }
+
+    getTotalEmailsProcessed(){
+        fetch("http://127.0.0.1:8000/api/leads/", this.requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            this.setState({
+                totalEmails: result.length
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    getPositiveEmailsProcessed(){
+        fetch("http://127.0.0.1:8000/api/leads/?pn=Positive", this.requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            this.setState({
+                positiveEmails: result.length
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    getNegativeEmailsProcessed(){
+        fetch("http://127.0.0.1:8000/api/leads/?pn=Negative", this.requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            this.setState({
+                negativeEmails: result.length
+            })
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    componentDidMount(){
+        this.getTotalEmailsProcessed();
+        this.getPositiveEmailsProcessed();
+        this.getNegativeEmailsProcessed();
+    }
+
     render(){
         return(
             <div>
@@ -25,25 +79,25 @@ class SystemHealth2 extends React.Component{
                     <div class="grid-item-2 emails-2">
                         <h1>Total Emails Processed</h1>
                         <hr></hr>
-                        <p1>1,348</p1>
+                        <p1>{this.state.totalEmails}</p1>
                     </div>
                     <div class="grid-item-2 positive-sentiment">
                         <h1># of Positive Sentiment Emails</h1>
                         <hr></hr>
-                        <p1>535</p1>
+                        <p1>{this.state.positiveEmails}</p1>
                     </div>
                     <div class="grid-item-2 neutral-sentiment">
                         <h1># of Neutral Sentiment Emails</h1>
                         <hr></hr>
-                        <p1>33</p1>
+                        <p1>0</p1>
                     </div>
                     <div class="grid-item-2 negative-sentiment">
                         <h1># of Negative Sentiment Emails</h1>
                         <hr></hr>
-                        <p1>780</p1>
+                        <p1>{this.state.negativeEmails}</p1>
                     </div>
                     <div class="grid-item-2 bar-graph">
-                        <SystemBarChart/>
+                        <SystemBarChart data={this.state}/>
                     </div>
                     <a className="system" href="/health">Back</a>
                     <a className="next" href="/">Home</a>
