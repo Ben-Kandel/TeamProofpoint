@@ -319,23 +319,28 @@ function SomeChart(props){
         () => [
           {
             label: "Positive Trump Emails",
-            data: props.pt
+            data: props.pt,
+            color: "red",
           },
           {
             label: "Negative Trump Emails",
             data: props.nt,
+            color: "red",
           },
           {
             label: "Positive Biden Emails",
             data: props.pb,
+            color: "blue",
           },
           {
             label: "Negative Biden Emails",
             data: props.nb,
+            color: "blue",
           },
           {
               label: "fake",
               data: [[new Date(2020, 8, 15), 21]],
+              color: "rgba(1,1,1,0)",
           }
         ],
         [props.pt, props.nt]
@@ -351,7 +356,7 @@ function SomeChart(props){
 
     return(
         <ResizableBox resizable={true} width="600" height="400">
-            <Chart data={data} axes={axes}/>
+            <Chart data={data} axes={axes} tooltip/>
         </ResizableBox>
     )
 }
