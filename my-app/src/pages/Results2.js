@@ -296,11 +296,22 @@ class Model extends React.Component{
                     </div>
                     <div class="card6"></div>
                     <div class="card7"></div>
-                    <div class="card8">
+                    <div className="card8">
                         <h2>Statistics</h2>
                         <hr/>
                         <table>
-                            
+                            <tr className="pp">
+                                <td># Emails with URLS:</td>
+                                <td>0</td>
+                            </tr>
+                            <tr className="pp">
+                                <td># Emails with Attachments: &nbsp; </td>
+                                <td>0</td>
+                            </tr>
+                            <tr className="pp">
+                                <td># Emails with Promotions:</td>
+                                <td>0</td>
+                            </tr>
                         </table>
                     </div>
 

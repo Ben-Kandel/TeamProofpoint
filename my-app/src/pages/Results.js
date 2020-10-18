@@ -300,7 +300,18 @@ class Model extends React.Component{
                         <h2>Statistics</h2>
                         <hr/>
                         <table>
-                            
+                            <tr className="pp">
+                                <td># Emails with URLS: </td>
+                                <td>0</td>
+                            </tr>
+                            <tr className="pp">
+                                <td># Emails with Attachments: &nbsp; </td>
+                                <td>0</td>
+                            </tr>
+                            <tr className="pp">
+                                <td># Emails with Promotions: </td>
+                                <td>0</td>
+                            </tr>
                         </table>
                     </div>
 
