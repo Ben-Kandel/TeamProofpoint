@@ -12,6 +12,7 @@ class SystemHealth extends React.Component{
             totalEmails: 0,
             electionEmails: 0,
             dates: [],
+            stockEmails: 0,
         };
 
         this.requestOptions = {
@@ -20,16 +21,7 @@ class SystemHealth extends React.Component{
         };
     }
 
-    getTotalEmailsProcessed(){
-        fetch("http://127.0.0.1:8000/api/leads/", this.requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            this.setState({
-                totalEmails: result.length
-            })
-        })
-        .catch(error => console.log('error', error));
-    }
+
 
     getElectionEmailsProcessed(){
         fetch("http://127.0.0.1:8000/api/leads/?subject=Election", this.requestOptions)
@@ -40,6 +32,16 @@ class SystemHealth extends React.Component{
             })
         })
         .catch(error => console.log('error', error));
+    }
+    getStockEmailsProcessed(){
+        fetch("http://127.0.0.1:8000/api/stocks/", this.requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                this.setState({
+                    stockEmails: result.length
+                })
+            })
+            .catch(error => console.log('error', error));
     }
 
     getChartData(){
@@ -86,7 +88,7 @@ class SystemHealth extends React.Component{
                     <div class="grid-item emails">
                         <h1>Total Emails Processed</h1>
                         <hr></hr>
-                        <p1>{this.state.totalEmails}</p1>
+                        <p1>{this.state.totalEmails + this.state.stockEmails}</p1>
                     </div>
                     <div class="grid-item election">
                         <h1>Election Emails Processed</h1>
