@@ -9,7 +9,6 @@ class SystemHealth extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            totalEmails: 0,
             electionEmails: 0,
             dates: [],
             stockEmails: 0,
@@ -20,8 +19,6 @@ class SystemHealth extends React.Component{
             redirect: 'follow'
         };
     }
-
-
 
     getElectionEmailsProcessed(){
         fetch("http://127.0.0.1:8000/api/leads/?subject=Election", this.requestOptions)
@@ -73,8 +70,8 @@ class SystemHealth extends React.Component{
     }
 
     componentDidMount(){
-        this.getTotalEmailsProcessed();
         this.getElectionEmailsProcessed();
+        this.getStockEmailsProcessed();
         this.getChartData();
     }
 
@@ -88,7 +85,7 @@ class SystemHealth extends React.Component{
                     <div class="grid-item emails">
                         <h1>Total Emails Processed</h1>
                         <hr></hr>
-                        <p1>{this.state.totalEmails + this.state.stockEmails}</p1>
+                        <p1>{this.state.electionEmails + this.state.stockEmails}</p1>
                     </div>
                     <div class="grid-item election">
                         <h1>Election Emails Processed</h1>
@@ -98,7 +95,7 @@ class SystemHealth extends React.Component{
                     <div class="grid-item stocks">
                         <h1>Stock Market Emails Processed</h1>
                         <hr></hr>
-                        <p1>0</p1>
+                        <p1>{this.state.stockEmails}</p1>
                     </div>
                     <div class="grid-item line-graph">
                         <h1>Frequency of Incoming Emails Over Time</h1>

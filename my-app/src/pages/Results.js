@@ -378,8 +378,11 @@ function SomeChart(props){
     );
 
     return(
-        <ResizableBox resizable={true} width="600" height="400">
+        <div class="be-normal" style={{
+            width: "600px",
+            height: "400px"
+        }}>
             <Chart data={data} axes={axes} tooltip/>
-        </ResizableBox>
+        </div>
     )
 }

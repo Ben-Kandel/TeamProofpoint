@@ -13,7 +13,7 @@ export default function SystemBarChart(props) {
               borderWidth: 1,
               hoverBackgroundColor: 'rgba(255,99,132,0.4)',
               hoverBorderColor: 'rgba(255,99,132,1)',
-              data: [props.data.positiveEmails, 0, props.data.negativeEmails],
+              data: [props.data.posConsumer + props.data.posStock + props.data.posElection, 0, props.data.negConsumer + props.data.negStock + props.data.negElection],
               
           }
         ]
