@@ -29,202 +29,149 @@ class Model extends React.Component{
         };
     }
 
-    getTrumpEmails(){
-        fetch("http://127.0.0.1:8000/api/stocks/?keywords=Trump", this.requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            this.setState({
-                trumpEmails: result.length
-            })
-        })
-        .catch(error => console.log('error', error));
+    
+    async fetchData(leadName="stocks", keywords="", pn=""){
+        let url = new URL(`http://127.0.0.1:8000/api/${leadName}/`);
+        if(keywords){ //if keywords is not an empty string
+            url.searchParams.append("keywords", keywords);
+        }
+        if(pn){ //if pn is not an empty string
+            url.searchParams.append("pn", pn);
+        }
+        console.log(url.href);
+        const response = await fetch(url.href, this.requestOptions); //wait for the promise to resolve
+        const json = await response.json(); //we have to wait when converting this to json
+        return json; //return it
     }
 
-    getBidenEmails(){
-        fetch("http://127.0.0.1:8000/api/stocks/?keywords=Biden", this.requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            this.setState({
-                bidenEmails: result.length
-            })
-        })
-        .catch(error => console.log('error', error));
-    }
+    async getDataForGraph(){
+        const result = await this.fetchData("stocks");
+        let dateMap = new Map();
+        result.forEach(element => {
+            let tempMap = new Map();
+            if (element.keywords === "Biden"){
+                if (element.pn === "Positive"){
+                    if (dateMap.get("BP")){
 
-    getPosTrumpEmails(){
-        fetch("http://127.0.0.1:8000/api/stocks/?keywords=Trump&pn=Positive", this.requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            this.setState({
-                posTrumpEmails: result.length
-            })
-        })
-        .catch(error => console.log('error', error));
-    }
-
-    getNegTrumpEmails(){
-        fetch("http://127.0.0.1:8000/api/stocks/?keywords=Trump&pn=Negative", this.requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            this.setState({
-                negTrumpEmails: result.length
-            })
-        })
-        .catch(error => console.log('error', error));
-    }
-
-    getPosBidenEmails(){
-        fetch("http://127.0.0.1:8000/api/stocks/?keywords=Biden&pn=Positive", this.requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            this.setState({
-                posBidenEmails: result.length
-            })
-        })
-        .catch(error => console.log('error', error));
-    }
-
-    getNegBidenEmails(){
-        fetch("http://127.0.0.1:8000/api/stocks/?keywords=Biden&pn=Negative", this.requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            this.setState({
-                negBidenEmails: result.length
-            })
-        })
-        .catch(error => console.log('error', error));
-    }
-    getGraphData() { //Our data structure is a Map of Maps. The nested Map is the Value of the 4 keys of the first map.
-        //The first map has keys BP, BN, TP, TN. The nested map has keys of dates. The values of the nested map
-        //are incremented by one.
-        fetch("http://127.0.0.1:8000/api/stocks/" , this.requestOptions)
-            .then(response => response.json())
-            .then(result => {
-            let dateMap = new Map();
-            result.forEach(element => {
-                let tempMap = new Map();
-                if (element.keywords === "Biden"){
-                    if (element.pn === "Positive"){
-                        if (dateMap.get("BP")){
-
-                            if (dateMap.get("BP").get(element.date)){ //Biden Positive, checking if date exists
-                                dateMap.get("BP").set(element.date, dateMap.get("BP").get(element.date) + 1); //increment
-                            }
-                            else{ //Biden Positive, if the date does not exist in the nested dictionary
-                                dateMap.get("BP").set(element.date, 1);
-                            }
-
+                        if (dateMap.get("BP").get(element.date)){ //Biden Positive, checking if date exists
+                            dateMap.get("BP").set(element.date, dateMap.get("BP").get(element.date) + 1); //increment
                         }
-                        else{
-                            dateMap.set("BP", tempMap); //This means we are adding the first positive biden entry
-                            dateMap.get("BP").set(element.date, 1); //initialize one at the date
+                        else{ //Biden Positive, if the date does not exist in the nested dictionary
+                            dateMap.get("BP").set(element.date, 1);
                         }
 
                     }
-                    
-                    else if (element.pn === "Negative"){
-                        if (dateMap.get("BN")){ //if Biden negative exists in the dictionary
-                            if (dateMap.get("BN").get(element.date)){ //Biden Negative, check if date exists
-                                dateMap.get("BN").set(element.date, dateMap.get("BN").get(element.date) + 1); //increment
-                            }
-                            else{ //if Biden negative, if the date does not exist in nested dictionary
-                                dateMap.get("BN").set(element.date, 1);
-                            }
-                        }
-                        else{
-                            dateMap.set("BN", tempMap); //add a empty dictionary as key, first negative biden entry
-                            dateMap.get("BN").set(element.date, 1); //initialize one at date
-                        }
+                    else{
+                        dateMap.set("BP", tempMap); //This means we are adding the first positive biden entry
+                        dateMap.get("BP").set(element.date, 1); //initialize one at the date
+                    }
 
+                }
+                
+                else if (element.pn === "Negative"){
+                    if (dateMap.get("BN")){ //if Biden negative exists in the dictionary
+                        if (dateMap.get("BN").get(element.date)){ //Biden Negative, check if date exists
+                            dateMap.get("BN").set(element.date, dateMap.get("BN").get(element.date) + 1); //increment
+                        }
+                        else{ //if Biden negative, if the date does not exist in nested dictionary
+                            dateMap.get("BN").set(element.date, 1);
+                        }
+                    }
+                    else{
+                        dateMap.set("BN", tempMap); //add a empty dictionary as key, first negative biden entry
+                        dateMap.get("BN").set(element.date, 1); //initialize one at date
+                    }
+
+                }
+            }
+            else if (element.keywords === "Trump"){
+                if (element.pn === "Positive"){
+                    if (dateMap.get("TP")){ //If Trump positive exists in the dictionary
+                        if (dateMap.get("TP").get(element.date)){ //Trump Positive, check if date exists
+                            dateMap.get("TP").set(element.date, dateMap.get("TP").get(element.date) + 1); //increment
+                        }
+                        else{ //If Trump positive, if date does not exist in the nested dictionary
+                            dateMap.get("TP").set(element.date, 1);
+                        }
+                    }
+                    else{
+                        dateMap.set("TP", tempMap); //Add a empty dictionary as key, first positive trump entry
+                        dateMap.get("TP").set(element.date, 1); //initialize one at date
+                    }
+
+                }
+                
+                else if (element.pn === "Negative"){
+                    if (dateMap.get("TN")){ //If Trump negative exists in the dictionary
+                        if (dateMap.get("TN").get(element.date)){ //Trump Negative, check if date exists
+                            dateMap.get("TN").set(element.date, dateMap.get("TN").get(element.date) + 1); //increment
+                        }
+                        else { //If Trump negative, if date does not exist in nested dictionary
+                            dateMap.get("TN").set(element.date, 1);
+                        }
+                    }
+                    else{
+                        dateMap.set("TN", tempMap); //Add a empty dictionary as key, first negative trump entry
+                        dateMap.get("TN").set(element.date, 1); //initialize one at date
                     }
                 }
-                else if (element.keywords === "Trump"){
-                    if (element.pn === "Positive"){
-                        if (dateMap.get("TP")){ //If Trump positive exists in the dictionary
-                            if (dateMap.get("TP").get(element.date)){ //Trump Positive, check if date exists
-                                dateMap.get("TP").set(element.date, dateMap.get("TP").get(element.date) + 1); //increment
-                            }
-                            else{ //If Trump positive, if date does not exist in the nested dictionary
-                                dateMap.get("TP").set(element.date, 1);
-                            }
-                        }
-                        else{
-                            dateMap.set("TP", tempMap); //Add a empty dictionary as key, first positive trump entry
-                            dateMap.get("TP").set(element.date, 1); //initialize one at date
-                        }
-
-                    }
-                    
-                    else if (element.pn === "Negative"){
-                        if (dateMap.get("TN")){ //If Trump negative exists in the dictionary
-                            if (dateMap.get("TN").get(element.date)){ //Trump Negative, check if date exists
-                                dateMap.get("TN").set(element.date, dateMap.get("TN").get(element.date) + 1); //increment
-                            }
-                            else { //If Trump negative, if date does not exist in nested dictionary
-                                dateMap.get("TN").set(element.date, 1);
-                            }
-                        }
-                        else{
-                            dateMap.set("TN", tempMap); //Add a empty dictionary as key, first negative trump entry
-                            dateMap.get("TN").set(element.date, 1); //initialize one at date
-                        }
-                    }
+            }
+        });
+        let bidenP = [];
+        let bidenN = [];
+        let trumpP = [];
+        let trumpN = [];
+        dateMap.forEach((value, key) => {
+            value.forEach((incremented, dates) =>{
+                if (key === "BP"){
+                    let date = new Date(dates);
+                    bidenP.push([date, incremented]);
                 }
-            });
-            console.log(dateMap);
-            let bidenP = [];
-            let bidenN = [];
-            let trumpP = [];
-            let trumpN = [];
-            dateMap.forEach((value, key) => {
-                value.forEach((incremented, dates) =>{
-                    if (key === "BP"){
-                        let date = new Date(dates);
-                        bidenP.push([date, incremented]);
-                    }
-                    else if (key === "BN"){
-                        let date = new Date(dates);
-                        bidenN.push([date, -1 * incremented]);
-                    }
-                    else if (key === "TP"){
-                        let date = new Date(dates);
-                        trumpP.push([date, incremented]);
-                    }
-                    else if (key === "TN"){
-                        console.log("hello");
-                        let date = new Date(dates);
-                        trumpN.push([date, -1 * incremented]);
-                    }
-                })
+                else if (key === "BN"){
+                    let date = new Date(dates);
+                    bidenN.push([date, -1 * incremented]);
+                }
+                else if (key === "TP"){
+                    let date = new Date(dates);
+                    trumpP.push([date, incremented]);
+                }
+                else if (key === "TN"){
+                    console.log("hello");
+                    let date = new Date(dates);
+                    trumpN.push([date, -1 * incremented]);
+                }
             })
-
-                //making sure the dates are in the right order for the graph
-                bidenP = bidenP.sort((a, b) => a[0] - b[0]);
-                bidenN = bidenN.sort((a, b) => a[0] - b[0]);
-                trumpP = trumpP.sort((a, b) => a[0] - b[0]);
-                trumpN = trumpN.sort((a, b) => a[0] - b[0]);
-                this.setState({
-                    negativeBidenDates : bidenN,
-                    positiveBidenDates : bidenP,
-                    negativeTrumpDates : trumpN,
-                    positiveTrumpDates : trumpP
-                })
-
-                /* console.log(this.state.negativeBidenDates);
-                console.log(this.state.positiveBidenDates);
-                console.log(this.state.negativeTrumpDates);
-                console.log(this.state.positiveTrumpDates); */
         })
-            .catch(error => console.log('error', error));
+
+        //making sure the dates are in the right order for the graph
+        bidenP = bidenP.sort((a, b) => a[0] - b[0]);
+        bidenN = bidenN.sort((a, b) => a[0] - b[0]);
+        trumpP = trumpP.sort((a, b) => a[0] - b[0]);
+        trumpN = trumpN.sort((a, b) => a[0] - b[0]);
+        return [bidenP, bidenN, trumpP, trumpN] //just put them all in a list and return  
     }
-    componentDidMount(){
-        this.getTrumpEmails();
-        this.getBidenEmails();
-        this.getPosTrumpEmails();
-        this.getNegTrumpEmails();
-        this.getPosBidenEmails();
-        this.getNegBidenEmails();
-        this.getGraphData();
+
+    async componentDidMount(){
+        //remember that fetchData returns the actual json, we can call .length on it to get how many results there were
+        //we have to wrap some extra () around it to call .length
+        const trumpPositive = (await this.fetchData("stocks", "Trump", "Positive")).length;
+        const trumpNegative = (await this.fetchData("stocks", "Trump", "Negative")).length;
+        const bidenPositive = (await this.fetchData("stocks", "Biden", "Positive")).length;
+        const bidenNegative = (await this.fetchData("stocks", "Biden", "Negative")).length;
+        //this.getDataForGraph() returns a list [] with 4 values
+        const [ negBidenDates, posBidenDates, negTrumpDates, posTrumpDates ] = await this.getDataForGraph();
+        this.setState({
+            trumpEmails: trumpPositive + trumpNegative,
+            bidenEmails: bidenPositive + bidenNegative,
+            posTrumpEmails: trumpPositive,
+            negTrumpEmails: trumpNegative,
+            posBidenEmails: bidenPositive,
+            negBidenEmails: bidenNegative,
+            negativeBidenDates: negBidenDates,
+            positiveBidenDates: posBidenDates,
+            negativeTrumpDates: negTrumpDates,
+            positiveTrumpDates: posTrumpDates,
+        });
     }
 
     render(){
@@ -242,7 +189,7 @@ class Model extends React.Component{
                 </div>
                 <div class="grid-container">
                     <div class="card1">
-                        <h2>Our Model</h2>
+                        <h2>Emails Collected Each Day</h2>
                         <hr/>
                         <SomeChart class ="chart" pt={this.state.positiveTrumpDates} nt={this.state.negativeTrumpDates} pb={this.state.positiveBidenDates} nb={this.state.negativeBidenDates}/>
                     </div>
@@ -378,8 +325,11 @@ function SomeChart(props){
     );
 
     return(
-        <ResizableBox resizable={true} width="600" height="400">
+        <div class="be-normal" style={{
+            width: "600px",
+            height: "400px"
+        }}>
             <Chart data={data} axes={axes} tooltip/>
-        </ResizableBox>
+        </div>
     )
 }
