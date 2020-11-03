@@ -21,11 +21,16 @@ class SystemHealth extends React.Component{
     }
 
     getElectionEmailsProcessed(){
-        fetch("http://127.0.0.1:8000/api/leads/?subject=Election", this.requestOptions)
+        const result = fetch("http://127.0.0.1:8000/api/leads/", this.requestOptions)
         .then(response => response.json())
         .then(result => {
+            // collect total of emails from each row
+            let emailTotal = 0;
+        result.forEach((row) => {
+            emailTotal = emailTotal + row.volume
+        })
             this.setState({
-                electionEmails: result.length
+                electionEmails: emailTotal
             })
         })
         .catch(error => console.log('error', error));
@@ -48,9 +53,9 @@ class SystemHealth extends React.Component{
             let dates = new Map(); //keys are dates, values are # of emails on that date
             result.forEach(element => {
                 if(dates.get(element.date)){
-                    dates.set(element.date, dates.get(element.date) + 1);
+                    dates.set(element.date, (dates.get(element.date) + element.volume));
                 }else{
-                    dates.set(element.date, 1);
+                    dates.set(element.date, element.volume);
                 }
             });
 

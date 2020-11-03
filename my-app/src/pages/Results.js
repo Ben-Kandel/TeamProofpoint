@@ -29,13 +29,13 @@ class Model extends React.Component{
         };
     }
 
-    async fetchData(leadName="leads", keywords="", pn=""){
+    async fetchData(leadName="leads", subject="", P_N=""){
         let url = new URL(`http://127.0.0.1:8000/api/${leadName}/`);
-        if(keywords){ //if keywords is not an empty string
-            url.searchParams.append("keywords", keywords);
+        if(subject){ //if keywords is not an empty string
+            url.searchParams.append("subject", subject);
         }
-        if(pn){ //if pn is not an empty string
-            url.searchParams.append("pn", pn);
+        if(P_N){ //if pn is not an empty string
+            url.searchParams.append("P_N", P_N);
         }
         console.log(url.href);
         const response = await fetch(url.href, this.requestOptions); //wait for the promise to resolve
@@ -48,70 +48,70 @@ class Model extends React.Component{
         let dateMap = new Map();
         result.forEach(element => {
             let tempMap = new Map();
-            if (element.keywords === "Biden"){
-                if (element.pn === "Positive"){
+            if (element.subject === "Biden"){
+                if (element.P_N === "POSITIVE"){
                     if (dateMap.get("BP")){
 
                         if (dateMap.get("BP").get(element.date)){ //Biden Positive, checking if date exists
-                            dateMap.get("BP").set(element.date, dateMap.get("BP").get(element.date) + 1); //increment
+                            dateMap.get("BP").set(element.date, ( dateMap.get("BP").get(element.date) + element.volume) ); //increment
                         }
                         else{ //Biden Positive, if the date does not exist in the nested dictionary
-                            dateMap.get("BP").set(element.date, 1);
+                            dateMap.get("BP").set(element.date, element.volume);
                         }
 
                     }
                     else{
                         dateMap.set("BP", tempMap); //This means we are adding the first positive biden entry
-                        dateMap.get("BP").set(element.date, 1); //initialize one at the date
+                        dateMap.get("BP").set(element.date, element.volume); //initialize one at the date
                     }
 
                 }
                 
-                else if (element.pn === "Negative"){
+                else if (element.P_N === "NEGATIVE"){
                     if (dateMap.get("BN")){ //if Biden negative exists in the dictionary
                         if (dateMap.get("BN").get(element.date)){ //Biden Negative, check if date exists
-                            dateMap.get("BN").set(element.date, dateMap.get("BN").get(element.date) + 1); //increment
+                            dateMap.get("BN").set(element.date, (dateMap.get("BN").get(element.date) + element.volume) ); //increment
                         }
                         else{ //if Biden negative, if the date does not exist in nested dictionary
-                            dateMap.get("BN").set(element.date, 1);
+                            dateMap.get("BN").set(element.date, element.volume);
                         }
                     }
                     else{
                         dateMap.set("BN", tempMap); //add a empty dictionary as key, first negative biden entry
-                        dateMap.get("BN").set(element.date, 1); //initialize one at date
+                        dateMap.get("BN").set(element.date, element.volume); //initialize one at date
                     }
 
                 }
             }
-            else if (element.keywords === "Trump"){
-                if (element.pn === "Positive"){
+            else if (element.subject === "Trump"){
+                if (element.P_N === "POSITIVE"){
                     if (dateMap.get("TP")){ //If Trump positive exists in the dictionary
                         if (dateMap.get("TP").get(element.date)){ //Trump Positive, check if date exists
-                            dateMap.get("TP").set(element.date, dateMap.get("TP").get(element.date) + 1); //increment
+                            dateMap.get("TP").set(element.date, (dateMap.get("TP").get(element.date) + element.volume) ); //increment
                         }
                         else{ //If Trump positive, if date does not exist in the nested dictionary
-                            dateMap.get("TP").set(element.date, 1);
+                            dateMap.get("TP").set(element.date, element.volume);
                         }
                     }
                     else{
                         dateMap.set("TP", tempMap); //Add a empty dictionary as key, first positive trump entry
-                        dateMap.get("TP").set(element.date, 1); //initialize one at date
+                        dateMap.get("TP").set(element.date, element.volume); //initialize one at date
                     }
 
                 }
                 
-                else if (element.pn === "Negative"){
+                else if (element.P_N === "NEGATIVE"){
                     if (dateMap.get("TN")){ //If Trump negative exists in the dictionary
                         if (dateMap.get("TN").get(element.date)){ //Trump Negative, check if date exists
-                            dateMap.get("TN").set(element.date, dateMap.get("TN").get(element.date) + 1); //increment
+                            dateMap.get("TN").set(element.date, (dateMap.get("TN").get(element.date) + element.volume) ); //increment
                         }
                         else { //If Trump negative, if date does not exist in nested dictionary
-                            dateMap.get("TN").set(element.date, 1);
+                            dateMap.get("TN").set(element.date, element.volume);
                         }
                     }
                     else{
                         dateMap.set("TN", tempMap); //Add a empty dictionary as key, first negative trump entry
-                        dateMap.get("TN").set(element.date, 1); //initialize one at date
+                        dateMap.get("TN").set(element.date, element.volume); //initialize one at date
                     }
                 }
             }
@@ -120,24 +120,29 @@ class Model extends React.Component{
         let bidenN = [];
         let trumpP = [];
         let trumpN = [];
+
         dateMap.forEach((value, key) => {
             value.forEach((incremented, dates) =>{
                 if (key === "BP"){
                     let date = new Date(dates);
                     bidenP.push([date, incremented]);
+
                 }
                 else if (key === "BN"){
                     let date = new Date(dates);
                     bidenN.push([date, -1 * incremented]);
+
                 }
                 else if (key === "TP"){
                     let date = new Date(dates);
                     trumpP.push([date, incremented]);
+
                 }
                 else if (key === "TN"){
                     console.log("hello");
                     let date = new Date(dates);
                     trumpN.push([date, -1 * incremented]);
+
                 }
             })
         })
@@ -153,19 +158,44 @@ class Model extends React.Component{
     async componentDidMount(){
         //remember that fetchData returns the actual json, we can call .length on it to get how many results there were
         //we have to wrap some extra () around it to call .length
-        const trumpPositive = (await this.fetchData("leads", "Trump", "Positive")).length;
-        const trumpNegative = (await this.fetchData("leads", "Trump", "Negative")).length;
-        const bidenPositive = (await this.fetchData("leads", "Biden", "Positive")).length;
-        const bidenNegative = (await this.fetchData("leads", "Biden", "Negative")).length;
+        // const trumpPositive = (await this.fetchData("leads", "Trump", "POSITIVE")).length;
+        // const trumpNegative = (await this.fetchData("leads", "Trump", "NEGATIVE")).length;
+        // const bidenPositive = (await this.fetchData("leads", "Biden", "POSITIVE")).length;
+        // const bidenNegative = (await this.fetchData("leads", "Biden", "NEGATIVE")).length;
+        let trumpPositive = await this.fetchData("leads", "Trump", "POSITIVE");
+        let trumpNegative = await this.fetchData("leads", "Trump", "NEGATIVE");
+        let bidenPositive = await this.fetchData("leads", "Biden", "POSITIVE");
+        let bidenNegative = await this.fetchData("leads", "Biden", "NEGATIVE");
+
+        let trumpPositiveTotal = 0;
+        trumpPositive.forEach((row) => {
+            trumpPositiveTotal = trumpPositiveTotal + row.volume
+        })
+
+        let trumpNegativeTotal = 0;
+        trumpNegative.forEach((row) => {
+            trumpNegativeTotal = trumpNegativeTotal + row.volume
+        })
+
+        let bidenPositiveTotal = 0;
+        bidenPositive.forEach((row) => {
+            bidenPositiveTotal = bidenPositiveTotal + row.volume
+        })
+
+        let bidenNegativeTotal = 0;
+        bidenNegative.forEach((row) => {
+            bidenNegativeTotal = bidenNegativeTotal + row.volume
+        })
+
         //this.getDataForGraph() returns a list [] with 4 values
         const [ negBidenDates, posBidenDates, negTrumpDates, posTrumpDates ] = await this.getDataForGraph();
         this.setState({
-            trumpEmails: trumpPositive + trumpNegative,
-            bidenEmails: bidenPositive + bidenNegative,
-            posTrumpEmails: trumpPositive,
-            negTrumpEmails: trumpNegative,
-            posBidenEmails: bidenPositive,
-            negBidenEmails: bidenNegative,
+            trumpEmails: trumpPositiveTotal + trumpNegativeTotal,
+            bidenEmails: bidenPositiveTotal + bidenNegativeTotal,
+            posTrumpEmails: trumpPositiveTotal,
+            negTrumpEmails: trumpNegativeTotal,
+            posBidenEmails: bidenPositiveTotal,
+            negBidenEmails: bidenNegativeTotal,
             negativeBidenDates: negBidenDates,
             positiveBidenDates: posBidenDates,
             negativeTrumpDates: negTrumpDates,
@@ -298,7 +328,7 @@ function SomeChart(props){
           },
           {
               label: "fake",
-              data: [[new Date(2020, 8, 15), 21]],
+              data: [[new Date(2020, 9, 14), 21]],
               color: "rgba(1,1,1,0)",
           }
         ],
