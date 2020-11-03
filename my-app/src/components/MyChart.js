@@ -12,7 +12,7 @@ export default function MyChart(props) {
       },
       {
         label: "fake",
-        data: [[new Date(2020, 8, 15), 100]],
+        data: [[new Date(2020, 9, 15), 100]],
         color: "rgba(1,1,1,0)"
       },
     ],
