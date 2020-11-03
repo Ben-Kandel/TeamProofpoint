@@ -19,10 +19,10 @@ def transfer(nameDB, copyTable):
     positive= 0
     negative = 0
     neutral = 0
-    for i in data['subject']:
-        if i == "Election":
-            e_amount +=1
-    for i in data["pn"]:
+    # for i in data['subject']:
+    #     if i == "Election":
+    #         e_amount +=1
+    for i in data["P_N"]:
         if i == "Positive":
             positive +=1
         elif i == "Negative":
@@ -30,8 +30,14 @@ def transfer(nameDB, copyTable):
         else:
             neutral +=1
 
+        
     d = {'Positives': [positive], 'Negatives': [negative], 'Neutrals': [neutral], 'Amount' : [len(data)], 'Election_amount'
-        : [e_amount]
+        : [e_amount]}
+
+    # for d, i in enumerate(data['keywords']):
+    #     if i == "Undefined":
+    #         data.drop(d, inplace=True)
+
     stats = pd.DataFrame(data = d)
     conn2 = sqlite3.connect("db.sqlite3")
     data.index.name = "id"
