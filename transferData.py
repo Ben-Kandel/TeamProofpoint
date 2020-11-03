@@ -30,9 +30,8 @@ def transfer(nameDB, copyTable):
         else:
             neutral +=1
 
-        
     d = {'Positives': [positive], 'Negatives': [negative], 'Neutrals': [neutral], 'Amount' : [len(data)], 'Election_amount'
-        : [e_amount]}
+        : [e_amount]
     stats = pd.DataFrame(data = d)
     conn2 = sqlite3.connect("db.sqlite3")
     data.index.name = "id"
