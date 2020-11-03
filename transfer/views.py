@@ -10,7 +10,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname('transferData'), os
 from transferData import transfer
 # Create your views here.
 def transferDatabase(request):
-    transfer("leads_lead", "bidenTesting")
-    transfer("stocks_stocks", "trumpTesting")
-    transfer("consumers_consumer", "realData")
+
+    transfer("leads_lead", "stats")
+    # transfer("stocks_stocks", "trumpTesting")
+    # transfer("consumers_consumer", "realData")
     return HttpResponse("Transfer Complete!")
