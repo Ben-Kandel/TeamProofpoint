@@ -20,7 +20,8 @@ class Model extends React.Component{
             negativeBidenDates: [],
             positiveBidenDates: [],
             negativeTrumpDates: [],
-            positiveTrumpDates: []
+            positiveTrumpDates: [],
+            show:true
         };
 
         this.requestOptions = {
@@ -260,11 +261,25 @@ class Model extends React.Component{
                             </tr>
                         </table>
                     </div>
-                    <div class="card5">
+
+                         <div class="card5">
+                             {
+                                 this.state.show ? <div class="sub5">
+                                    <h2>Our Prediction</h2>
+                                 </div> : null
+                             }
+
+                        </div>
+
+                    <button className="hideB" onClick={() => {
+                        this.setState({show: !this.state.show})
+                    }}>{this.state.show ? 'Hide' : 'Show'} Prediction
+                    </button>
+                    <div class="card6"></div>
+                    <div class="card7">
 
                     </div>
-                    <div class="card6"></div>
-                    <div class="card7"></div>
+
                     <div class="card8">
                         <h2>Statistics</h2>
                         <hr/>
