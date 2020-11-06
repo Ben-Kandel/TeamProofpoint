@@ -11,8 +11,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import SystemHealth from "./pages/SystemHealth";
 import SystemHealth2 from "./pages/SystemHealth2";
 import Home from "./pages/Home"; 
-import Results from "./pages/Results";
-import Results1 from "./pages/Results1.js";
+import Election from "./pages/Election";
+import Stocks from "./pages/Stocks.js";
 import Results2 from "./pages/Results2.js";
 
 export default function App() {
@@ -31,17 +31,17 @@ export default function App() {
           <Route path="/health2">
             <SystemHealth2 />
           </Route>
-          <Route path="/results">
-            <Results/>
+          <Route path="/election">
+            <Election/>
           </Route>
-            <Route path = "/results1">
-            <Results1/>
-            </Route>
-            <Route path = "/results2">
+          <Route path = "/stocks">
+            <Stocks/>
+          </Route>
+          <Route path = "/results2">
             <Results2/>
-            </Route>
+          </Route>
           <Route path="/">
-            <Home />
+            <Home/>
           </Route>
         </Switch>
       </div>
