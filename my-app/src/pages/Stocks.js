@@ -4,12 +4,17 @@ import { Bar } from "react-chartjs-2";
 //css   
 import "./Results.css";
 import { Chart } from "react-charts";
+import Dropdown from "react-bootstrap/Dropdown";
 
 class Model extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            
+            stock1: false,
+            stock2: false,
+            stock3: false,
+            stock4: false,
+            stock5: false
         };
 
         this.requestOptions = {
@@ -62,10 +67,64 @@ class Model extends React.Component{
                     <div class="card5">
 
                     </div>
+
                     <div class="card6"></div>
                     <div class="card7"></div>
                     <div className="card8">
-                        <h2>Statistics</h2>
+                        <h2>Stonks</h2>
+                        <Dropdown class = "dropdown">
+                            <Dropdown.Toggle variant="success" id="dropdown-basic">
+                                Dropdown Button
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({stock1: !this.state.stock1, stock2 : false, stock3 : false,
+                                        stock4 : false, stock5 : false})
+                                }}>{this.state.stock1 ? 'Hide' : 'Show'}>stock 1</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({stock1: false, stock2 : !this.state.stock2, stock3 : false,
+                                        stock4 : false, stock5 : false})
+                                }}>{this.state.stock2 ? 'Hide' : 'Show'}>stock 2</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({stock1: false, stock2 : false, stock3 : !this.state.stock3,
+                                        stock4 : false, stock5 : false})
+                                }}>{this.state.stock3 ? 'Hide' : 'Show'}>stock 3</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({stock1: false, stock2 : false, stock3 : false,
+                                        stock4 : !this.state.stock4, stock5 : false})
+                                }}>{this.state.stock4 ? 'Hide' : 'Show'}>stock 4</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({stock1: false, stock2 : false, stock3 : false,
+                                        stock4 : false, stock5 : !this.state.stock5})
+                                }}>{this.state.stock5 ? 'Hide' : 'Show'}>stock 5</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        {
+                            this.state.stock1 ? <div class="stock1">
+                                <h2>Stock1</h2>
+                            </div> : null
+                        }
+                        {
+                            this.state.stock2 ? <div class="stock1">
+                                <h2>Stock2</h2>
+                            </div> : null
+                        }
+                        {
+                            this.state.stock3 ? <div class="stock1">
+                                <h2>Stock3</h2>
+                            </div> : null
+                        }
+                        {
+                            this.state.stock4 ? <div class="stock1">
+                                <h2>Stock4</h2>
+                            </div> : null
+                        }
+                        {
+                            this.state.stock5 ? <div class="stock1">
+                                <h2>Stock5</h2>
+                            </div> : null
+                        }
                     </div>
                     <a className="system" href="/">Back</a>
                     <a className="usecase"> Consumer Sentiment (doesn't work) </a>
