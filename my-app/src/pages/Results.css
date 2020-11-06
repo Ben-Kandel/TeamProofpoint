@@ -83,6 +83,9 @@ table{
   .card5 h2{
       text-align: center;
   }
+  .card5 p {
+      margin-left: 2em;
+  }
 
   .sub5{
       background-color: rgba(204, 204, 204, 0.8);
@@ -158,3 +161,39 @@ table{
   .stock1{
       margin-top: 3em;
   }
+
+
+
+/* Make sure that padding behaves as expected */
+* {box-sizing:border-box}
+
+/* Container for skill bars */
+.bidenprediction {
+    margin: auto;
+    width: 80%; /* Full width */
+    background-color: #ddd; /* Grey background */
+    margin-top: 3em;
+
+}
+.trump{
+    float: right;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    color: white;
+}
+
+.biden {
+    float: left;
+    text-align: center; /* Right-align text */
+    padding-top: 10px; /* Add top padding */
+    padding-bottom: 10px; /* Add bottom padding */
+    color: white; /* White text color */
+}
+
+.biden {width: 55%; background-color: blue;} /* Green */
+.trump {width: 45%; background-color: red;}
+
+
+
