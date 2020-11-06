@@ -53,7 +53,7 @@ class Home extends React.Component{
                 alt="Election"
                 width = "500px"
                 height = "300px"
-                onClick={event=> window.location.href='/results'}
+                onClick={event=> window.location.href='/election'}
             />
 
         </Carousel.Item>
@@ -64,6 +64,7 @@ class Home extends React.Component{
                 alt="Third slide"
                 width = "400px"
                 height = "300px"
+                onClick={event=> window.location.href='/stocks'}
             />
         </Carousel.Item>
 
