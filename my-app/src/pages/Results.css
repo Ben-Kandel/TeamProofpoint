@@ -151,3 +151,10 @@ table{
       padding-left: 0.75em;
       padding-right: 0.75em;
   }
+  .dropdown{
+      position:absolute;
+  }
+
+  .stock1{
+      margin-top: 3em;
+  }
