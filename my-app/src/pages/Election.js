@@ -21,7 +21,7 @@ class Model extends React.Component{
             positiveBidenDates: [],
             negativeTrumpDates: [],
             positiveTrumpDates: [],
-            show:true
+            show:false
         };
 
         this.requestOptions = {
@@ -266,7 +266,14 @@ class Model extends React.Component{
                              {
                                  this.state.show ? <div class="sub5">
                                     <h2>Our Prediction</h2>
+
+
+                                     <div class="bidenprediction">
+                                         <div class="biden">Biden: 55%</div>
+                                         <div class = "trump">Trump : 45%</div>
+                                     </div>
                                  </div> : null
+
                              }
 
                         </div>
