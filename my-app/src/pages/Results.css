@@ -59,7 +59,9 @@ table{
     padding-left: 2em;
     width: 150%;
     padding-right: 2em;
-    text-align: center;
+      text-align: center;
+      overflow: visible;
+
     
   }
 
