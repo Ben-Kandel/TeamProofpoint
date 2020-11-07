@@ -22,7 +22,66 @@ class Model extends React.Component{
             redirect: 'follow'
         };
     }
-    
+    async getStockGraphData(leadName){ //We want tables of individual stocks. Do not aggregate any dates.
+        const result = await this.fetchData(leadName); //Change this to actual stock table/view name
+        let PositiveDateMap = new Map();
+        let NegativeDateMap = new Map();
+        result.forEach(element =>{
+            if (element.P_N === "POSITIVE"){
+                if (PositiveDateMap.get(element.date)){
+                    PositiveDateMap.set(element.date, PositiveDateMap.get(element.date) + 1); //Increment by one
+                }
+                else{
+                    PositiveDateMap.set(element.date, 1);
+                }
+            }
+            else if (element.P_N ==="NEGATIVE"){
+                if (NegativeDateMap.get(element.date)){
+                    NegativeDateMap.set(element.date, NegativeDateMap.get(element.date) + 1); //Increment by one
+                }
+                else{
+                    NegativeDateMap.set(element.date,1);
+                }
+            }
+        });
+        let DateMap = []; //Return master array of {positive, negative};
+        DateMap.push(PositiveDateMap, NegativeDateMap);
+        return DateMap;
+    }
+    async getDataForGraph(){
+        const result = await this.fetchData("stocks");
+        let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))
+        let stockList = ["GOOG", "AMZN", "MFST", "AAPL", "TSLA"];
+        result.forEach(element =>{
+            let tempMap = new Map();
+            for (var i = 0; i < stockList.length; i ++){
+                if (element.subject === stockList[i]){ //Make sure we are adding to the right stock dict.
+                    if (dateMap.get(element.subject)) { //If stock exists already.
+                        if (dateMap.get(element.subject.get(element.date))) { //If Date exists
+                            if (dateMap.get(element.subject.get(element.date.get(element.P_N)))) { //If sentiment record of that date exists.
+                                dateMap.get(element.subject.get(element.date.set(element.P_N,
+                                    dateMap.get(element.date.get(element.P_N) + 1))));
+                            } else {
+                                dateMap.get(element.subject.get(element.date.set(element.P_N, 1)));
+                            }
+                        }
+                        else{ //Date does not exist, add a map there.
+                            dateMap.get(element.subject.set(element.date, new Map()));
+                            dateMap.get(element.subject.get(element.date.set(element.P_N, 1)));
+                        }
+                    }
+                    else{ //if stock does not exist
+                       dateMap.set(element.subject, new Map());
+                       dateMap.get(element.subject.set(element.date, new Map()));
+                       dateMap.get(element.subject.get(element.date.set(element.P_N, 1)));
+                    }
+                }
+            }
+        });
+    }
+
+
+
     async fetchData(leadName="stocks", keywords="", pn=""){
         let url = new URL(`http://127.0.0.1:8000/api/${leadName}/`);
         if(keywords){ //if keywords is not an empty string
