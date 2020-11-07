@@ -189,7 +189,7 @@ class Model extends React.Component{
         })
 
         //this.getDataForGraph() returns a list [] with 4 values
-        const [ negBidenDates, posBidenDates, negTrumpDates, posTrumpDates ] = await this.getDataForGraph();
+        const [ posBidenDates, negBidenDates, posTrumpDates, negTrumpDates ] = await this.getDataForGraph();
         this.setState({
             trumpEmails: trumpPositiveTotal + trumpNegativeTotal,
             bidenEmails: bidenPositiveTotal + bidenNegativeTotal,
@@ -353,16 +353,29 @@ function SomeChart(props){
     const axes = React.useMemo(
     () => [
         { primary: true, type: "time", position: "bottom"},
-        { type: "linear", position: "left"}
+        { type: "linear", position: "left", min: Math.min(props.nt)}
     ],
     []
     );
 
     return(
-        <div class="be-normal" style={{
-            width: "600px",
-            height: "400px"
-        }}>
+        <div
+        style={{
+            // display: 'flex',
+            // flexDirection: 'column',
+            // padding: '12px',
+
+            margin: "auto",
+            height: '80%',
+            width: '45%',
+            flex: 10,
+            // border: '5px solid blue',
+            maxHeight: '400px',
+            // margin: '10px'
+
+        }}
+      >
+
             <Chart data={data} axes={axes} tooltip/>
         </div>
     )

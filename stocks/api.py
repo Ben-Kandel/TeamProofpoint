@@ -16,5 +16,5 @@ class StocksViewSet(viewsets.ModelViewSet):
     serializer_class = StocksSerializer
 
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'subject', 'sentiment_score', 'keywords', 'date', 'pn']
+    filterset_fields = ['id', 'date', 'volume', 'subject', 'ASS', 'P_N']
 
