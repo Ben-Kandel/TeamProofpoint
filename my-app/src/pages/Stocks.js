@@ -63,6 +63,27 @@ class Model extends React.Component{
                     <div class="card3"></div>
                     <div class="card4">
                         <h2>Some other stats</h2>
+                        <table>
+
+
+                            <tr className="poop">
+                                <td>Total Stock Emails</td>
+
+                            </tr>
+                            <tr className="positive">
+                                <td>Positive Stock Emails</td>
+
+                            </tr>
+                            <tr className="negative">
+                                <td>Negative Stock Emails</td>
+
+                            </tr>
+                            <tr>
+                                <td>Ratio:</td>
+
+                            </tr>
+
+                        </table>
                     </div>
                     <div class="card5">
 
