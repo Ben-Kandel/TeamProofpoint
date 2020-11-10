@@ -48,10 +48,11 @@ table{
     margin-left: -0.5em;
     padding-bottom: 1em;
     padding-top: 1em;
+
 }
 
 /* keeps whole webpage gray*/
-html {background-color: gray}
+/*html {background-color: gray}*/
 
 .grid-container {
     margin : -0.5em;
@@ -60,7 +61,7 @@ html {background-color: gray}
     grid-template-columns: auto auto auto auto;
     background-color: gray;
     padding: 4em;
-    
+    height: 62em;
     
   }
   .card1 {
@@ -136,25 +137,24 @@ html {background-color: gray}
   /* important dates css */
   .sub9{
       background-color: rgba(204, 204, 204, 0.8);
-      border-radius : 1em;
+
       height: 100%;
   }
 
    .card9{
-      margin-top: 9em;
-       margin-right: 10em;
 
+
+      position: relative;
+      margin-top: 0.5em;
       height: 75%;
-      width: 150%;
 
   }
   .card9 h2{
       text-align: center;
   }
-  .card9 p {
+  .card9Table{
       margin-left: 2em;
   }
-
     .hideC{
       background-color: rgba(204, 204, 204, 0.8);
       position: absolute;
@@ -195,8 +195,9 @@ html {background-color: gray}
       color: blue;
       font-size: 0.75em;
       position:absolute;
+      bottom: 6em;
+      right: 1em;
 
-      font-size: 1.5em;
       padding-left: 0.75em;
       padding-right: 0.75em;
 
@@ -210,7 +211,7 @@ html {background-color: gray}
       color: blue;
       font-size: 0.75em;
       position:absolute;
-      bottom: 1em;
+      bottom: 6em;
       right: 5em;
       padding-left: 0.75em;
       padding-right: 0.75em;
