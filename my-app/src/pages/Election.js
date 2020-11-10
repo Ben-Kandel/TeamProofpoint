@@ -7,6 +7,8 @@ import MyChart from "../components/MyChart";
 import { Chart } from "react-charts";
 import ResizableBox from "../components/ResizableBox";
 
+
+
 class Model extends React.Component{
     constructor(props){
         super(props);
@@ -21,7 +23,9 @@ class Model extends React.Component{
             positiveBidenDates: [],
             negativeTrumpDates: [],
             positiveTrumpDates: [],
-            show:false
+            show:false,
+            flip:false,
+            showDates:false
         };
 
         this.requestOptions = {
@@ -168,24 +172,53 @@ class Model extends React.Component{
         let bidenPositive = await this.fetchData("leads", "Biden", "POSITIVE");
         let bidenNegative = await this.fetchData("leads", "Biden", "NEGATIVE");
 
+        let trumpMostNegative = 0;
+        let bidenMostNegative = 0;
+        let trumpMostPositive = 0;
+        let bidenMostPositive = 0;
+        let trumpMostNegativeDate = new Date();
+        let bidenMostNegativeDate = new Date();
+        let trumpMostPositiveDate = new Date();
+        let bidenMostPositiveDate = new Date();
+
         let trumpPositiveTotal = 0;
         trumpPositive.forEach((row) => {
             trumpPositiveTotal = trumpPositiveTotal + row.volume
+
+            if (row.volume > trumpMostPositive){
+                trumpMostPositive = row.volume
+                trumpMostPositiveDate = row.date
+            }
         })
 
         let trumpNegativeTotal = 0;
         trumpNegative.forEach((row) => {
             trumpNegativeTotal = trumpNegativeTotal + row.volume
+
+            if (row.volume > trumpMostNegative){
+                trumpMostNegative = row.volume
+                trumpMostNegativeDate = row.date
+            }
         })
 
         let bidenPositiveTotal = 0;
         bidenPositive.forEach((row) => {
             bidenPositiveTotal = bidenPositiveTotal + row.volume
+
+            if (row.volume > bidenMostPositive){
+                bidenMostPositive = row.volume
+                bidenMostPositiveDate = row.date
+            }
         })
 
         let bidenNegativeTotal = 0;
         bidenNegative.forEach((row) => {
             bidenNegativeTotal = bidenNegativeTotal + row.volume
+
+            if (row.volume > bidenMostNegative){
+                bidenMostNegative = row.volume
+                bidenMostNegativeDate = row.date
+            }
         })
 
         //this.getDataForGraph() returns a list [] with 4 values
@@ -201,8 +234,18 @@ class Model extends React.Component{
             positiveBidenDates: posBidenDates,
             negativeTrumpDates: negTrumpDates,
             positiveTrumpDates: posTrumpDates,
+            trumpMostNegative: trumpMostNegative,
+            bidenMostNegative: bidenMostNegative,
+            trumpMostPositive: trumpMostPositive,
+            bidenMostPositive: bidenMostPositive,
+            trumpMostNegativeDate: trumpMostNegativeDate,
+            bidenMostNegativeDate: bidenMostNegativeDate,
+            trumpMostPositiveDate: trumpMostPositiveDate,
+            bidenMostPositiveDate: bidenMostPositiveDate,
         });
     }
+
+
 
     render(){
         return(
@@ -282,13 +325,28 @@ class Model extends React.Component{
                         this.setState({show: !this.state.show})
                     }}>{this.state.show ? 'Hide' : 'Show'} Prediction
                     </button>
+                    <button className="hideC" onClick={() => {
+                        this.setState({showDates: !this.state.showDates})
+                    }}>{this.state.showDates ? 'Hide' : 'Show'} Important Dates
+                    </button>
                     <div class="card6"></div>
                     <div class="card7">
 
                     </div>
 
+
+
                     <div class="card8">
-                        <h2>Statistics</h2>
+                        <table>
+                            <tr>
+                        <td><h2>Statistics</h2></td>
+                                <td>&nbsp;&nbsp;&nbsp; || &nbsp;&nbsp;&nbsp;</td>
+                        <td><button id = "statSwap" onClick={() => toggle(this.state)}>
+                            {'Switch Candidate'}
+                        </button>
+                        </td>
+                                </tr>
+                        </table>
                         <hr/>
                         <table>
                             <tr className="pp">
@@ -296,14 +354,129 @@ class Model extends React.Component{
                                 <td>0</td>
                             </tr>
                             <tr className="pp">
-                                <td># Emails with Attachments: &nbsp; </td>
+                                <td># Emails with Attachments:</td>
                                 <td>0</td>
                             </tr>
                             <tr className="pp">
                                 <td># Emails with Promotions: </td>
                                 <td>0</td>
                             </tr>
+                            <tr className="pp-toggle">
+
+                                <td id="positiveDay">Most Positive Emails (Biden):</td>
+                                <td id ="positiveCount"> {this.state.bidenMostPositive} </td>
+                            </tr>
+                            <tr className="pp-toggle">
+
+                                <td id="positiveDayDate">Date of Most Positive Emails:</td>
+                                <td id ="positiveCountDate"> {this.state.bidenMostPositiveDate} </td>
+                            </tr>
+                            <tr className="pp-toggle">
+
+                                <td id="negativeDay">Most Negative Emails (Biden):</td>
+                                <td id ="negativeCount"> {this.state.bidenMostNegative} </td>
+                            </tr>
+                            <tr className="pp-toggle">
+
+                                <td id="negativeDayDate">Date of Most Negative Emails:</td>
+                                <td id ="negativeCountDate"> {this.state.bidenMostNegativeDate} </td>
+                            </tr>
                         </table>
+                    </div>
+
+                    <div className="card9">
+                        {
+                            this.state.showDates ? <div className="sub9">
+                                <h2>Important Dates</h2>
+
+                                <tr>
+                                    <td id="bolded">2020-10-01</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>President Donald Trump and First Lady Melania Trump Test Positive for COVID-19</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-05</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>President Trump is discharged Walter Reed Hospital</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-07</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>Vice Presidential Debate is held in Salt Lake City, Utah</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-08</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>FBI arrest 13 armed militia members who plotted to kidnap Michigan Governor Gretchen Whitmer</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-12</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>Senate Judiciary Committee hearings on Supreme Court nominee Amy Coney Barrett begins</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-14</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>Rudy Giuliani makes false claims alluding to emails found that claim Joe Biden used political power to benefit his son</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-15</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>Biden and Trump participate in separate town halls</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-22</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>Final Presidential Debate is held in Nashville, Tennessee</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-26</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>Senate confirms Amy Coney Barrett to the Supreme Court</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-10-30</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>A Biden campaign bus is swarmed by a caravan of Texas Trump supporters causing the eventual cancellation of a Biden campaign event, no one was harmed </td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-11-03</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>2020 U.S. Election Begins</td>
+                                </tr>
+                                <tr>
+                                    <td id="bolded">2020-11-07</td>
+                                    <td>&nbsp;</td>
+                                    <td>|</td>
+                                    <td>&nbsp;</td>
+                                    <td>Most major networks call the election for President-elect Joe Biden</td>
+                                </tr>
+                            </div> : null
+
+                        }
+
                     </div>
 
                     <a className="system" href="/">Back</a>
@@ -313,6 +486,71 @@ class Model extends React.Component{
         );
     }
 }
+
+// stats page for candidate specific stats
+var statBiden = true;
+function toggle(test) {
+        statBiden = !statBiden
+
+        console.log("swapping stats")
+
+        window.onclick = function(){
+
+            let negativeDay = document.getElementById("negativeDay")
+            let negativeCount = document.getElementById("negativeCount")
+
+            let positiveDay = document.getElementById("positiveDay")
+            let positiveCount = document.getElementById("positiveCount")
+
+            let negativeDayDate = document.getElementById("negativeDayDate")
+            let negativeCountDate = document.getElementById("negativeCountDate")
+
+            let positiveDayDate = document.getElementById("positiveDayDate")
+            let positiveCountDate = document.getElementById("positiveCountDate")
+
+
+            if (statBiden) {
+                negativeDay.innerHTML = "Most Negative Emails (Biden):"
+                negativeCount.innerHTML = test.bidenMostNegative
+                positiveDay.innerHTML = "Most Positive Emails (Biden):"
+                positiveCount.innerHTML = test.bidenMostPositive
+                negativeDayDate.innerHTML = "Date of Most Negative Emails:"
+                negativeCountDate.innerHTML = test.bidenMostNegativeDate
+                positiveDayDate.innerHTML = "Date of Most Positive Emails:"
+                positiveCountDate.innerHTML = test.bidenMostPositiveDate
+
+                negativeDay.style.color = 'blue'
+                negativeCount.style.color = 'blue'
+                positiveDay.style.color = 'blue'
+                positiveCount.style.color = 'blue'
+                negativeDayDate.style.color = 'blue'
+                negativeCountDate.style.color = 'blue'
+                positiveDayDate.style.color = 'blue'
+                positiveCountDate.style.color = 'blue'
+            } else {
+                negativeDay.innerHTML = "Most Negative Emails (Trump):"
+                negativeCount.innerHTML = test.trumpMostNegative
+                positiveDay.innerHTML = "Most Positive Emails (Trump):"
+                positiveCount.innerHTML = test.trumpMostPositive
+                negativeDayDate.innerHTML = "Date of Most Negative Emails:"
+                negativeCountDate.innerHTML = test.trumpMostNegativeDate
+                positiveDayDate.innerHTML = "Date of Most Positive Emails:"
+                positiveCountDate.innerHTML = test.trumpMostPositiveDate
+
+                negativeDay.style.color = 'red'
+                negativeCount.style.color = 'red'
+                positiveDay.style.color = 'red'
+                positiveCount.style.color = 'red'
+                negativeDayDate.style.color = 'red'
+                negativeCountDate.style.color = 'red'
+                positiveDayDate.style.color = 'red'
+                positiveCountDate.style.color = 'red'
+            }
+
+        }
+    }
+
+
 
 export default class Election extends React.Component{
     render(){
@@ -350,7 +588,7 @@ function SomeChart(props){
           },
           {
               label: "fake",
-              data: [[new Date(2020, 9, 14), 21]],
+              data: [[new Date(2020, 9, 11), 21]],
               color: "rgba(1,1,1,0)",
           }
         ],
@@ -359,7 +597,7 @@ function SomeChart(props){
 
     const axes = React.useMemo(
     () => [
-        { primary: true, type: "time", position: "bottom"},
+        { primary: true, type: "time", position: "bottom", min : new Date(2020, 9, 11)},
         { type: "linear", position: "left", min: Math.min(props.nt)}
     ],
     []
