@@ -384,103 +384,105 @@ class Model extends React.Component{
                         </table>
                     </div>
 
-                    <div className="card9">
-                        {
-                            this.state.showDates ? <div className="sub9">
-                                <h2>Important Dates</h2>
 
-                                <tr>
-                                    <td id="bolded">2020-10-01</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>President Donald Trump and First Lady Melania Trump Test Positive for COVID-19</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-05</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>President Trump is discharged Walter Reed Hospital</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-07</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>Vice Presidential Debate is held in Salt Lake City, Utah</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-08</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>FBI arrest 13 armed militia members who plotted to kidnap Michigan Governor Gretchen Whitmer</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-12</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>Senate Judiciary Committee hearings on Supreme Court nominee Amy Coney Barrett begins</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-14</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>Rudy Giuliani makes false claims alluding to emails found that claim Joe Biden used political power to benefit his son</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-15</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>Biden and Trump participate in separate town halls</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-22</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>Final Presidential Debate is held in Nashville, Tennessee</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-26</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>Senate confirms Amy Coney Barrett to the Supreme Court</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-10-30</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>A Biden campaign bus is swarmed by a caravan of Texas Trump supporters causing the eventual cancellation of a Biden campaign event, no one was harmed </td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-11-03</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>2020 U.S. Election Begins</td>
-                                </tr>
-                                <tr>
-                                    <td id="bolded">2020-11-07</td>
-                                    <td>&nbsp;</td>
-                                    <td>|</td>
-                                    <td>&nbsp;</td>
-                                    <td>Most major networks call the election for President-elect Joe Biden</td>
-                                </tr>
-                            </div> : null
 
-                        }
-
-                    </div>
-
-                    <a className="system" href="/">Back</a>
+                    <a className="back" href="/">Back</a>
                     <a className="usecase" href = "stocks"> Stocks Page</a>
+                </div>
+                <div className="card9">
+                    {
+                        this.state.showDates ? <div className="sub9">
+                            <h2>Important Dates</h2>
+                            <div class = "card9Table">
+                            <tr>
+                                <td id="bolded">2020-10-01</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>President Donald Trump and First Lady Melania Trump Test Positive for COVID-19</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-05</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>President Trump is discharged Walter Reed Hospital</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-07</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>Vice Presidential Debate is held in Salt Lake City, Utah</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-08</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>FBI arrest 13 armed militia members who plotted to kidnap Michigan Governor Gretchen Whitmer</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-12</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>Senate Judiciary Committee hearings on Supreme Court nominee Amy Coney Barrett begins</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-14</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>Rudy Giuliani makes false claims alluding to emails found that claim Joe Biden used political power to benefit his son</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-15</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>Biden and Trump participate in separate town halls</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-22</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>Final Presidential Debate is held in Nashville, Tennessee</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-26</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>Senate confirms Amy Coney Barrett to the Supreme Court</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-10-30</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>A Biden campaign bus is swarmed by a caravan of Texas Trump supporters causing the eventual cancellation of a Biden campaign event, no one was harmed </td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-11-03</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>2020 U.S. Election Begins</td>
+                            </tr>
+                            <tr>
+                                <td id="bolded">2020-11-07</td>
+                                <td>&nbsp;</td>
+                                <td>|</td>
+                                <td>&nbsp;</td>
+                                <td>Most major networks call the election for President-elect Joe Biden</td>
+                            </tr>
+                            </div>
+                        </div> : null
+
+                    }
+
                 </div>
             </div>
         );
