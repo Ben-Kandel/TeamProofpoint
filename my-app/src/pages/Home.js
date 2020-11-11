@@ -1,5 +1,5 @@
 import React from "react";
-import InfoCard from "../components/InfoCard";
+
 
 //css
 import "./Home.css";

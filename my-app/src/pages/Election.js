@@ -7,9 +7,6 @@ import MyChart from "../components/MyChart";
 import { Chart } from "react-charts";
 import { variance } from 'mathjs'
 
-import ResizableBox from "../components/ResizableBox";
-
-
 
 class Model extends React.Component{
     constructor(props){
