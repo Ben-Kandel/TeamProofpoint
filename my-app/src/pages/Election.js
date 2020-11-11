@@ -5,6 +5,8 @@ import { Bar } from "react-chartjs-2";
 import "./Results.css";
 import MyChart from "../components/MyChart";
 import { Chart } from "react-charts";
+import { variance } from 'mathjs'
+
 import ResizableBox from "../components/ResizableBox";
 
 
@@ -135,17 +137,20 @@ class Model extends React.Component{
                 }
                 else if (key === "BN"){
                     let date = new Date(dates);
+                    // date = date.split(' ').slice(0,4).join(' ');
                     bidenN.push([date, -1 * incremented]);
 
                 }
                 else if (key === "TP"){
                     let date = new Date(dates);
+
                     trumpP.push([date, incremented]);
 
                 }
                 else if (key === "TN"){
                     console.log("hello");
                     let date = new Date(dates);
+
                     trumpN.push([date, -1 * incremented]);
 
                 }
@@ -172,6 +177,8 @@ class Model extends React.Component{
         let bidenPositive = await this.fetchData("leads", "Biden", "POSITIVE");
         let bidenNegative = await this.fetchData("leads", "Biden", "NEGATIVE");
 
+        let allEmails = []
+
         let trumpMostNegative = 0;
         let bidenMostNegative = 0;
         let trumpMostPositive = 0;
@@ -184,17 +191,18 @@ class Model extends React.Component{
         let trumpPositiveTotal = 0;
         trumpPositive.forEach((row) => {
             trumpPositiveTotal = trumpPositiveTotal + row.volume
-
+            allEmails.push(row.ASS)
             if (row.volume > trumpMostPositive){
                 trumpMostPositive = row.volume
                 trumpMostPositiveDate = row.date
+
             }
         })
 
         let trumpNegativeTotal = 0;
         trumpNegative.forEach((row) => {
             trumpNegativeTotal = trumpNegativeTotal + row.volume
-
+            allEmails.push(row.ASS)
             if (row.volume > trumpMostNegative){
                 trumpMostNegative = row.volume
                 trumpMostNegativeDate = row.date
@@ -204,7 +212,7 @@ class Model extends React.Component{
         let bidenPositiveTotal = 0;
         bidenPositive.forEach((row) => {
             bidenPositiveTotal = bidenPositiveTotal + row.volume
-
+            allEmails.push(row.ASS)
             if (row.volume > bidenMostPositive){
                 bidenMostPositive = row.volume
                 bidenMostPositiveDate = row.date
@@ -214,7 +222,7 @@ class Model extends React.Component{
         let bidenNegativeTotal = 0;
         bidenNegative.forEach((row) => {
             bidenNegativeTotal = bidenNegativeTotal + row.volume
-
+            allEmails.push(row.ASS)
             if (row.volume > bidenMostNegative){
                 bidenMostNegative = row.volume
                 bidenMostNegativeDate = row.date
@@ -242,6 +250,7 @@ class Model extends React.Component{
             bidenMostNegativeDate: bidenMostNegativeDate,
             trumpMostPositiveDate: trumpMostPositiveDate,
             bidenMostPositiveDate: bidenMostPositiveDate,
+            emailVariance: variance(allEmails)
         });
     }
 
@@ -265,12 +274,12 @@ class Model extends React.Component{
                         <h2>Email Totals</h2>
                         <hr/>
                         <table>
-                            <tr class="pp">
+                            <tr class="total-title">
                                 <td>Total Emails</td>
                                 <td>{this.state.bidenEmails + this.state.trumpEmails}</td>
                             </tr>
                             
-                            <tr class="poop">
+                            <tr class="line-title">
                                 <td>Trump Emails</td>
                                 <td>{this.state.trumpEmails}</td>
                             </tr>
@@ -286,7 +295,7 @@ class Model extends React.Component{
                                 <td>Ratio:</td>
                                 <td>{(this.state.posTrumpEmails / this.state.negTrumpEmails).toFixed(3)}</td>
                             </tr>
-                            <tr class="poop">
+                            <tr class="line-title">
                                 <td>Biden Emails</td>
                                 <td>{this.state.bidenEmails}</td>
                             </tr>
@@ -337,49 +346,65 @@ class Model extends React.Component{
 
 
                     <div class="card8">
-                        <table>
+                        <table >
                             <tr>
-                        <td><h2>Statistics</h2></td>
-                                <td>&nbsp;&nbsp;&nbsp; || &nbsp;&nbsp;&nbsp;</td>
-                        <td><button id = "statSwap" onClick={() => toggle(this.state)}>
+                        <td><h2>Statistics: </h2></td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td><h2 id="stat-title" style={{color: "blue"}}>Biden</h2></td>
+                                </tr>
+
+                               <div className='stat-swap-button'> <button id = "statSwap" onClick={() => toggle(this.state)}>
                             {'Switch Candidate'}
                         </button>
-                        </td>
-                                </tr>
+                                   </div>
+
                         </table>
                         <hr/>
                         <table>
                             <tr className="pp">
                                 <td># Emails with URLS: </td>
+                                <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
                             <tr className="pp">
                                 <td># Emails with Attachments:</td>
+                                <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
                             <tr className="pp">
                                 <td># Emails with Promotions: </td>
+                                <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
                             <tr className="pp-toggle">
 
-                                <td id="positiveDay">Most Positive Emails (Biden):</td>
+                                <td id="positiveDay">Most Positive Emails:</td>
+                                <td>&nbsp;</td>
                                 <td id ="positiveCount"> {this.state.bidenMostPositive} </td>
                             </tr>
                             <tr className="pp-toggle">
 
                                 <td id="positiveDayDate">Date of Most Positive Emails:</td>
+                                <td>&nbsp;</td>
                                 <td id ="positiveCountDate"> {this.state.bidenMostPositiveDate} </td>
                             </tr>
                             <tr className="pp-toggle">
 
-                                <td id="negativeDay">Most Negative Emails (Biden):</td>
+                                <td id="negativeDay">Most Negative Emails:</td>
+                                <td>&nbsp;</td>
                                 <td id ="negativeCount"> {this.state.bidenMostNegative} </td>
                             </tr>
                             <tr className="pp-toggle">
 
                                 <td id="negativeDayDate">Date of Most Negative Emails:</td>
+                                <td>&nbsp;</td>
                                 <td id ="negativeCountDate"> {this.state.bidenMostNegativeDate} </td>
+                            </tr>
+                            <tr className="pp-toggle">
+
+                                <td id="avgSentiment">Date of Most Negative Emails:</td>
+                                <td>&nbsp;</td>
+                                <td id ="avgSentimentNum"> {this.state.emailVariance} </td>
                             </tr>
                         </table>
                     </div>
@@ -497,6 +522,7 @@ function toggle(test) {
         console.log("swapping stats")
 
         window.onclick = function(){
+            let statTitle = document.getElementById("stat-title")
 
             let negativeDay = document.getElementById("negativeDay")
             let negativeCount = document.getElementById("negativeCount")
@@ -512,15 +538,13 @@ function toggle(test) {
 
 
             if (statBiden) {
-                negativeDay.innerHTML = "Most Negative Emails (Biden):"
+                statTitle.innerHTML = "Biden"
                 negativeCount.innerHTML = test.bidenMostNegative
-                positiveDay.innerHTML = "Most Positive Emails (Biden):"
                 positiveCount.innerHTML = test.bidenMostPositive
-                negativeDayDate.innerHTML = "Date of Most Negative Emails:"
                 negativeCountDate.innerHTML = test.bidenMostNegativeDate
-                positiveDayDate.innerHTML = "Date of Most Positive Emails:"
                 positiveCountDate.innerHTML = test.bidenMostPositiveDate
 
+                statTitle.style.color = 'blue'
                 negativeDay.style.color = 'blue'
                 negativeCount.style.color = 'blue'
                 positiveDay.style.color = 'blue'
@@ -530,15 +554,13 @@ function toggle(test) {
                 positiveDayDate.style.color = 'blue'
                 positiveCountDate.style.color = 'blue'
             } else {
-                negativeDay.innerHTML = "Most Negative Emails (Trump):"
+                statTitle.innerHTML = "Trump"
                 negativeCount.innerHTML = test.trumpMostNegative
-                positiveDay.innerHTML = "Most Positive Emails (Trump):"
                 positiveCount.innerHTML = test.trumpMostPositive
-                negativeDayDate.innerHTML = "Date of Most Negative Emails:"
                 negativeCountDate.innerHTML = test.trumpMostNegativeDate
-                positiveDayDate.innerHTML = "Date of Most Positive Emails:"
                 positiveCountDate.innerHTML = test.trumpMostPositiveDate
 
+                statTitle.style.color = 'red'
                 negativeDay.style.color = 'red'
                 negativeCount.style.color = 'red'
                 positiveDay.style.color = 'red'
