@@ -20,12 +20,27 @@
     text-align: right;
     padding-right : 100px;
     color: blue;
+
+}
+
+.steady-table{
+    position: absolute;
+}
+
+.stat-swap-button{
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
-.poop{
+.line-title{
   font-size: 20px;
   border-bottom: 1px solid black;
+}
+
+.total-title{
+  font-size: 20px;
+
 }
 
 .be-normal{
@@ -122,6 +137,8 @@ table{
       color:#000000;
       background-color: #FFFFFF;
 }
+
+  /* stats card */
   .card8{
       background-color: rgba(204, 204, 204, 0.8);
       border-radius : 1em;
@@ -132,6 +149,7 @@ table{
       margin-top: 7em;
       text-align: center;
       width: 75%;
+      min-width: 450px;
   }
 
   /* important dates css */
