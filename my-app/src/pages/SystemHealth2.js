@@ -143,7 +143,7 @@ class SystemHealth2 extends React.Component{
                     <div class="grid-item-2 runtime">
                         <h1>Runtime</h1>
                         <hr></hr>
-                        <p1>0.45 ms</p1>
+                        <p1>4 emails/second</p1>
                     </div>
                     <div class="grid-item-2 emails-2">
                         <h1>Total Emails Processed</h1>
