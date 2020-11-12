@@ -11,14 +11,14 @@
   color: red;
 }
 
-.pp{
+.sb{
   font-size: 20px;
   margin-bottom: 50em;
     text-align: right;
     padding-right : 100px;
 }
 
-.pp-toggle{
+.sb-toggle{
   font-size: 20px;
   margin-bottom: 50em;
     text-align: right;
@@ -32,8 +32,7 @@
 }
 
 .stat-swap-button{
-    margin-left: auto;
-    margin-right: auto;
+    align-self: center;
 }
 
 
@@ -164,6 +163,7 @@ table{
       position: relative;
       margin-top: 0.5em;
       height: 75%;
+
 
   }
   .card9 h2{
