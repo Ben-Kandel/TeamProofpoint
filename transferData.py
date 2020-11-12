@@ -57,7 +57,7 @@ def transfer(nameDB, copyTable):
         master.loc[len(master.index)] = [dow['Date'][d], dow["Adj Close"][d], "DOW"]
         master.loc[len(master.index)] = [sp['Date'][d], sp["Adj Close"][d], "S&P500"]
         master.loc[len(master.index)] = [nasdaq['Date'][d], nasdaq["Adj Close"][d], "NASDAQ"]
-
+    master.index.name = "id"
     master.to_sql("prices_prices", con =conn2, if_exists = "replace")
 
 
