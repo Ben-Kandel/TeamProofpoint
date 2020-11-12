@@ -235,6 +235,9 @@ table{
   }
   .dropdown{
       position:absolute;
+      margin-left: 3em;
+
+
   }
 
   .stock1{
