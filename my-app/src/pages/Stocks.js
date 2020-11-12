@@ -16,7 +16,10 @@ class Model extends React.Component{
             stock2: false,
             stock3: false,
             stock4: false,
-            stock5: false
+            stock5: false,
+            dowPrices: [],
+            nasdaqPrices: [],
+            sp500Prices: [],
         };
 
         this.requestOptions = {
@@ -87,8 +90,6 @@ class Model extends React.Component{
         console.log(dateMap);
     }
 
-
-
     async fetchData(leadName="stocks", keywords="", pn=""){
         let url = new URL(`http://127.0.0.1:8000/api/${leadName}/`);
         if(keywords){ //if keywords is not an empty string
@@ -103,18 +104,27 @@ class Model extends React.Component{
         return json; //return it
     }
 
-    async testingApi(){
-        let url = 'http://127.0.0.1:8000/api/prices/';
-        let response = await fetch(url, this.requestOptions);
-        let json = await response.json();
-        console.log('here is what we got from the prices api:');
-        console.log(json);
+    async fetchPriceData(indexName=""){
+        let url = new URL(`http://127.0.0.1:8000/api/prices/`);
+        if(indexName){
+            url.searchParams.append('name', indexName);
+        }
+        const response = await fetch(url.href, this.requestOptions);
+        const json = await response.json();
+        return json;
     }
 
     async componentDidMount(){
-        // const stockData = (await this.fetchData("stocks", "SOMETHING", "THIS_WONT_WORK")).length;
-        this.getDataForGraph();
-        this.testingApi();
+        // this.getDataForGraph();
+        let DOW = await this.fetchPriceData('DOW');
+        let NASDAQ = await this.fetchPriceData('NASDAQ');
+        let SP500 = await this.fetchPriceData('S&P500');
+
+        this.setState({
+            dowPrices: DOW,
+            nasdaqPrices: NASDAQ,
+            sp500Prices: SP500,
+        });
     }
 
     render(){
@@ -133,8 +143,8 @@ class Model extends React.Component{
                 <div class="grid-container">
                     <div class="card1">
                         <h2>some box with stuff in it</h2>
-                        <PricesStockChart/>
-                        <hr/>                        
+                        <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices} sp500={this.state.sp500Prices}/>
+                        <hr/>
                     </div>
                     <div class="card2"></div>
                     <div class="card3"></div>
