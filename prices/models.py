@@ -10,7 +10,7 @@ class Prices(models.Model):
     # pn = models.CharField(max_length=2, default='unspecified')
 
     date = models.CharField(max_length=50, default='2020/10/01')
-    price = models.DecimalField(decimal_places=4, max_digits=8, default=0)
+    price = models.DecimalField(decimal_places=15, max_digits=88, default=0)
     name = models.CharField(max_length=10, default='stonks')
 
 
