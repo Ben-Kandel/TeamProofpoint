@@ -5,7 +5,7 @@ import { Bar } from "react-chartjs-2";
 import "./Results.css";
 import MyChart from "../components/MyChart";
 import { Chart } from "react-charts";
-import { variance } from 'mathjs'
+import { variance, std } from 'mathjs'
 
 import ElectionChart from "../components/ElectionChart";
 
@@ -257,7 +257,7 @@ class Model extends React.Component{
             bidenMostNegativeDate: bidenMostNegativeDate,
             trumpMostPositiveDate: trumpMostPositiveDate,
             bidenMostPositiveDate: bidenMostPositiveDate,
-            emailVariance: (variance(allEmails)).toFixed(),
+            emailStd: (std(allEmails)).toFixed(),
         });
     }
 
@@ -360,59 +360,58 @@ class Model extends React.Component{
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td><h2 id="stat-title" style={{color: "blue"}}>Biden</h2></td>
                                 </tr>
-
-                               <div className='stat-swap-button'> <button id = "statSwap" onClick={() => toggle(this.state)}>
+                        </table>
+                        <div className='be-normal'> <button id = "statSwap" onClick={() => toggle(this.state)}>
                             {'Switch Candidate'}
                         </button>
                                    </div>
 
-                        </table>
                         <hr/>
                         <table>
-                            <tr className="pp">
+                            <tr className="sb">
                                 <td># Emails with URLS: </td>
                                 <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
-                            <tr className="pp">
+                            <tr className="sb">
                                 <td># Emails with Attachments:</td>
                                 <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
-                            <tr className="pp">
+                            <tr className="sb">
                                 <td># Emails with Promotions: </td>
                                 <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
-                            <tr className="pp-toggle">
+                            <tr className="sb-toggle">
 
                                 <td id="positiveDay">Most Positive Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="positiveCount"> {this.state.bidenMostPositive} </td>
                             </tr>
-                            <tr className="pp-toggle">
+                            <tr className="sb-toggle">
 
                                 <td id="positiveDayDate">Date of Most Positive Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="positiveCountDate"> {this.state.bidenMostPositiveDate} </td>
                             </tr>
-                            <tr className="pp-toggle">
+                            <tr className="sb-toggle">
 
                                 <td id="negativeDay">Most Negative Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="negativeCount"> {this.state.bidenMostNegative} </td>
                             </tr>
-                            <tr className="pp-toggle">
+                            <tr className="sb-toggle">
 
                                 <td id="negativeDayDate">Date of Most Negative Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="negativeCountDate"> {this.state.bidenMostNegativeDate} </td>
                             </tr>
-                            <tr className="pp-toggle">
+                            <tr className="sb">
 
-                                <td id="avgSentiment">Email Variance per Day:</td>
+                                <td id="avgSentiment">Total Email Deviation per Day:</td>
                                 <td>&nbsp;</td>
-                                <td id ="avgSentimentNum"> {(this.state.emailVariance)} </td>
+                                <td id ="avgSentimentNum"> {(this.state.emailStd)} </td>
                             </tr>
                         </table>
                     </div>
@@ -422,6 +421,7 @@ class Model extends React.Component{
                     <a className="back" href="/">Back</a>
                     <a className="usecase" href = "stocks"> Stocks Page</a>
                 </div>
+                {/*important dates */}
                 <div className="card9">
                     {
                         this.state.showDates ? <div className="sub9">
