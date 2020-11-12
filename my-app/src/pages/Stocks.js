@@ -103,14 +103,18 @@ class Model extends React.Component{
         return json; //return it
     }
 
-    async getIndexData(){
-        
+    async testingApi(){
+        let url = 'http://127.0.0.1:8000/api/prices/';
+        let response = await fetch(url, this.requestOptions);
+        let json = await response.json();
+        console.log('here is what we got from the prices api:');
+        console.log(json);
     }
 
     async componentDidMount(){
         // const stockData = (await this.fetchData("stocks", "SOMETHING", "THIS_WONT_WORK")).length;
         this.getDataForGraph();
-        this.getIndexData();
+        this.testingApi();
     }
 
     render(){
