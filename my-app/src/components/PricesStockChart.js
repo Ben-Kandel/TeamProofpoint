@@ -3,6 +3,12 @@ import React from "react";
 
 export default function PricesStockChart(props){
 
+    let fixData = (data) => {
+        return data.map(element => {
+            return {x: element.date, y: element.price} 
+        });
+    };
+
     const DOW = [
         {
             x: new Date(2020, 9, 2),
@@ -96,25 +102,28 @@ export default function PricesStockChart(props){
         }
     ];
 
+    console.log('im pricestockchart and I received this in my props:');
+    console.log(props.dow);
+
     const data = {
         datasets: [
             {
                 label: 'DOW',
-                data: DOW,
+                data: fixData(props.dow),
                 fill: false,
                 backgroundColor: 'rgba(0, 200, 0)',
                 borderColor: 'rgba(0, 200, 0)',
             },
             {
                 label: 'NASDAQ',
-                data: NASDAQ,
+                data: fixData(props.nasdaq),
                 fill: false,
                 backgroundColor: 'rgba(0, 0, 200)',
                 borderColor: 'rgba(0, 0, 200)',
             },
             {
                 label: 'S&P 500',
-                data: SP500,
+                data: fixData(props.sp500),
                 fill: false,
                 backgroundColor: 'rgba(200, 0, 0)',
                 borderColor: 'rgba(200, 0, 0)',
