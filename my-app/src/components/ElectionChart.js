@@ -77,4 +77,4 @@ export default function ElectionChart(props){
             <Line data={data} options={options}></Line>
         </div>
     )
-}
+};

@@ -6,6 +6,8 @@ import "./Results.css";
 import { Chart } from "react-charts";
 import Dropdown from "react-bootstrap/Dropdown";
 
+import PricesStockChart from "../components/PricesStockChart";
+
 class Model extends React.Component{
     constructor(props){
         super(props);
@@ -48,6 +50,7 @@ class Model extends React.Component{
         DateMap.push(PositiveDateMap, NegativeDateMap);
         return DateMap;
     }
+
     async getDataForGraph(){
         const result = await this.fetchData("stocks");
         let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))
@@ -57,27 +60,31 @@ class Model extends React.Component{
             for (var i = 0; i < stockList.length; i ++){
                 if (element.subject === stockList[i]){ //Make sure we are adding to the right stock dict.
                     if (dateMap.get(element.subject)) { //If stock exists already.
-                        if (dateMap.get(element.subject.get(element.date))) { //If Date exists
+                        if (dateMap.get(element.subject).get(element.date)) { //If Date exists
                             if (dateMap.get(element.subject.get(element.date.get(element.P_N)))) { //If sentiment record of that date exists.
                                 dateMap.get(element.subject.get(element.date.set(element.P_N,
-                                    dateMap.get(element.date.get(element.P_N) + 1))));
+                                    dateMap.get(element.date.get(element.P_N) + element.volume))));
                             } else {
-                                dateMap.get(element.subject.get(element.date.set(element.P_N, 1)));
+                                dateMap.get(element.subject.get(element.date.set(element.P_N, element.volume)));
                             }
                         }
                         else{ //Date does not exist, add a map there.
-                            dateMap.get(element.subject.set(element.date, new Map()));
-                            dateMap.get(element.subject.get(element.date.set(element.P_N, 1)));
+                            dateMap.get(element.subject).set(element.date, new Map());
+                            dateMap.get(element.subject).get(element.date).set(element.P_N, element.volume);
                         }
                     }
                     else{ //if stock does not exist
                        dateMap.set(element.subject, new Map());
-                       dateMap.get(element.subject.set(element.date, new Map()));
-                       dateMap.get(element.subject.get(element.date.set(element.P_N, 1)));
+                       dateMap.get(element.subject).set(element.date, new Map());
+                       dateMap.get(element.subject).get(element.date).set(element.P_N, element.volume);
                     }
                 }
             }
         });
+        console.log('printing results:');
+        console.log(result);
+        console.log('printing date map:');
+        console.log(dateMap);
     }
 
 
@@ -96,8 +103,14 @@ class Model extends React.Component{
         return json; //return it
     }
 
+    async getIndexData(){
+        
+    }
+
     async componentDidMount(){
         // const stockData = (await this.fetchData("stocks", "SOMETHING", "THIS_WONT_WORK")).length;
+        this.getDataForGraph();
+        this.getIndexData();
     }
 
     render(){
@@ -116,6 +129,7 @@ class Model extends React.Component{
                 <div class="grid-container">
                     <div class="card1">
                         <h2>some box with stuff in it</h2>
+                        <PricesStockChart/>
                         <hr/>                        
                     </div>
                     <div class="card2"></div>
