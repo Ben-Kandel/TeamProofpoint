@@ -68,6 +68,8 @@ regr = linear_model.LinearRegression()
 regr.fit(X_train, y_train)
 y_pred_test = regr.predict(X_test)
 # Comparing true versus predicted values
+
+'''
 plt.scatter(y_test, y_pred_test, color='black')
 
 plt.title('Comparing true and predicted values for test set with spam sentiments')
@@ -77,7 +79,7 @@ plt.ylabel('Predicted values for y')
 # Model evaluation
 print("Root mean squared error = %.4f" % np.sqrt(mean_squared_error(y_test, y_pred_test)))
 print('R-squared = %.4f' % r2_score(y_test, y_pred_test))
-
+'''
 
 # In[ ]:
 

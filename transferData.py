@@ -30,7 +30,7 @@ def transfer(nameDB, copyTable):
         else:
             neutral +=1
 
-        
+    sentiments = data['ASS']
     d = {'Positives': [positive], 'Negatives': [negative], 'Neutrals': [neutral], 'Amount' : [len(data)], 'Election_amount'
         : [e_amount]}
 
