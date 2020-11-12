@@ -1,3 +1,7 @@
+#election-chart-container{
+  width: 1200px;
+  height: 400px;
+}
 
 .positive{  
   color: green;
@@ -85,7 +89,7 @@ table{
     height: 220%;
     font-size: 15px;
     padding-left: 2em;
-    width: 150%;
+    
       /* was 150% width */
 
     padding-right: 2em;
@@ -95,21 +99,20 @@ table{
     
   }
 
-  .card4 {
-    background-color: rgba(204, 204, 204, 0.8);
-    border-radius : 1em;
-    height: 135%;
-    padding-left: 2em;
-    font-size: 15px;
-    padding-right: 2em;
+.card4 {
+  background-color: rgba(204, 204, 204, 0.8);
+  border-radius : 1em;
+  height: 135%;
+  padding-left: 2em;
+  font-size: 15px;
+  padding-right: 2em;
 
-    text-align: center;
-    width: 75%;
-  }
+  text-align: center;
+
+}
   .card5{
       margin-top: 21em;
       height: 52%;
-      width: 150%;
       /* was 150% width */
 
   }
@@ -138,19 +141,15 @@ table{
       background-color: #FFFFFF;
 }
 
-  /* stats card */
-  .card8{
-      background-color: rgba(204, 204, 204, 0.8);
-      border-radius : 1em;
-      height: 110%;
-      padding-left: 2em;
-      font-size: 15px;
-      padding-right: 2em;
-      margin-top: 7em;
-      text-align: center;
-      width: 75%;
-      min-width: 450px;
-  }
+/* stats card */
+.card8{
+  background-color: rgba(204, 204, 204, 0.8);
+  border-radius : 1em;
+  height: 110%;
+  font-size: 15px;
+  margin-top: 7em;
+  text-align: center;
+}
 
   /* important dates css */
   .sub9{

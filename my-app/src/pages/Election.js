@@ -7,6 +7,8 @@ import MyChart from "../components/MyChart";
 import { Chart } from "react-charts";
 import { variance } from 'mathjs'
 
+import ElectionChart from "../components/ElectionChart";
+
 
 class Model extends React.Component{
     constructor(props){
@@ -263,7 +265,8 @@ class Model extends React.Component{
                     <div class="card1">
                         <h2>Emails Collected Each Day</h2>
                         <hr/>
-                        <SomeChart class ="chart" pt={this.state.positiveTrumpDates} nt={this.state.negativeTrumpDates} pb={this.state.positiveBidenDates} nb={this.state.negativeBidenDates}/>
+                        {/* <SomeChart class ="chart" pt={this.state.positiveTrumpDates} nt={this.state.negativeTrumpDates} pb={this.state.positiveBidenDates} nb={this.state.negativeBidenDates}/> */}
+                        <ElectionChart pt={this.state.positiveTrumpDates} nt={this.state.negativeTrumpDates} pb={this.state.positiveBidenDates} nb={this.state.negativeBidenDates}></ElectionChart>
                     </div>
                     <div class="card2"></div>
                     <div class="card3"></div>
