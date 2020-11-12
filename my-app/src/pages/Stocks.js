@@ -182,55 +182,55 @@ class Model extends React.Component{
                         <h2>Stonks</h2>
                         <Dropdown class = "dropdown">
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                Dropdown Button
+                                Stocks
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: !this.state.stock1, stock2 : false, stock3 : false,
                                         stock4 : false, stock5 : false})
-                                }}>{this.state.stock1 ? 'Hide' : 'Show'}>stock 1</Dropdown.Item>
+                                }}>{this.state.stock1 ? 'Hide' : 'Show'} &nbsp; AAPL</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : !this.state.stock2, stock3 : false,
                                         stock4 : false, stock5 : false})
-                                }}>{this.state.stock2 ? 'Hide' : 'Show'}>stock 2</Dropdown.Item>
+                                }}>{this.state.stock2 ? 'Hide' : 'Show'}&nbsp; AMZN</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : !this.state.stock3,
                                         stock4 : false, stock5 : false})
-                                }}>{this.state.stock3 ? 'Hide' : 'Show'}>stock 3</Dropdown.Item>
+                                }}>{this.state.stock3 ? 'Hide' : 'Show'}&nbsp; GOOG</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : false,
                                         stock4 : !this.state.stock4, stock5 : false})
-                                }}>{this.state.stock4 ? 'Hide' : 'Show'}>stock 4</Dropdown.Item>
+                                }}>{this.state.stock4 ? 'Hide' : 'Show'}&nbsp; MFST</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : false,
                                         stock4 : false, stock5 : !this.state.stock5})
-                                }}>{this.state.stock5 ? 'Hide' : 'Show'}>stock 5</Dropdown.Item>
+                                }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; TSLA</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         {
                             this.state.stock1 ? <div class="stock1">
-                                <h2>Stock1</h2>
+                                <h2>Apple</h2>
                             </div> : null
                         }
                         {
                             this.state.stock2 ? <div class="stock1">
-                                <h2>Stock2</h2>
+                                <h2>Amazon</h2>
                             </div> : null
                         }
                         {
                             this.state.stock3 ? <div class="stock1">
-                                <h2>Stock3</h2>
+                                <h2>Google</h2>
                             </div> : null
                         }
                         {
                             this.state.stock4 ? <div class="stock1">
-                                <h2>Stock4</h2>
+                                <h2>Microsoft</h2>
                             </div> : null
                         }
                         {
                             this.state.stock5 ? <div class="stock1">
-                                <h2>Stock5</h2>
+                                <h2>Tesla</h2>
                             </div> : null
                         }
                     </div>
