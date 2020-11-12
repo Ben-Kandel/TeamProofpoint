@@ -161,23 +161,23 @@ class Model extends React.Component{
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: !this.state.stock1, stock2 : false, stock3 : false,
                                         stock4 : false, stock5 : false})
-                                }}>{this.state.stock1 ? 'Hide' : 'Show'}>AAPL</Dropdown.Item>
+                                }}>{this.state.stock1 ? 'Hide' : 'Show'} &nbsp; AAPL</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : !this.state.stock2, stock3 : false,
                                         stock4 : false, stock5 : false})
-                                }}>{this.state.stock2 ? 'Hide' : 'Show'}>AMZN</Dropdown.Item>
+                                }}>{this.state.stock2 ? 'Hide' : 'Show'}&nbsp; AMZN</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : !this.state.stock3,
                                         stock4 : false, stock5 : false})
-                                }}>{this.state.stock3 ? 'Hide' : 'Show'}>GOOG</Dropdown.Item>
+                                }}>{this.state.stock3 ? 'Hide' : 'Show'}&nbsp; GOOG</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : false,
                                         stock4 : !this.state.stock4, stock5 : false})
-                                }}>{this.state.stock4 ? 'Hide' : 'Show'}>MFST</Dropdown.Item>
+                                }}>{this.state.stock4 ? 'Hide' : 'Show'}&nbsp; MFST</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : false,
                                         stock4 : false, stock5 : !this.state.stock5})
-                                }}>{this.state.stock5 ? 'Hide' : 'Show'}>TSLA</Dropdown.Item>
+                                }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; TSLA</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         {
