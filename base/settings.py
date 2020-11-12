@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
     'stocks.apps.StocksConfig',
     'consumers.apps.ConsumersConfig',
-    'stock_data.apps.StockDataConfig',
+    'prices.apps.PricesConfig',
 ]
 
 MIDDLEWARE = [
