@@ -45,24 +45,23 @@ def transfer(nameDB, copyTable):
     data.to_sql(nameDB, con=conn2, if_exists = "replace")
     stats.to_sql(statisticsNameDB, con=conn2, if_exists = "replace")
 
+    #------------------------------------------------------Index Funds
 
-     #------------------------------------------------------Index Funds
-     '''
-     dow = pd.read_csv("^GSPC.csv")
-     sp = pd.read_csv("^DJI.csv")
-     nasdaq = pd.read_csv("^IXIC.csv")
+    dow = pd.read_csv("^GSPC.csv")
+    sp = pd.read_csv("^DJI.csv")
+    nasdaq = pd.read_csv("^IXIC.csv")
 
-     master = pd.DataFrame(columns = ["Date", "Price", "Index"])
+    master = pd.DataFrame(columns = ["date", "price", "name"])
 
-     for d, i in enumerate(dow['Date']):
-         master.loc[len(master.index)] = [dow['Date'][d], dow["Adj Close"][d], "DOW"]
-         master.loc[len(master.index)] = [sp['Date'][d], sp["Adj Close"][d], "S&P500"]
-         master.loc[len(master.index)] = [nasdaq['Date'][d], nasdaq["Adj Close"][d], "NASDAQ"]
+    for d, i in enumerate(dow['Date']):
+        master.loc[len(master.index)] = [dow['Date'][d], dow["Adj Close"][d], "DOW"]
+        master.loc[len(master.index)] = [sp['Date'][d], sp["Adj Close"][d], "S&P500"]
+        master.loc[len(master.index)] = [nasdaq['Date'][d], nasdaq["Adj Close"][d], "NASDAQ"]
 
-     dow.to_sql(ConnorChangeThisToNameOfSQLTable, con =conn2, if_exists = "replace")
+    master.to_sql("prices_prices", con =conn2, if_exists = "replace")
 
-    '''
-     #------------------------------------------------------------------
+
+    #------------------------------------------------------------------
 
     #data2= pd.read_sql_query(f"select * from {nameDB}", conn2)
     #test =  pd.read_sql_query(f"select * from {statisticsNameDB}", conn2)

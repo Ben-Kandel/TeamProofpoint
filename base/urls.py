@@ -23,5 +23,6 @@ urlpatterns = [
     path('transfer/', include('transfer.urls')),
     path('', include('stocks.urls')),
     path('', include('consumers.urls')),
+    path('', include('prices.urls')),
 
 ]
