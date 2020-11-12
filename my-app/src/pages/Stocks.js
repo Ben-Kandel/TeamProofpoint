@@ -206,7 +206,7 @@ class Model extends React.Component{
                             </div> : null
                         }
                     </div>
-                    <a className="system" href="/">Back</a>
+                    <a className="back" href="/">Back</a>
                     <a className="usecase"> Consumer Sentiment (doesn't work) </a>
                 </div>
             </body>
