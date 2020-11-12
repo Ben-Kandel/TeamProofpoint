@@ -191,7 +191,9 @@ class Model extends React.Component{
         let trumpPositiveTotal = 0;
         trumpPositive.forEach((row) => {
             trumpPositiveTotal = trumpPositiveTotal + row.volume
-            allEmails.push(row.ASS)
+            if (row.volume > 5) {
+                allEmails.push(row.volume)
+            }
             if (row.volume > trumpMostPositive){
                 trumpMostPositive = row.volume
                 trumpMostPositiveDate = row.date
@@ -202,7 +204,9 @@ class Model extends React.Component{
         let trumpNegativeTotal = 0;
         trumpNegative.forEach((row) => {
             trumpNegativeTotal = trumpNegativeTotal + row.volume
-            allEmails.push(row.ASS)
+            if (row.volume > 5) {
+                allEmails.push(row.volume)
+            }
             if (row.volume > trumpMostNegative){
                 trumpMostNegative = row.volume
                 trumpMostNegativeDate = row.date
@@ -212,7 +216,9 @@ class Model extends React.Component{
         let bidenPositiveTotal = 0;
         bidenPositive.forEach((row) => {
             bidenPositiveTotal = bidenPositiveTotal + row.volume
-            allEmails.push(row.ASS)
+            if (row.volume > 5) {
+                allEmails.push(row.volume)
+            }
             if (row.volume > bidenMostPositive){
                 bidenMostPositive = row.volume
                 bidenMostPositiveDate = row.date
@@ -222,7 +228,9 @@ class Model extends React.Component{
         let bidenNegativeTotal = 0;
         bidenNegative.forEach((row) => {
             bidenNegativeTotal = bidenNegativeTotal + row.volume
-            allEmails.push(row.ASS)
+            if (row.volume > 5) {
+                allEmails.push(row.volume)
+            }
             if (row.volume > bidenMostNegative){
                 bidenMostNegative = row.volume
                 bidenMostNegativeDate = row.date
@@ -250,7 +258,7 @@ class Model extends React.Component{
             bidenMostNegativeDate: bidenMostNegativeDate,
             trumpMostPositiveDate: trumpMostPositiveDate,
             bidenMostPositiveDate: bidenMostPositiveDate,
-            emailVariance: variance(allEmails)
+            emailVariance: (variance(allEmails)).toFixed(),
         });
     }
 
@@ -402,9 +410,9 @@ class Model extends React.Component{
                             </tr>
                             <tr className="pp-toggle">
 
-                                <td id="avgSentiment">Date of Most Negative Emails:</td>
+                                <td id="avgSentiment">Email Variance per Day:</td>
                                 <td>&nbsp;</td>
-                                <td id ="avgSentimentNum"> {this.state.emailVariance} </td>
+                                <td id ="avgSentimentNum"> {(this.state.emailVariance)} </td>
                             </tr>
                         </table>
                     </div>
