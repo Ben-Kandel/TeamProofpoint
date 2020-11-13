@@ -21,12 +21,13 @@ class Model extends React.Component{
             dowPrices: [],
             nasdaqPrices: [],
             sp500Prices: [],
-            aapl: [],
-            goog: [],
-            amzn: [],
-            tsla: [],
-            msft: [],
-
+            aapl: {},
+            goog: {},
+            amzn: {},
+            tsla: {},
+            msft: {},
+            positiveTotal: 0,
+            negativeTotal: 0,
         };
 
         this.requestOptions = {
@@ -152,7 +153,7 @@ class Model extends React.Component{
         let NASDAQ = await this.fetchPriceData('NASDAQ');
         let SP500 = await this.fetchPriceData('S&P500');
 
-        //--------------------------------Matt code (untested) -----------------
+        //--------------------------------Matt code (TESTED) -----------------
         //Map(Stock Symbol, Map(Date, Map(P or N, count)))
 
         let totalEmails = 0;
@@ -239,15 +240,15 @@ class Model extends React.Component{
 
                             </tr>
                             <tr className="positive">
-                                <td>Positive Stock Emails : {this.state.negativeEmails}</td>
+                                <td>Positive Stock Emails : {this.state.positiveTotal}</td>
 
                             </tr>
                             <tr className="negative">
-                                <td>Negative Stock Emails : {this.state.positiveEmails }</td>
+                                <td>Negative Stock Emails : {this.state.negativeTotal}</td>
 
                             </tr>
                             <tr>
-                                <td>Ratio: {this.state.positiveEmails}/{this.state.negativeEmails}</td>
+                                <td>Ratio: {(this.state.positiveTotal / this.state.negativeTotal)}</td>
 
                             </tr>
 
