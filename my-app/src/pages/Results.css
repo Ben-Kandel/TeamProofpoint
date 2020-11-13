@@ -89,21 +89,20 @@ table{
     
   }
 
-  .card1 {
-    background-color: rgba(204, 204, 204, 0.8);
-    border-radius : 1em;
-    height: 220%;
-    font-size: 15px;
-    padding-left: 2em;
-    
-      /* was 150% width */
+.card1 {
+  background-color: rgba(204, 204, 204, 0.8);
+  border-radius : 1em;
+  height: 220%;
+  font-size: 15px;
+  padding-left: 2em;
+  padding-right: 2em;
+  text-align: center;
+  overflow: visible;
+}
 
-    padding-right: 2em;
-      text-align: center;
-      overflow: visible;
-
-    
-  }
+.card1Stocks {
+  background-color: aqua;
+}
 
 .card4 {
   background-color: rgba(204, 204, 204, 0.8);
@@ -116,6 +115,11 @@ table{
   text-align: center;
 
 }
+
+.card5Stocks{
+  background-color: red;
+}
+
   .card5{
       margin-top: 21em;
       height: 52%;
