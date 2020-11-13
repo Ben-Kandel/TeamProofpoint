@@ -165,6 +165,7 @@ class Model extends React.Component{
             dowPrices: DOW,
             nasdaqPrices: NASDAQ,
             sp500Prices: SP500,
+
             aapl : {emailData: appleEmails, priceData: applePrices},
             amzn : {emailData: amazonEmails, priceData: amazonPrices},
             goog : {emailData: googleEmails, priceData: googlePrices},
