@@ -41,6 +41,20 @@ export default function PricesStockChart(props){
             display: true,
             text: 'Index Closing Values per Day',
         },
+        elements: {
+            line: {
+                tension: 0
+            }
+        },
+        tooltips: {
+            callbacks: {
+                label: function(tooltipItem, data) {
+                    let roundedNumber = Math.round(tooltipItem.yLabel * 100) / 100;
+                    let label = `$${roundedNumber}`;
+                    return label;
+                }
+            },
+        },
         scales: {
             xAxes: [{
                 type: 'time',
