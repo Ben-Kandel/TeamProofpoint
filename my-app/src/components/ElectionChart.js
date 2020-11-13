@@ -14,7 +14,7 @@ export default function ElectionChart(props){
     const data = {
         datasets: [
             {
-                label: 'Trump Positive',
+                label: 'Positive Trump Emails',
                 data: fixData(props.pt),
                 fill: false,
                 backgroundColor: 'rgba(255, 0, 0)',
@@ -23,7 +23,7 @@ export default function ElectionChart(props){
                 // pointBorderColor: 'rgba(0,0,0)',
             },
             {
-                label: 'Trump Negative',
+                label: 'Negative Trump Emails',
                 data: fixData(props.nt),
                 fill: false,
                 backgroundColor: 'rgba(255, 0, 0)',
@@ -31,7 +31,7 @@ export default function ElectionChart(props){
                 pointRadius: 4,
             },
             {
-                label: 'Biden Positive',
+                label: 'Positive Biden Emails',
                 data: fixData(props.pb),
                 fill: false,
                 backgroundColor: 'rgba(0, 0, 255)',
@@ -39,7 +39,7 @@ export default function ElectionChart(props){
                 pointRadius: 4,
             },
             {
-                label: 'Biden Negative',
+                label: 'Negative Biden Emails',
                 data: fixData(props.nb),
                 fill: false,
                 backgroundColor: 'rgba(0, 0, 255)',
