@@ -7,7 +7,7 @@ import { Chart } from "react-charts";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import PricesStockChart from "../components/PricesStockChart";
-
+import IndivStockChart from "../components/IndivStockChart";
 class Model extends React.Component{
     constructor(props){
         super(props);
@@ -20,6 +20,12 @@ class Model extends React.Component{
             dowPrices: [],
             nasdaqPrices: [],
             sp500Prices: [],
+            aapl: [],
+            goog: [],
+            amzn: [],
+            tsla: [],
+            mfst: [],
+
         };
 
         this.requestOptions = {
@@ -84,10 +90,8 @@ class Model extends React.Component{
                 }
             }
         });
-        console.log('printing results:');
-        console.log(result);
-        console.log('printing date map:');
-        console.log(dateMap);
+
+        return dateMap;
     }
 
     async fetchData(leadName="stocks", keywords="", pn=""){
@@ -113,17 +117,50 @@ class Model extends React.Component{
         const json = await response.json();
         return json;
     }
+    //-----------------------Matt code (untested)--------------------
+    async getStockVolume(name, dateMap){
+        let result = [];
+        for (let key1 in dateMap){ //Key1 is the stock symbol
+            if (key1 === name) {
+                for (let key2 in dateMap.get(key1)) { //Key2 are dates
+                    if (dateMap.get(key1).get(key2) === "N") {
+                        result.push([key2, dateMap.get(key1).get(key2).get("N") * -1]);
+                    }
+                    else if (dateMap.get(key1).get(key2) === "P"){
+                        result.push([key2, dateMap.get(key1).get(key2).get("P")]);
+                    }
+                }
+            }
+        }
+        return result;
+    }
 
+    //----------------------------------------------------------------
     async componentDidMount(){
-        // this.getDataForGraph();
+
         let DOW = await this.fetchPriceData('DOW');
         let NASDAQ = await this.fetchPriceData('NASDAQ');
         let SP500 = await this.fetchPriceData('S&P500');
 
+        //--------------------------------Matt code (untested) -----------------
+        //Map(Stock Symbol, Map(Date, Map(P or N, count)))
+        let dateMap = this.getDataForGraph();
+        let apple = this.getStockVolume("AAPL", dateMap);
+        let amazon = this.getStockVolume("AMZN", dateMap);
+        let google = this.getStockVolume("GOOG", dateMap);
+        let microsoft = this.getStockVolume("MFST", dateMap);
+        let tesla = this.getStockVolume("TSLA", dateMap);
+        //-----------------------------------------------------------------------
+        console.log(test);
         this.setState({
             dowPrices: DOW,
             nasdaqPrices: NASDAQ,
             sp500Prices: SP500,
+            aapl : apple,
+            amzn : amazon,
+            goog : google,
+            mfst : microsoft,
+            tsla : tesla,
         });
     }
 
@@ -211,26 +248,31 @@ class Model extends React.Component{
                         {
                             this.state.stock1 ? <div class="stock1">
                                 <h2>Apple</h2>
+                                <IndivStockChart > {this.state.aapl} </IndivStockChart>
                             </div> : null
                         }
                         {
                             this.state.stock2 ? <div class="stock1">
                                 <h2>Amazon</h2>
+                                <IndivStockChart > {this.state.amzn} </IndivStockChart>
                             </div> : null
                         }
                         {
                             this.state.stock3 ? <div class="stock1">
                                 <h2>Google</h2>
+                                <IndivStockChart > {this.state.goog} </IndivStockChart>
                             </div> : null
                         }
                         {
                             this.state.stock4 ? <div class="stock1">
                                 <h2>Microsoft</h2>
+                                <IndivStockChart > {this.state.mfst} </IndivStockChart>
                             </div> : null
                         }
                         {
                             this.state.stock5 ? <div class="stock1">
                                 <h2>Tesla</h2>
+                                <IndivStockChart > {this.state.tsla} </IndivStockChart>
                             </div> : null
                         }
                     </div>
