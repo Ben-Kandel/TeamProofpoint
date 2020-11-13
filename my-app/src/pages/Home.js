@@ -11,7 +11,8 @@ class Home extends React.Component{
 
     render(){
         return(
-<html lang="en">
+
+<html lang="en" >
 <head>
     <meta charset="UTF-8"/>
     <title>Welcome Page</title>
@@ -19,9 +20,9 @@ class Home extends React.Component{
     <script src = "jquery-3.3.1.js"></script>
     <script src="welcome.js"></script>
 </head>
-<body>
+<body style ={{background: 'white'}}>
 <img src="./images/proofpoint.png" alt="proofpoint logo"/>
-<div class = "container" >
+<div class = "container" style ={{background: 'white'}}>
 <div id = "box1">
     <h1>Leveraging SPAM to Make Bold Societal Predictions</h1>
     <p>Proofpoint, headquartered in Sunnyvale, California, is a cybersecurity company that provides solutions to top research universities, banks and over half of the Fortune 100 corporations. Proofpoint protects sensitive data across every domain including email, the web, the cloud, social media and mobile messaging.
