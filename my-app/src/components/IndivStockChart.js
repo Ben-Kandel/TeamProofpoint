@@ -9,13 +9,16 @@ export function IndivStockEmailsChart(props){
         });
     };
 
+    console.log('this is what email data looks like:');
+    console.log(props.data);
+
     const data = {
         datasets: [
             {
                 data: fixData(props.data),
                 fill: false,
-                backgroundColor: 'rgba(0, 200, 0)',
-                borderColor: 'rgba(0, 200, 0)',
+                backgroundColor: 'rgba(0, 0, 255)',
+                borderColor: 'rgba(0, 0, 255)',
             },
 
         ],
@@ -81,14 +84,19 @@ export function IndivStockPricesChart(props){
                 label: 'Hello',
                 data: fixData(props.data),
                 fill: false,
-                backgroundColor: 'rgba(0, 200, 0)',
-                borderColor: 'rgba(0, 200, 0)',
+                backgroundColor: 'rgba(255, 0, 0)',
+                borderColor: 'rgba(255, 0, 0)',
             },
         ],
     };
 
     const options = {
         maintainAspectRatio: false,
+        elements: {
+            line: {
+                tension: 0
+            }
+        },
         title: {
             display: true,
             text: 'Stock Prices per Day',
