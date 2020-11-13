@@ -460,7 +460,7 @@ class Model extends React.Component{
                                 <td>&nbsp;</td>
                                 <td>|</td>
                                 <td>&nbsp;</td>
-                                <td>Senate Judiciary Committee hearings on Supreme Court nominee Amy Coney Barrett begins</td>
+                                <td>Senate Judiciary Committee hearings on Supreme Court nominee Amy Coney Barrett begin</td>
                             </tr>
                             <tr>
                                 <td id="bolded">2020-10-14</td>

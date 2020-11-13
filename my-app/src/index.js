@@ -15,8 +15,11 @@ import Election from "./pages/Election";
 import Stocks from "./pages/Stocks.js";
 import Results2 from "./pages/Results2.js";
 
+
+
 export default function App() {
   return (
+
     <BrowserRouter>
       <div>
         {/* A <Switch> looks through its children <Route>s and
@@ -46,6 +49,7 @@ export default function App() {
         </Switch>
       </div>
     </BrowserRouter>
+
   );
 }
 
