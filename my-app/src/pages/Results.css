@@ -88,6 +88,7 @@ table{
     height: 62em;
     
   }
+
   .card1 {
     background-color: rgba(204, 204, 204, 0.8);
     border-radius : 1em;
@@ -162,16 +163,12 @@ table{
 
       height: 100%;
   }
-
-   .card9{
-
-
+  .card9{
       position: relative;
       margin-top: 0.5em;
       height: 75%;
-
-
   }
+
   .card9 h2{
       text-align: center;
   }

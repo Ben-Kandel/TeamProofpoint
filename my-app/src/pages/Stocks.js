@@ -3,6 +3,7 @@ import { Bar } from "react-chartjs-2";
 
 //css   
 import "./Results.css";
+import "./Stocks.css";
 import { Chart } from "react-charts";
 import Dropdown from "react-bootstrap/Dropdown";
 
@@ -179,18 +180,19 @@ class Model extends React.Component{
                 <script src = "jquery-3.3.1.js"></script>
             </head>
             <body>
+
                 <div id = "header">
                     <h1>Stock Market</h1>
                 </div>
-                <div class="grid-container">
-                    <div class="card1">
+                <div class="grid-containerStock">
+                    <div class="card1Stocks">
                         <h2>some box with stuff in it</h2>
                         <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices} sp500={this.state.sp500Prices}/>
                         <hr/>
                     </div>
                     <div class="card2"></div>
                     <div class="card3"></div>
-                    <div class="card4">
+                    <div class="card4Stocks">
                         <h2>Some other stats</h2>
                         <table>
 
@@ -214,78 +216,108 @@ class Model extends React.Component{
 
                         </table>
                     </div>
-                    <div class="card5">
-
-                    </div>
-
-                    <div class="card6"></div>
-                    <div class="card7"></div>
-                    <div className="card8">
+                    <div class="card5Stock">
                         <h2>Stonks</h2>
-                        <Dropdown class = "dropdown">
+                        <Dropdown class="dropdown">
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 Stocks
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
                                 <Dropdown.Item onClick={() => {
-                                    this.setState({stock1: !this.state.stock1, stock2 : false, stock3 : false,
-                                        stock4 : false, stock5 : false})
+                                    this.setState({
+                                        stock1: !this.state.stock1, stock2: false, stock3: false,
+                                        stock4: false, stock5: false
+                                    })
                                 }}>{this.state.stock1 ? 'Hide' : 'Show'} &nbsp; AAPL</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
-                                    this.setState({stock1: false, stock2 : !this.state.stock2, stock3 : false,
-                                        stock4 : false, stock5 : false})
+                                    this.setState({
+                                        stock1: false, stock2: !this.state.stock2, stock3: false,
+                                        stock4: false, stock5: false
+                                    })
                                 }}>{this.state.stock2 ? 'Hide' : 'Show'}&nbsp; AMZN</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
-                                    this.setState({stock1: false, stock2 : false, stock3 : !this.state.stock3,
-                                        stock4 : false, stock5 : false})
+                                    this.setState({
+                                        stock1: false, stock2: false, stock3: !this.state.stock3,
+                                        stock4: false, stock5: false
+                                    })
                                 }}>{this.state.stock3 ? 'Hide' : 'Show'}&nbsp; GOOG</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
-                                    this.setState({stock1: false, stock2 : false, stock3 : false,
-                                        stock4 : !this.state.stock4, stock5 : false})
+                                    this.setState({
+                                        stock1: false, stock2: false, stock3: false,
+                                        stock4: !this.state.stock4, stock5: false
+                                    })
                                 }}>{this.state.stock4 ? 'Hide' : 'Show'}&nbsp; MSFT</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
-                                    this.setState({stock1: false, stock2 : false, stock3 : false,
-                                        stock4 : false, stock5 : !this.state.stock5})
+                                    this.setState({
+                                        stock1: false, stock2: false, stock3: false,
+                                        stock4: false, stock5: !this.state.stock5
+                                    })
                                 }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; TSLA</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         {
-                            this.state.stock1 ? <div class="stock1">
+                            this.state.stock1 ? <div className="stock1">
                                 <h2>Apple</h2>
+                                <div class = "volumeData">
                                 <IndivStockChart data={this.state.aapl}></IndivStockChart>
+                                </div>
+                                <div class = "priceData">
+                                    <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
+                                                      sp500={this.state.sp500Prices}/>
+                                </div>
                             </div> : null
-                            
+
 
                         }
                         {
-                            this.state.stock2 ? <div class="stock1">
+                            this.state.stock2 ? <div className="stock1">
                                 <h2>Amazon</h2>
-                                <IndivStockChart data={this.state.amzn}>  </IndivStockChart>
+                                <IndivStockChart data={this.state.amzn}> </IndivStockChart>
+                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
+                                                  sp500={this.state.sp500Prices}/>
                             </div> : null
                         }
                         {
-                            this.state.stock3 ? <div class="stock1">
+                            this.state.stock3 ? <div className="stock1">
                                 <h2>Google</h2>
-                                <IndivStockChart data={this.state.goog}>  </IndivStockChart>
+                                <IndivStockChart data={this.state.goog}> </IndivStockChart>
+                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
+                                                  sp500={this.state.sp500Prices}/>
                             </div> : null
                         }
                         {
-                            this.state.stock4 ? <div class="stock1">
+                            this.state.stock4 ? <div className="stock1">
                                 <h2>Microsoft</h2>
-                                <IndivStockChart data={this.state.msft}>  </IndivStockChart>
+                                <IndivStockChart data={this.state.msft}> </IndivStockChart>
+                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
+                                                  sp500={this.state.sp500Prices}/>
                             </div> : null
                         }
                         {
-                            this.state.stock5 ? <div class="stock1">
+                            this.state.stock5 ? <div className="stock1">
                                 <h2>Tesla</h2>
                                 <IndivStockChart data={this.state.tsla}> </IndivStockChart>
+                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
+                                                  sp500={this.state.sp500Prices}/>
                             </div> : null
                         }
+                    </div>
+
+                    <div class="card6"></div>
+                    <div class="card7"></div>
+                    <div className="card8temp">
+
+                    </div>
+                    <div class = "card9Stock">
+
+
+
                     </div>
                     <a className="back" href="/">Back</a>
                     <a className="usecase"> Consumer Sentiment (doesn't work) </a>
                 </div>
+
             </body>
             </html>
         );
