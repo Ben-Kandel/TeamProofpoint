@@ -4,6 +4,7 @@ import React from "react";
 export default function IndivStockChart(props){
 
     let fixData = (data) => {
+        console.log(data, "i m here")
         return {x: data[0], y: data[1]}
 
 
@@ -11,8 +12,8 @@ export default function IndivStockChart(props){
 
 
 
-    console.log('im indiv and I received this in my props:');
-    console.log(props.dow);
+    // console.log('im indiv and I received this in my props:');
+    // console.log(props.dow);
 
     const data = {
         datasets: [

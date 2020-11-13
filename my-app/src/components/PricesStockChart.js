@@ -102,8 +102,8 @@ export default function PricesStockChart(props){
         }
     ];
 
-    console.log('im pricestockchart and I received this in my props:');
-    console.log(props.dow);
+    // console.log('im pricestockchart and I received this in my props:');
+    // console.log(props.dow);
 
     const data = {
         datasets: [
