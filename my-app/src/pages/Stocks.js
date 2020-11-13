@@ -128,16 +128,16 @@ class Model extends React.Component{
             if ((dateMap.get(name)).get(key2).get("NEGATIVE")) {
                 let emails = [key2, (dateMap.get(name)).get(key2).get("NEGATIVE")];
                 result.push(emails);
-                totalEmails += emails;
+                totalEmails += emails[1];
             }
             else if ((dateMap.get(name)).get(key2).get("POSITIVE")){
                 let emails = [key2, (dateMap.get(name)).get(key2).get("POSITIVE")];
                 result.push(emails);
-                totalEmails += emails;
+                totalEmails += emails[1];
             }
         });
         return [result, totalEmails];
-        }
+    }
 
 
 
