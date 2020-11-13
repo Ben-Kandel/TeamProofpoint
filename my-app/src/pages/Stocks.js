@@ -253,8 +253,10 @@ class Model extends React.Component{
                         {
                             this.state.stock1 ? <div class="stock1">
                                 <h2>Apple</h2>
-                                <IndivStockChart > {this.state.aapl} </IndivStockChart>
+                                <IndivStockChart data={this.state.aapl}></IndivStockChart>
                             </div> : null
+                            
+
                         }
                         {
                             this.state.stock2 ? <div class="stock1">

@@ -4,23 +4,20 @@ import React from "react";
 export default function IndivStockChart(props){
 
     let fixData = (data) => {
-        console.log(data, "i m here")
-        return {x: data[0], y: data[1]}
-
-
+        return data.map(element => {
+            return {x: element[0], y: element[1]}
+        });
     };
 
-
-
     // console.log('im indiv and I received this in my props:');
-    // console.log(props.dow);
+    // console.log(props.data);
 
     const data = {
         datasets: [
             {
                 label: 'Test',
                 //data: fixData([new Date(2020, 9, 2), 3348.419922,]), //props.temp
-                data: fixData(props),
+                data: fixData(props.data),
                 fill: false,
                 backgroundColor: 'rgba(0, 200, 0)',
                 borderColor: 'rgba(0, 200, 0)',
