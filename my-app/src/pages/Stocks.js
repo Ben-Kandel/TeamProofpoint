@@ -122,20 +122,21 @@ class Model extends React.Component{
     //-----------------------Matt code (untested)--------------------
     async getStockVolume(name, dateMap){
         let result = [];
-        // console.log(dateMap);
-        // console.log(name);
-        // console.log("name");
-        // let volumeLayerMap = dateMap.get(name);
+        let totalEmails = 0;
         (dateMap.get(name)).forEach(function(values, key2){ //Key2 are dates
 
             if ((dateMap.get(name)).get(key2).get("NEGATIVE")) {
-                result.push([key2, (dateMap.get(name)).get(key2).get("NEGATIVE")]);
+                let emails = [key2, (dateMap.get(name)).get(key2).get("NEGATIVE")];
+                result.push(emails);
+                totalEmails += emails;
             }
             else if ((dateMap.get(name)).get(key2).get("POSITIVE")){
-                result.push([key2, (dateMap.get(name)).get(key2).get("POSITIVE")]);
+                let emails = [key2, (dateMap.get(name)).get(key2).get("POSITIVE")];
+                result.push(emails);
+                totalEmails += emails;
             }
-        })
-        return result;
+        });
+        return [result, totalEmails];
         }
 
 
@@ -149,16 +150,27 @@ class Model extends React.Component{
 
         //--------------------------------Matt code (untested) -----------------
         //Map(Stock Symbol, Map(Date, Map(P or N, count)))
+        let totalEmails = 0;
         let dateMap = await this.getDataForGraph();
-        let appleEmails = await this.getStockVolume("AAPL", dateMap);
+        let temp = await this.getStockVolume("AAPL", dateMap);
+        let appleEmails = temp[0];
+        totalEmails += temp[1];
         let applePrices = await this.fetchPriceData("AAPL");
-        let amazonEmails = await this.getStockVolume("AMZN", dateMap);
+        temp = await this.getStockVolume("AMZN", dateMap);
+        let amazonEmails = temp[0];
+        totalEmails += temp[1];
         let amazonPrices = await this.fetchPriceData("AMZN");
-        let googleEmails = await this.getStockVolume("GOOG", dateMap);
+        temp = await this.getStockVolume("GOOG", dateMap);
+        let googleEmails = temp[0];
+        totalEmails += temp[1];
         let googlePrices = await this.fetchPriceData("GOOG");
-        let microsoftEmails = await this.getStockVolume("MSFT", dateMap);
+        temp = await this.getStockVolume("MSFT", dateMap);
+        let microsoftEmails = temp[0];
+        totalEmails += temp[1];
         let microsoftPrices = await this.fetchPriceData("MSFT");
-        let teslaEmails = await this.getStockVolume("TSLA", dateMap);
+        temp = await this.getStockVolume("TSLA", dateMap);
+        let teslaEmails = temp[0];
+        totalEmails += temp[1];
         let teslaPrices = await this.fetchPriceData("TSLA");
         //-----------------------------------------------------------------------
         this.setState({
@@ -170,6 +182,7 @@ class Model extends React.Component{
             goog : {emailData: googleEmails, priceData: googlePrices},
             msft : {emailData: microsoftEmails, priceData: microsoftPrices},
             tsla : {emailData: teslaEmails, priceData: teslaPrices},
+            emailCount : totalEmails,
         });
     }
 
@@ -201,7 +214,9 @@ class Model extends React.Component{
 
 
                             <tr className="poop">
-                                <td>Total Stock Emails</td>
+                                <td>Total Stock Emails: {this.state.emailCount} </td>
+
+
 
                             </tr>
                             <tr className="positive">
