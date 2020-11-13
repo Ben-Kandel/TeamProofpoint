@@ -261,25 +261,25 @@ class Model extends React.Component{
                         {
                             this.state.stock2 ? <div class="stock1">
                                 <h2>Amazon</h2>
-                                <IndivStockChart > {this.state.amzn} </IndivStockChart>
+                                <IndivStockChart data={this.state.amzn}>  </IndivStockChart>
                             </div> : null
                         }
                         {
                             this.state.stock3 ? <div class="stock1">
                                 <h2>Google</h2>
-                                <IndivStockChart > {this.state.goog} </IndivStockChart>
+                                <IndivStockChart data={this.state.goog}>  </IndivStockChart>
                             </div> : null
                         }
                         {
                             this.state.stock4 ? <div class="stock1">
                                 <h2>Microsoft</h2>
-                                <IndivStockChart > {this.state.msft} </IndivStockChart>
+                                <IndivStockChart data={this.state.msft}>  </IndivStockChart>
                             </div> : null
                         }
                         {
                             this.state.stock5 ? <div class="stock1">
                                 <h2>Tesla</h2>
-                                <IndivStockChart > {this.state.tsla} </IndivStockChart>
+                                <IndivStockChart data={this.state.tsla}> </IndivStockChart>
                             </div> : null
                         }
                     </div>

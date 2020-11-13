@@ -47,8 +47,8 @@ def transfer(nameDB, copyTable):
 
     #------------------------------------------------------Index Funds
 
-    dow = pd.read_csv("^GSPC.csv")
-    sp = pd.read_csv("^DJI.csv")
+    sp = pd.read_csv("^GSPC.csv")
+    dow = pd.read_csv("^DJI.csv")
     nasdaq = pd.read_csv("^IXIC.csv")
 
     master = pd.DataFrame(columns = ["date", "price", "name"])
