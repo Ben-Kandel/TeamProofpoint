@@ -1,14 +1,14 @@
 import React from "react"
 import { Bar } from "react-chartjs-2";
 
-//css   
-import "./Results.css";
+//css
 import "./Stocks.css";
 import { Chart } from "react-charts";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import PricesStockChart from "../components/PricesStockChart";
-import IndivStockChart from "../components/IndivStockChart";
+import { IndivStockEmailsChart, IndivStockPricesChart } from "../components/IndivStockChart";
+
 class Model extends React.Component{
     constructor(props){
         super(props);
@@ -150,23 +150,26 @@ class Model extends React.Component{
         //--------------------------------Matt code (untested) -----------------
         //Map(Stock Symbol, Map(Date, Map(P or N, count)))
         let dateMap = await this.getDataForGraph();
-        let apple = await this.getStockVolume("AAPL", dateMap);
-        let amazon = await this.getStockVolume("AMZN", dateMap);
-        let google = await this.getStockVolume("GOOG", dateMap);
-        let microsoft = await this.getStockVolume("MSFT", dateMap);
-        let tesla = await this.getStockVolume("TSLA", dateMap);
+        let appleEmails = await this.getStockVolume("AAPL", dateMap);
+        let applePrices = await this.fetchPriceData("AAPL");
+        let amazonEmails = await this.getStockVolume("AMZN", dateMap);
+        let amazonPrices = await this.fetchPriceData("AMZN");
+        let googleEmails = await this.getStockVolume("GOOG", dateMap);
+        let googlePrices = await this.fetchPriceData("GOOG");
+        let microsoftEmails = await this.getStockVolume("MSFT", dateMap);
+        let microsoftPrices = await this.fetchPriceData("MSFT");
+        let teslaEmails = await this.getStockVolume("TSLA", dateMap);
+        let teslaPrices = await this.fetchPriceData("TSLA");
         //-----------------------------------------------------------------------
-         console.log(apple, amazon, google, microsoft, tesla);
-         console.log("apple");
         this.setState({
             dowPrices: DOW,
             nasdaqPrices: NASDAQ,
             sp500Prices: SP500,
-            aapl : apple,
-            amzn : amazon,
-            goog : google,
-            msft : microsoft,
-            tsla : tesla,
+            aapl : {emailData: appleEmails, priceData: applePrices},
+            amzn : {emailData: amazonEmails, priceData: amazonPrices},
+            goog : {emailData: googleEmails, priceData: googlePrices},
+            msft : {emailData: microsoftEmails, priceData: microsoftPrices},
+            tsla : {emailData: teslaEmails, priceData: teslaPrices},
         });
     }
 
@@ -260,46 +263,55 @@ class Model extends React.Component{
                             this.state.stock1 ? <div className="stock1">
                                 <h2>Apple</h2>
                                 <div class = "volumeData">
-                                <IndivStockChart data={this.state.aapl}></IndivStockChart>
+                                    <IndivStockEmailsChart data={this.state.aapl.emailData}/>
                                 </div>
                                 <div class = "priceData">
-                                    <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
-                                                      sp500={this.state.sp500Prices}/>
+                                    <IndivStockPricesChart data={this.state.aapl.priceData}/>
                                 </div>
                             </div> : null
-
-
                         }
                         {
                             this.state.stock2 ? <div className="stock1">
                                 <h2>Amazon</h2>
-                                <IndivStockChart data={this.state.amzn}> </IndivStockChart>
-                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
-                                                  sp500={this.state.sp500Prices}/>
+                                <div class = "volumeData">
+                                    <IndivStockEmailsChart data={this.state.amzn.emailData}/>
+                                </div>
+                                <div class = "priceData">
+                                    <IndivStockPricesChart data={this.state.amzn.priceData}/>
+                                </div>
                             </div> : null
                         }
                         {
                             this.state.stock3 ? <div className="stock1">
                                 <h2>Google</h2>
-                                <IndivStockChart data={this.state.goog}> </IndivStockChart>
-                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
-                                                  sp500={this.state.sp500Prices}/>
+                                <div class = "volumeData">
+                                    <IndivStockEmailsChart data={this.state.goog.emailData}/>
+                                </div>
+                                <div class = "priceData">
+                                    <IndivStockPricesChart data={this.state.goog.priceData}/>
+                                </div>
                             </div> : null
                         }
                         {
                             this.state.stock4 ? <div className="stock1">
                                 <h2>Microsoft</h2>
-                                <IndivStockChart data={this.state.msft}> </IndivStockChart>
-                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
-                                                  sp500={this.state.sp500Prices}/>
+                                <div class = "volumeData">
+                                    <IndivStockEmailsChart data={this.state.msft.emailData}/>
+                                </div>
+                                <div class = "priceData">
+                                    <IndivStockPricesChart data={this.state.msft.priceData}/>
+                                </div>
                             </div> : null
                         }
                         {
                             this.state.stock5 ? <div className="stock1">
                                 <h2>Tesla</h2>
-                                <IndivStockChart data={this.state.tsla}> </IndivStockChart>
-                                <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices}
-                                                  sp500={this.state.sp500Prices}/>
+                                <div class = "volumeData">
+                                    <IndivStockEmailsChart data={this.state.tsla.emailData}/>
+                                </div>
+                                <div class = "priceData">
+                                    <IndivStockPricesChart data={this.state.tsla.priceData}/>
+                                </div>
                             </div> : null
                         }
                     </div>

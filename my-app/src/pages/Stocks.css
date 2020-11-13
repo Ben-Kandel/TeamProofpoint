@@ -21,7 +21,8 @@
     padding-right: 2em;
     text-align: center;
     overflow: visible;
-
+    max-width: 1200px;
+    min-width: 1200px;
 
 }
 
@@ -44,8 +45,18 @@
     height: 100%;
     padding-bottom: 2em;
     margin-bottom: 4em;
+    max-width: 1200px;
+    min-width: 1200px;
 }
 
 .card5Stock h2{
     text-align:center;
+}
+
+#individual-stock-emails-chart-container{
+    height: 300px;
+}
+
+#individual-stock-prices-chart-container{
+    height: 300px;
 }
