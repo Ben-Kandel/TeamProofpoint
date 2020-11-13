@@ -24,7 +24,7 @@ class Model extends React.Component{
             goog: [],
             amzn: [],
             tsla: [],
-            mfst: [],
+            msft: [],
 
         };
 
@@ -63,10 +63,11 @@ class Model extends React.Component{
     async getDataForGraph(){
         const result = await this.fetchData("stocks");
         let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))
-        let stockList = ["GOOG", "AMZN", "MFST", "AAPL", "TSLA"];
+        let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "TSLA"];
         result.forEach(element =>{
             let tempMap = new Map();
-            for (var i = 0; i < stockList.length; i ++){
+
+            for (let i = 0; i < stockList.length; i ++){
                 if (element.subject === stockList[i]){ //Make sure we are adding to the right stock dict.
                     if (dateMap.get(element.subject)) { //If stock exists already.
                         if (dateMap.get(element.subject).get(element.date)) { //If Date exists
@@ -102,7 +103,7 @@ class Model extends React.Component{
         if(pn){ //if pn is not an empty string
             url.searchParams.append("pn", pn);
         }
-        console.log(url.href);
+        // console.log(url.href);
         const response = await fetch(url.href, this.requestOptions); //wait for the promise to resolve
         const json = await response.json(); //we have to wait when converting this to json
         return json; //return it
@@ -120,20 +121,23 @@ class Model extends React.Component{
     //-----------------------Matt code (untested)--------------------
     async getStockVolume(name, dateMap){
         let result = [];
-        for (let key1 in dateMap){ //Key1 is the stock symbol
-            if (key1 === name) {
-                for (let key2 in dateMap.get(key1)) { //Key2 are dates
-                    if (dateMap.get(key1).get(key2) === "N") {
-                        result.push([key2, dateMap.get(key1).get(key2).get("N") * -1]);
-                    }
-                    else if (dateMap.get(key1).get(key2) === "P"){
-                        result.push([key2, dateMap.get(key1).get(key2).get("P")]);
-                    }
-                }
+        // console.log(dateMap);
+        // console.log(name);
+        // console.log("name");
+        // let volumeLayerMap = dateMap.get(name);
+        (dateMap.get(name)).forEach(function(values, key2){ //Key2 are dates
+
+            if ((dateMap.get(name)).get(key2).get("NEGATIVE")) {
+                result.push([key2, (dateMap.get(name)).get(key2).get("NEGATIVE")]);
             }
-        }
+            else if ((dateMap.get(name)).get(key2).get("POSITIVE")){
+                result.push([key2, (dateMap.get(name)).get(key2).get("POSITIVE")]);
+            }
+        })
         return result;
-    }
+        }
+
+
 
     //----------------------------------------------------------------
     async componentDidMount(){
@@ -144,14 +148,15 @@ class Model extends React.Component{
 
         //--------------------------------Matt code (untested) -----------------
         //Map(Stock Symbol, Map(Date, Map(P or N, count)))
-        let dateMap = this.getDataForGraph();
-        let apple = this.getStockVolume("AAPL", dateMap);
-        let amazon = this.getStockVolume("AMZN", dateMap);
-        let google = this.getStockVolume("GOOG", dateMap);
-        let microsoft = this.getStockVolume("MFST", dateMap);
-        let tesla = this.getStockVolume("TSLA", dateMap);
+        let dateMap = await this.getDataForGraph();
+        let apple = await this.getStockVolume("AAPL", dateMap);
+        let amazon = await this.getStockVolume("AMZN", dateMap);
+        let google = await this.getStockVolume("GOOG", dateMap);
+        let microsoft = await this.getStockVolume("MSFT", dateMap);
+        let tesla = await this.getStockVolume("TSLA", dateMap);
         //-----------------------------------------------------------------------
-        console.log(test);
+         console.log(apple, amazon, google, microsoft, tesla);
+         console.log("apple");
         this.setState({
             dowPrices: DOW,
             nasdaqPrices: NASDAQ,
@@ -159,7 +164,7 @@ class Model extends React.Component{
             aapl : apple,
             amzn : amazon,
             goog : google,
-            mfst : microsoft,
+            msft : microsoft,
             tsla : tesla,
         });
     }
@@ -238,7 +243,7 @@ class Model extends React.Component{
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : false,
                                         stock4 : !this.state.stock4, stock5 : false})
-                                }}>{this.state.stock4 ? 'Hide' : 'Show'}&nbsp; MFST</Dropdown.Item>
+                                }}>{this.state.stock4 ? 'Hide' : 'Show'}&nbsp; MSFT</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({stock1: false, stock2 : false, stock3 : false,
                                         stock4 : false, stock5 : !this.state.stock5})
@@ -266,7 +271,7 @@ class Model extends React.Component{
                         {
                             this.state.stock4 ? <div class="stock1">
                                 <h2>Microsoft</h2>
-                                <IndivStockChart > {this.state.mfst} </IndivStockChart>
+                                <IndivStockChart > {this.state.msft} </IndivStockChart>
                             </div> : null
                         }
                         {
