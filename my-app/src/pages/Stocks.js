@@ -123,20 +123,24 @@ class Model extends React.Component{
     async getStockVolume(name, dateMap){
         let result = [];
         let totalEmails = 0;
+        let positiveEmails = 0;
+        let negativeEmails = 0;
         (dateMap.get(name)).forEach(function(values, key2){ //Key2 are dates
 
             if ((dateMap.get(name)).get(key2).get("NEGATIVE")) {
                 let emails = [key2, (dateMap.get(name)).get(key2).get("NEGATIVE")];
                 result.push(emails);
                 totalEmails += emails[1];
+                negativeEmails += emails[1];
             }
             else if ((dateMap.get(name)).get(key2).get("POSITIVE")){
                 let emails = [key2, (dateMap.get(name)).get(key2).get("POSITIVE")];
                 result.push(emails);
                 totalEmails += emails[1];
+                positiveEmails += emails[1];
             }
         });
-        return [result, totalEmails];
+        return [result, totalEmails, negativeEmails, positiveEmails];
     }
 
 
@@ -150,27 +154,40 @@ class Model extends React.Component{
 
         //--------------------------------Matt code (untested) -----------------
         //Map(Stock Symbol, Map(Date, Map(P or N, count)))
+
         let totalEmails = 0;
+        let negativeEmails = 0;
+        let positiveEmails = 0;
         let dateMap = await this.getDataForGraph();
         let temp = await this.getStockVolume("AAPL", dateMap);
         let appleEmails = temp[0];
         totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails += temp[3];
         let applePrices = await this.fetchPriceData("AAPL");
         temp = await this.getStockVolume("AMZN", dateMap);
         let amazonEmails = temp[0];
         totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails += temp[3];
         let amazonPrices = await this.fetchPriceData("AMZN");
         temp = await this.getStockVolume("GOOG", dateMap);
         let googleEmails = temp[0];
         totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails += temp[3];
         let googlePrices = await this.fetchPriceData("GOOG");
         temp = await this.getStockVolume("MSFT", dateMap);
         let microsoftEmails = temp[0];
         totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails += temp[3];
         let microsoftPrices = await this.fetchPriceData("MSFT");
         temp = await this.getStockVolume("TSLA", dateMap);
         let teslaEmails = temp[0];
         totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails += temp[3];
         let teslaPrices = await this.fetchPriceData("TSLA");
         //-----------------------------------------------------------------------
         this.setState({
@@ -183,6 +200,8 @@ class Model extends React.Component{
             msft : {emailData: microsoftEmails, priceData: microsoftPrices},
             tsla : {emailData: teslaEmails, priceData: teslaPrices},
             emailCount : totalEmails,
+            negativeTotal : negativeEmails,
+            positiveTotal : positiveEmails,
         });
     }
 
@@ -220,15 +239,15 @@ class Model extends React.Component{
 
                             </tr>
                             <tr className="positive">
-                                <td>Positive Stock Emails</td>
+                                <td>Positive Stock Emails : {this.state.negativeEmails}</td>
 
                             </tr>
                             <tr className="negative">
-                                <td>Negative Stock Emails</td>
+                                <td>Negative Stock Emails : {this.state.positiveEmails }</td>
 
                             </tr>
                             <tr>
-                                <td>Ratio:</td>
+                                <td>Ratio: {this.state.positiveEmails}/{this.state.negativeEmails}</td>
 
                             </tr>
 
