@@ -1,45 +1,34 @@
 import { Line } from "react-chartjs-2";
 import React from "react";
 
-export default function PricesStockChart(props){
+export function SystemHealthChart1(props){
+
+    console.log('data received asdf:');
+    console.log(props.data);
 
     let fixData = (data) => {
         return data.map(element => {
-            return {x: element.date, y: element.price} 
+            return {x: element[0], y: element[1]} 
         });
     };
+
 
     const data = {
         datasets: [
             {
-                label: 'DOW',
-                data: fixData(props.dow),
+                label: 'blah',
+                data: fixData(props.data),
                 fill: false,
-                backgroundColor: 'rgba(0, 200, 0)',
-                borderColor: 'rgba(0, 200, 0)',
-            },
-            {
-                label: 'NASDAQ',
-                data: fixData(props.nasdaq),
-                fill: false,
-                backgroundColor: 'rgba(0, 0, 200)',
-                borderColor: 'rgba(0, 0, 200)',
-            },
-            {
-                label: 'S&P 500',
-                data: fixData(props.sp500),
-                fill: false,
-                backgroundColor: 'rgba(200, 0, 0)',
-                borderColor: 'rgba(200, 0, 0)',
+                backgroundColor: 'rgba(0, 0, 255)',
+                borderColor: 'rgba(0, 0, 255)',
             },
         ],
     };
 
     const options = {
         maintainAspectRatio: false,
-        title: {
-            display: true,
-            text: 'Index Closing Values per Day',
+        legend: {
+            display: false,
         },
         elements: {
             line: {
@@ -49,8 +38,8 @@ export default function PricesStockChart(props){
         tooltips: {
             callbacks: {
                 label: function(tooltipItem, data) {
-                    let roundedNumber = Math.round(tooltipItem.yLabel * 100) / 100;
-                    let label = `$${roundedNumber}`;
+                    let number = tooltipItem.yLabel;
+                    let label = `${number} emails received`;
                     return label;
                 }
             },
@@ -75,10 +64,14 @@ export default function PricesStockChart(props){
             }],
         }
     };
-    
+
     return(
-        <div id="index-prices-chart-container">
+        <div id="system-health-chart-container">
             <Line data={data} options={options}></Line>
         </div>
-    )
-};
+    );
+}
+
+export function SystemHealthChart2(props){
+
+}

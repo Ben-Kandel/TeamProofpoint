@@ -21,12 +21,13 @@ class Model extends React.Component{
             dowPrices: [],
             nasdaqPrices: [],
             sp500Prices: [],
-            aapl: [],
-            goog: [],
-            amzn: [],
-            tsla: [],
-            msft: [],
-
+            aapl: {},
+            goog: {},
+            amzn: {},
+            tsla: {},
+            msft: {},
+            positiveTotal: 0,
+            negativeTotal: 0,
         };
 
         this.requestOptions = {
@@ -152,42 +153,48 @@ class Model extends React.Component{
         let NASDAQ = await this.fetchPriceData('NASDAQ');
         let SP500 = await this.fetchPriceData('S&P500');
 
-        //--------------------------------Matt code (untested) -----------------
+        //--------------------------------Matt code (TESTED) -----------------
         //Map(Stock Symbol, Map(Date, Map(P or N, count)))
 
         let totalEmails = 0;
         let negativeEmails = 0;
         let positiveEmails = 0;
+
         let dateMap = await this.getDataForGraph();
         let temp = await this.getStockVolume("AAPL", dateMap);
         let appleEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails += temp[3];
+        let appleE = [temp[2], temp[3]];
         let applePrices = await this.fetchPriceData("AAPL");
         temp = await this.getStockVolume("AMZN", dateMap);
         let amazonEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails += temp[3];
+        let amazonE = [temp[2], temp[3]];
         let amazonPrices = await this.fetchPriceData("AMZN");
         temp = await this.getStockVolume("GOOG", dateMap);
         let googleEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails += temp[3];
+        let googleE = [temp[2], temp[3]];
         let googlePrices = await this.fetchPriceData("GOOG");
         temp = await this.getStockVolume("MSFT", dateMap);
         let microsoftEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails += temp[3];
+        let microsoftE = [temp[2], temp[3]];
         let microsoftPrices = await this.fetchPriceData("MSFT");
         temp = await this.getStockVolume("TSLA", dateMap);
         let teslaEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails += temp[3];
+        let teslaE = [temp[2], temp[3]];
         let teslaPrices = await this.fetchPriceData("TSLA");
         //-----------------------------------------------------------------------
         this.setState({
@@ -203,6 +210,11 @@ class Model extends React.Component{
             emailCount : totalEmails,
             negativeTotal : negativeEmails,
             positiveTotal : positiveEmails,
+            aaplStats : appleE,
+            amznStats : amazonE,
+            msftStats : microsoftE,
+            tslaStats : teslaE,
+            googStats : googleE,
         });
     }
 
@@ -240,16 +252,61 @@ class Model extends React.Component{
 
                             </tr>
                             <tr className="positive">
-                                <td>Positive Stock Emails : {this.state.negativeEmails}</td>
+                                <td>Positive Stock Emails : {this.state.positiveTotal}</td>
 
                             </tr>
                             <tr className="negative">
-                                <td>Negative Stock Emails : {this.state.positiveEmails }</td>
+                                <td>Negative Stock Emails : {this.state.negativeTotal}</td>
 
                             </tr>
                             <tr>
-                                <td>Ratio: {this.state.positiveEmails}/{this.state.negativeEmails}</td>
+                                <td>Ratio: {(this.state.positiveTotal / this.state.negativeTotal)}</td>
 
+                            </tr>
+                            <tr>
+                            {
+                                this.state.stock1 ? <div className="stockstats">
+                                <td>Total AAPL Emails: {this.state.aaplStats[0] + this.state.aaplStats[1]}</td>
+                                <td>Positive AAPL Emails: {this.state.aaplStats[1]}</td>
+                                <td>Negative AAPL Emails: {this.state.aaplStats[0]}</td>
+                                </div> : null
+                            }
+                            </tr>
+                            <tr>
+                                {
+                                    this.state.stock2 ? <div className="stockstats">
+                                        <td>Total AMZN Emails: {this.state.amznStats[0] + this.state.amznStats[1]}</td>
+                                        <td>Positive AMZN Emails: {this.state.amznStats[1]}</td>
+                                        <td>Negative AMZN Emails: {this.state.amznStats[0]}</td>
+                                    </div> : null
+                                }
+                            </tr>
+                            <tr>
+                                {
+                                    this.state.stock3 ? <div className="stockstats">
+                                        <td>Total GOOG Emails: {this.state.googStats[0] + this.state.googStats[1]}</td>
+                                        <td>Positive GOOG Emails: {this.state.googStats[1]}</td>
+                                        <td>Negative GOOG Emails: {this.state.googStats[0]}</td>
+                                    </div> : null
+                                }
+                            </tr>
+                            <tr>
+                                {
+                                    this.state.stock4 ? <div className="stockstats">
+                                        <td>Total MSFT Emails: {this.state.msftStats[0] + this.state.msftStats[1]}</td>
+                                        <td>Positive MSFT Emails: {this.state.msftStats[1]}</td>
+                                        <td>Negative MSFT Emails: {this.state.msftStats[0]}</td>
+                                    </div> : null
+                                }
+                            </tr>
+                            <tr>
+                                {
+                                    this.state.stock5 ? <div className="stockstats">
+                                        <td>Total TSLA Emails: {this.state.tslaStats[0] + this.state.tslaStats[1]}</td>
+                                        <td>Positive TSLA Emails: {this.state.tslaStats[1]}</td>
+                                        <td>Negative TSLA Emails: {this.state.tslaStats[0]}</td>
+                                    </div> : null
+                                }
                             </tr>
 
                         </table>

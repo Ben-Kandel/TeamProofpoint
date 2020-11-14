@@ -97,3 +97,9 @@
     padding-right: 0.75em;
 
 }
+
+#system-health-chart-container{
+    margin: auto;
+    width: 1750px;
+    height: 400px;
+}
