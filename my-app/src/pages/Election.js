@@ -265,6 +265,8 @@ class Model extends React.Component{
 
     render(){
         return(
+            <html >
+            <body>
             <div>
                 <div id = "header">
                     <h1>United States Presidential Election, 2020</h1>
@@ -418,8 +420,8 @@ class Model extends React.Component{
 
 
 
-                    <a className="back" href="/">Back</a>
-                    <a className="usecase" href = "stocks"> Stocks Page</a>
+
+
                 </div>
                 {/*important dates */}
                 <div className="card9">
@@ -517,7 +519,13 @@ class Model extends React.Component{
                     }
 
                 </div>
+
             </div>
+            <a className="back" href="/">Back</a>
+            </body>
+
+            </html>
+
         );
     }
 }
