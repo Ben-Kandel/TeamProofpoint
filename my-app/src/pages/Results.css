@@ -218,12 +218,16 @@ table{
       background-color: darkgray;
       color: blue;
       font-size: 0.75em;
-      position:absolute;
-      bottom: 6em;
-      right: 1em;
+
+      bottom: 1.8em;
+      right: 4em;
 
       padding-left: 0.75em;
       padding-right: 0.75em;
+
+      position:relative;
+      margin-top:100%;
+      margin-left: 100%;
 
 
 
@@ -250,6 +254,8 @@ table{
   .stock1{
       margin-top: 3em;
   }
+
+
 
 
 

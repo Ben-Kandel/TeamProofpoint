@@ -361,11 +361,12 @@ class Model extends React.Component{
 
 
                     </div>
-                    <a className="back" href="/">Back</a>
-                    <a className="usecase"> Consumer Sentiment (doesn't work) </a>
-                </div>
 
+
+                </div>
+            <a className="back" href="/">Back</a>
             </body>
+
             </html>
         );
     }
