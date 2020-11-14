@@ -33,6 +33,11 @@ export function IndivStockEmailsChart(props){
         legend: {
             display: false,
         },
+        elements: {
+            line: {
+                tension: 0
+            }
+        },
         tooltips: {
             callbacks: {
                 label: function(tooltipItem, data) {
