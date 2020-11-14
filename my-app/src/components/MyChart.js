@@ -4,6 +4,9 @@ import ResizableBox from "./ResizableBox";
 
 export default function MyChart(props) {
 
+  console.log('mychart received:');
+  console.log(props.data);
+
   const data = React.useMemo(
     () => [
       {
