@@ -18,6 +18,7 @@ import Results2 from "./pages/Results2.js";
 
 
 export default function App() {
+
   return (
 
     <BrowserRouter>
@@ -25,25 +26,25 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/about">
+          <Route path="/about" >
             <About />
           </Route>
-          <Route path="/health">
+          <Route path="/health" >
             <SystemHealth />
           </Route>
-          <Route path="/health2">
+          <Route path="/health2" >
             <SystemHealth2 />
           </Route>
-          <Route path="/election">
+          <Route path="/election" >
             <Election/>
           </Route>
-          <Route path = "/stocks">
+          <Route path = "/stocks" >
             <Stocks/>
           </Route>
-          <Route path = "/results2">
+          <Route path = "/results2" >
             <Results2/>
           </Route>
-          <Route path="/">
+          <Route path="/" >
             <Home/>
           </Route>
         </Switch>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 
 
 //css
@@ -7,12 +7,15 @@ import Carousel from 'react-bootstrap/Carousel'
 
 import $ from 'jquery';
 
+
+
+
 class Home extends React.Component{
 
     render(){
         return(
 
-<html lang="en" >
+<html lang="en" style={{background: 'white'}}>
 <head>
     <meta charset="UTF-8"/>
     <title>Welcome Page</title>
