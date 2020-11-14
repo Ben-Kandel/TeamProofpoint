@@ -59,7 +59,7 @@ class Model extends React.Component{
            }
 
         })
-      
+
         return predictions;
 
     }
