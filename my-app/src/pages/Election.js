@@ -50,8 +50,10 @@ class Model extends React.Component{
     }
     async getPrediction() {
         const result = await this.fetchData("predictions");
+        console.log(result)
         let predictions = [];
         result.forEach(element =>{
+
            if (element.subject === "Election"){
                predictions.push([element.keyword, element.prediction]);
            }
@@ -187,6 +189,7 @@ class Model extends React.Component{
         let predArr = await this.getPrediction();
         let trumpPred = 0;
         let bidenPred = 0;
+        console.log(predArr)
         for (let i = 0; i < (predArr.length); i ++){
             if (predArr[0] === "Trump"){
                 trumpPred = predArr[1];
@@ -194,6 +197,7 @@ class Model extends React.Component{
             }
             else if (predArr[0] === "Biden"){
                 bidenPred = predArr[1];
+
             }
         }
         let trumpPositive = await this.fetchData("leads", "Trump", "POSITIVE");
