@@ -85,7 +85,7 @@ html {background-color: gray}
     grid-template-columns: auto auto auto auto;
     background-color: gray;
     padding: 4em;
-    height: 62em;
+    height: 88em;
     
   }
 
@@ -164,13 +164,19 @@ html {background-color: gray}
   /* important dates css */
   .sub9{
       background-color: rgba(204, 204, 204, 0.8);
-
+      border-radius: 1em;
       height: 100%;
+      padding : 1em;
   }
   .card9{
+
       position: relative;
-      margin-top: 0.5em;
+
+      margin: 3em;
+      margin-top: -28em;
       height: 75%;
+
+
   }
 
   .card9 h2{
