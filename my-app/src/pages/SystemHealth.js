@@ -1,5 +1,5 @@
 import React from "react";
-import MyChart from "../components/MyChart";
+import { SystemHealthChart1 } from "../components/SystemHealthChart";
 
 //css
 import "./SystemHealth.css";
@@ -104,7 +104,7 @@ class SystemHealth extends React.Component{
                     </div>
                     <div class="grid-item line-graph">
                         <h1>Frequency of Incoming Emails Over Time</h1>
-                        <MyChart data={this.state.dates}/>
+                        <SystemHealthChart1 data={this.state.dates}/>
                     </div>
                     <a className="system" href="/">Back</a>
                     <a className="next" href="/health2">Next</a>
