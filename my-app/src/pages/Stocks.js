@@ -265,45 +265,45 @@ class Model extends React.Component{
                             <tr>
                             {
                                 this.state.stock1 ? <div className="stockstats">
-                                <td>Total AAPL Emails: {this.state.aaplStats[0] + this.state.aaplStats[1]}</td>
-                                <td>Positive AAPL Emails: {this.state.aaplStats[1]}</td>
-                                <td>Negative AAPL Emails: {this.state.aaplStats[0]}</td>
+                                <tr><td>Total AAPL Emails: {this.state.aaplStats[0] + this.state.aaplStats[1]}</td></tr>
+                                <tr><td>Positive AAPL Emails: {this.state.aaplStats[1]}</td></tr>
+                                <tr><td>Negative AAPL Emails: {this.state.aaplStats[0]}</td></tr>
                                 </div> : null
                             }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock2 ? <div className="stockstats">
-                                        <td>Total AMZN Emails: {this.state.amznStats[0] + this.state.amznStats[1]}</td>
-                                        <td>Positive AMZN Emails: {this.state.amznStats[1]}</td>
-                                        <td>Negative AMZN Emails: {this.state.amznStats[0]}</td>
+                                        <tr><td>Total AMZN Emails: {this.state.amznStats[0] + this.state.amznStats[1]}</td></tr>
+                                        <tr><td>Positive AMZN Emails: {this.state.amznStats[1]}</td></tr>
+                                        <tr><td>Negative AMZN Emails: {this.state.amznStats[0]}</td></tr>
                                     </div> : null
                                 }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock3 ? <div className="stockstats">
-                                        <td>Total GOOG Emails: {this.state.googStats[0] + this.state.googStats[1]}</td>
-                                        <td>Positive GOOG Emails: {this.state.googStats[1]}</td>
-                                        <td>Negative GOOG Emails: {this.state.googStats[0]}</td>
+                                        <tr><td>Total GOOG Emails: {this.state.googStats[0] + this.state.googStats[1]}</td></tr>
+                                        <tr><td>Positive GOOG Emails: {this.state.googStats[1]}</td></tr>
+                                        <tr><td>Negative GOOG Emails: {this.state.googStats[0]}</td></tr>
                                     </div> : null
                                 }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock4 ? <div className="stockstats">
-                                        <td>Total MSFT Emails: {this.state.msftStats[0] + this.state.msftStats[1]}</td>
-                                        <td>Positive MSFT Emails: {this.state.msftStats[1]}</td>
-                                        <td>Negative MSFT Emails: {this.state.msftStats[0]}</td>
+                                        <tr><td>Total MSFT Emails: {this.state.msftStats[0] + this.state.msftStats[1]}</td></tr>
+                                        <tr><td>Positive MSFT Emails: {this.state.msftStats[1]}</td></tr>
+                                        <tr><td>Negative MSFT Emails: {this.state.msftStats[0]}</td></tr>
                                     </div> : null
                                 }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock5 ? <div className="stockstats">
-                                        <td>Total TSLA Emails: {this.state.tslaStats[0] + this.state.tslaStats[1]}</td>
-                                        <td>Positive TSLA Emails: {this.state.tslaStats[1]}</td>
-                                        <td>Negative TSLA Emails: {this.state.tslaStats[0]}</td>
+                                        <tr><td>Total TSLA Emails: {this.state.tslaStats[0] + this.state.tslaStats[1]}</td></tr>
+                                        <tr><td>Positive TSLA Emails: {this.state.tslaStats[1]}</td></tr>
+                                        <tr><td>Negative TSLA Emails: {this.state.tslaStats[0]}</td></tr>
                                     </div> : null
                                 }
                             </tr>
