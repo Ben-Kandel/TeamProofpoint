@@ -48,6 +48,19 @@ class Model extends React.Component{
         const json = await response.json(); //we have to wait when converting this to json
         return json; //return it
     }
+    async getPrediction() {
+        const result = await this.fetchData("predictions");
+        let predictions = [];
+        result.forEach(element =>{
+           if (element.subject === "Election"){
+               predictions.push([element.keyword, element.prediction]);
+           }
+
+        })
+      
+        return predictions;
+
+    }
 
     async getDataForGraph(){
         const result = await this.fetchData("leads");
@@ -171,6 +184,18 @@ class Model extends React.Component{
         // const trumpNegative = (await this.fetchData("leads", "Trump", "NEGATIVE")).length;
         // const bidenPositive = (await this.fetchData("leads", "Biden", "POSITIVE")).length;
         // const bidenNegative = (await this.fetchData("leads", "Biden", "NEGATIVE")).length;
+        let predArr = await this.getPrediction();
+        let trumpPred = 0;
+        let bidenPred = 0;
+        for (let i = 0; i < (predArr.length); i ++){
+            if (predArr[0] === "Trump"){
+                trumpPred = predArr[1];
+
+            }
+            else if (predArr[0] === "Biden"){
+                bidenPred = predArr[1];
+            }
+        }
         let trumpPositive = await this.fetchData("leads", "Trump", "POSITIVE");
         let trumpNegative = await this.fetchData("leads", "Trump", "NEGATIVE");
         let bidenPositive = await this.fetchData("leads", "Biden", "POSITIVE");
@@ -238,6 +263,7 @@ class Model extends React.Component{
 
         //this.getDataForGraph() returns a list [] with 4 values
         const [ posBidenDates, negBidenDates, posTrumpDates, negTrumpDates ] = await this.getDataForGraph();
+
         this.setState({
             trumpEmails: trumpPositiveTotal + trumpNegativeTotal,
             bidenEmails: bidenPositiveTotal + bidenNegativeTotal,
@@ -258,6 +284,8 @@ class Model extends React.Component{
             trumpMostPositiveDate: trumpMostPositiveDate,
             bidenMostPositiveDate: bidenMostPositiveDate,
             emailStd: (std(allEmails)).toFixed(),
+            tPrediction : trumpPred,
+            bPrediction : bidenPred,
         });
     }
 
@@ -331,8 +359,12 @@ class Model extends React.Component{
 
 
                                      <div class="bidenprediction">
-                                         <div class="biden">Biden: 55%</div>
-                                         <div class = "trump">Trump : 45%</div>
+                                         <div class="biden">Biden: {this.state.bPrediction}%</div>
+                                         {//document.getElementById(".biden").style.width = this.state.bPrediction}
+                                         }
+                                         <div class = "trump">Trump: {this.state.tPrediction}%</div>
+                                         {//document.getElementById(".trump").style.width = this.state.tPrediction}
+                                         }
                                      </div>
                                  </div> : null
 
