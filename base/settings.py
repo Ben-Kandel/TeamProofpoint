@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'stocks.apps.StocksConfig',
     'consumers.apps.ConsumersConfig',
     'prices.apps.PricesConfig',
+    'predictions.apps.PredictionsConfig'
 ]
 
 MIDDLEWARE = [

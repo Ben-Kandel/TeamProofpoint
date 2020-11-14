@@ -33,10 +33,14 @@
     padding-left: 2em;
     font-size: 15px;
     padding-right: 2em;
-
+    position: sticky;
+    top: 50px;
     text-align: center;
 
 }
+
+
+
 .card5Stock{
     border-radius : 1em;
     background-color: rgba(204, 204, 204, 0.8);

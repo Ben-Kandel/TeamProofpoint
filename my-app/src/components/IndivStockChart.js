@@ -56,6 +56,10 @@ export function IndivStockEmailsChart(props){
                         day: 'MMM D',
                     }
                 },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Date of Emails Received'
+                },
                 ticks: {
                     beginAtZero: true,
                 }
@@ -63,7 +67,11 @@ export function IndivStockEmailsChart(props){
             yAxes: [{
                 ticks: {
                     beginAtZero: false,
-                }
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Emails Received'
+                },
             }],
         }
     };
@@ -127,6 +135,10 @@ export function IndivStockPricesChart(props){
                         day: 'MMM D',
                     }
                 },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Date'
+                },
                 ticks: {
                     beginAtZero: true,
                 }
@@ -134,7 +146,11 @@ export function IndivStockPricesChart(props){
             yAxes: [{
                 ticks: {
                     beginAtZero: false,
-                }
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Price (USD)'
+                },
             }],
         }
     };
