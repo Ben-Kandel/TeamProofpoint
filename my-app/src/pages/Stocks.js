@@ -245,66 +245,73 @@ class Model extends React.Component{
                         <table>
 
 
-                            <tr className="poop">
+                            <tr className="line-title">
                                 <td>Total Stock Emails: {this.state.emailCount} </td>
 
 
 
                             </tr>
                             <tr className="positive">
-                                <td>Positive Stock Emails : {this.state.positiveTotal}</td>
+                                <td>Positive Stock Emails: {this.state.positiveTotal}</td>
 
                             </tr>
                             <tr className="negative">
-                                <td>Negative Stock Emails : {this.state.negativeTotal}</td>
+                                <td>Negative Stock Emails: {this.state.negativeTotal}</td>
 
                             </tr>
                             <tr>
-                                <td>Ratio: {(this.state.positiveTotal / this.state.negativeTotal)}</td>
+                                <td>Ratio: {(this.state.positiveTotal / this.state.negativeTotal).toFixed(3)}</td>
 
                             </tr>
+                            <div>&nbsp;</div>
                             <tr>
                             {
                                 this.state.stock1 ? <div className="stockstats">
-                                <tr><td>Total AAPL Emails: {this.state.aaplStats[0] + this.state.aaplStats[1]}</td></tr>
-                                <tr><td>Positive AAPL Emails: {this.state.aaplStats[1]}</td></tr>
-                                <tr><td>Negative AAPL Emails: {this.state.aaplStats[0]}</td></tr>
+                                <tr className="line-title"><td>Total AAPL Emails: {this.state.aaplStats[0] + this.state.aaplStats[1]}</td></tr>
+                                <tr className="positive"><td>Positive AAPL Emails: {this.state.aaplStats[1]}</td></tr>
+                                <tr className="negative"><td>Negative AAPL Emails: {this.state.aaplStats[0]}</td></tr>
+                                    <tr><td>Ratio: {(this.state.aaplStats[1] / this.state.aaplStats[0]).toFixed(3)}</td></tr>
                                 </div> : null
                             }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock2 ? <div className="stockstats">
-                                        <tr><td>Total AMZN Emails: {this.state.amznStats[0] + this.state.amznStats[1]}</td></tr>
-                                        <tr><td>Positive AMZN Emails: {this.state.amznStats[1]}</td></tr>
-                                        <tr><td>Negative AMZN Emails: {this.state.amznStats[0]}</td></tr>
+                                        <tr className="line-title"><td>Total AMZN Emails: {this.state.amznStats[0] + this.state.amznStats[1]}</td></tr>
+                                        <tr className="positive"><td>Positive AMZN Emails: {this.state.amznStats[1]}</td></tr>
+                                        <tr className="negative"><td>Negative AMZN Emails: {this.state.amznStats[0]}</td></tr>
+                                        <tr><td>Ratio: {(this.state.amznStats[1] / this.state.amznStats[0]).toFixed(3)}</td></tr>
                                     </div> : null
                                 }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock3 ? <div className="stockstats">
-                                        <tr><td>Total GOOG Emails: {this.state.googStats[0] + this.state.googStats[1]}</td></tr>
-                                        <tr><td>Positive GOOG Emails: {this.state.googStats[1]}</td></tr>
-                                        <tr><td>Negative GOOG Emails: {this.state.googStats[0]}</td></tr>
+                                        <tr className="line-title"><td>Total GOOG Emails: {this.state.googStats[0] + this.state.googStats[1]}</td></tr>
+                                        <tr className="positive"><td>Positive GOOG Emails: {this.state.googStats[1]}</td></tr>
+                                        <tr className="negative"><td>Negative GOOG Emails: {this.state.googStats[0]}</td></tr>
+                                        <tr><td>Ratio: {(this.state.googStats[1] / this.state.googStats[0]).toFixed(3)}</td></tr>
+
                                     </div> : null
                                 }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock4 ? <div className="stockstats">
-                                        <tr><td>Total MSFT Emails: {this.state.msftStats[0] + this.state.msftStats[1]}</td></tr>
-                                        <tr><td>Positive MSFT Emails: {this.state.msftStats[1]}</td></tr>
-                                        <tr><td>Negative MSFT Emails: {this.state.msftStats[0]}</td></tr>
+                                        <tr className="line-title"><td>Total MSFT Emails: {this.state.msftStats[0] + this.state.msftStats[1]}</td></tr>
+                                        <tr className="positive"><td>Positive MSFT Emails: {this.state.msftStats[1]}</td></tr>
+                                        <tr className="negative"><td>Negative MSFT Emails: {this.state.msftStats[0]}</td></tr>
+                                        <tr><td>Ratio: {(this.state.msftStats[1] / this.state.msftStats[0]).toFixed(3)}</td></tr>
                                     </div> : null
                                 }
                             </tr>
                             <tr>
                                 {
                                     this.state.stock5 ? <div className="stockstats">
-                                        <tr><td>Total TSLA Emails: {this.state.tslaStats[0] + this.state.tslaStats[1]}</td></tr>
-                                        <tr><td>Positive TSLA Emails: {this.state.tslaStats[1]}</td></tr>
-                                        <tr><td>Negative TSLA Emails: {this.state.tslaStats[0]}</td></tr>
+                                        <tr className="line-title"><td>Total TSLA Emails: {this.state.tslaStats[0] + this.state.tslaStats[1]}</td></tr>
+                                        <tr className="positive"><td>Positive TSLA Emails: {this.state.tslaStats[1]}</td></tr>
+                                        <tr className="negative"><td>Negative TSLA Emails: {this.state.tslaStats[0]}</td></tr>
+                                        <tr><td>Ratio: {(this.state.tslaStats[1] / this.state.tslaStats[0]).toFixed(3)}</td></tr>
                                     </div> : null
                                 }
                             </tr>
@@ -421,6 +428,7 @@ class Model extends React.Component{
 
 
                 </div>
+
             <a className="back" href="/">Back</a>
             </body>
 

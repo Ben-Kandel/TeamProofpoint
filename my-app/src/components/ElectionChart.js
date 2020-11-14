@@ -62,11 +62,19 @@ export default function ElectionChart(props){
                 },
                 ticks: {
                     beginAtZero: true,
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Date of Emails Received'
                 }
             }],
             yAxes: [{
                 ticks: {
                     beginAtZero: true,
+                },
+                scaleLabel: {
+                  display: true,
+                  labelString: 'Number of Emails Received'
                 }
             }],
         }

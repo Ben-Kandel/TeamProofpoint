@@ -16,5 +16,5 @@ class LeadViewSet(viewsets.ModelViewSet):
     serializer_class = LeadSerializer
 
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['id', 'date', 'volume', 'subject', 'ASS', 'P_N']
+    filterset_fields = ['id', 'date', 'volume', 'subject', 'ASS', 'P_N', 'url', 'attachment']
 
