@@ -234,14 +234,14 @@ class Model extends React.Component{
                 </div>
                 <div class="grid-containerStock">
                     <div class="card1Stocks">
-                        <h2>some box with stuff in it</h2>
+                        <h2>Index Fund Statistics</h2>
                         <PricesStockChart dow={this.state.dowPrices} nasdaq={this.state.nasdaqPrices} sp500={this.state.sp500Prices}/>
                         <hr/>
                     </div>
                     <div class="card2"></div>
                     <div class="card3"></div>
                     <div class="card4Stocks">
-                        <h2>Some other stats</h2>
+                        <h2>Email Statistics</h2>
                         <table>
 
 
@@ -319,7 +319,7 @@ class Model extends React.Component{
                         </table>
                     </div>
                     <div class="card5Stock">
-                        <h2>Stonks</h2>
+                        <h2>Individual Stocks</h2>
                         <Dropdown class="dropdown">
                             <Dropdown.Toggle variant="success" id="dropdown-basic">
                                 Stocks
