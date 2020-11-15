@@ -282,6 +282,7 @@ table{
     padding-bottom: 10px;
     text-align: center;
     color: white;
+    z-index: 1;
 }
 
 .biden {
@@ -290,10 +291,20 @@ table{
     padding-top: 10px; /* Add top padding */
     padding-bottom: 10px; /* Add bottom padding */
     color: white; /* White text color */
+    z-index: 1;
 }
 
-.biden {width: 55%; background-color: blue;} /* Green */
-.trump {width: 45%; background-color: red;}
+.biden {width: 50.85%; background-color: blue;} /* Green */
+.trump {width: 46.54%; background-color: red;}
+.middle-part {
+    width: 100%;
+    background-color: black;
+    color: black;
+
+    padding-bottom: 20px;
+    text-align: left;
+
+}
 
 
 

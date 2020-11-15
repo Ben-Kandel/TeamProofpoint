@@ -189,16 +189,17 @@ class Model extends React.Component{
         let predArr = await this.getPrediction();
         let trumpPred = 0;
         let bidenPred = 0;
-        console.log(predArr)
+
         for (let i = 0; i < (predArr.length); i ++){
-            if (predArr[0] === "Trump"){
-                trumpPred = predArr[1];
+
+            if (predArr[i][0] === "Trump"){
+                trumpPred = predArr[i][1];
 
             }
-            else if (predArr[0] === "Biden"){
-                bidenPred = predArr[1];
-
+            else if (predArr[i][0] === "Biden"){
+                bidenPred = predArr[i][1];
             }
+
         }
         let trumpPositive = await this.fetchData("leads", "Trump", "POSITIVE");
         let trumpNegative = await this.fetchData("leads", "Trump", "NEGATIVE");
@@ -288,8 +289,8 @@ class Model extends React.Component{
             trumpMostPositiveDate: trumpMostPositiveDate,
             bidenMostPositiveDate: bidenMostPositiveDate,
             emailStd: (std(allEmails)).toFixed(),
-            tPrediction : trumpPred,
-            bPrediction : bidenPred,
+            tPrediction : parseFloat(trumpPred).toFixed(2),
+            bPrediction : parseFloat(bidenPred).toFixed(2),
         });
     }
 
@@ -363,12 +364,20 @@ class Model extends React.Component{
 
 
                                      <div class="bidenprediction">
-                                         <div class="biden">Biden: {this.state.bPrediction}%</div>
-                                         {//document.getElementById(".biden").style.width = this.state.bPrediction}
-                                         }
-                                         <div class = "trump">Trump: {this.state.tPrediction}%</div>
-                                         {//document.getElementById(".trump").style.width = this.state.tPrediction}
-                                         }
+                                         <div className = "middle-part">test
+                                         <div id = "bidenP" className="biden">Biden: {(this.state.bPrediction)}%</div>
+                                         {/*{window.onclick = function () {*/}
+                                         {/*    //document.getElementById("biden").style.width = this.state.bPrediction;*/}
+                                         {/*}*/}
+                                         {/*}*/}
+
+                                         <div id = "trumpP" className = "trump">Trump: {(this.state.tPrediction)}%</div>
+                                         </div>
+                                         {/*{window.onclick = function(){*/}
+
+                                         {/*document.getElementById("trump").style.width = this.state.tPrediction;*/}
+                                         {/*}*/}
+                                         {/*}*/}
                                      </div>
                                  </div> : null
 

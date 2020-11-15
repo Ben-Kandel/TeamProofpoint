@@ -13,7 +13,8 @@ class Lead(models.Model):
     subject = models.CharField(max_length=100, default='candidate')
     ASS = models.DecimalField(decimal_places=4, max_digits=8, default=0)
     P_N = models.CharField(max_length=2, default='unspecified')
-    url = models.BooleanField(default='False')
-    attachment = models.BooleanField(default='False')
+    url = models.IntegerField(default=0)
+    attachment = models.IntegerField(default=0)
+
 
 

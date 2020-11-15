@@ -10,6 +10,6 @@ class LeadListCreate(generics.ListCreateAPIView):
     serializer_class = LeadSerializer
     # filter_backends = [DjangoFilterBackend]
     filter_backends = [filters.SearchFilter]
-    search_fields = ['id', 'subject', 'sentiment_score', 'keywords', 'date', 'pn']
+    search_fields = ['id', 'subject', 'sentiment_score', 'keywords', 'date', 'pn', 'url', 'attachment']
     #filterset_fields = ['id', 'subject', 'sentiment_score', 'keywords', 'date', 'pn']
 
