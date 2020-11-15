@@ -2,7 +2,10 @@ img{
     margin-top: -5em;
     margin-left: 3em;
 }
-
+.stockpic{
+    width: 400px;
+    height: 300px;
+}
 .container{
 
     position:absolute;
