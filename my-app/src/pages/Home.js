@@ -28,9 +28,10 @@ class Home extends React.Component{
 <div class = "container" style ={{background: 'white'}}>
 <div id = "box1">
     <h1>Leveraging SPAM to Make Bold Societal Predictions</h1>
-    <p>Proofpoint, headquartered in Sunnyvale, California, is a cybersecurity company that provides solutions to top research universities, banks and over half of the Fortune 100 corporations. Proofpoint protects sensitive data across every domain including email, the web, the cloud, social media and mobile messaging.
+    <p>
+        This program analyzes terabytes of SPAM emails to detect signals and trends contained in those emails. Through the modeling of these trends and signals we can make various predictions on a variety of topics. With these predictions the program will be able to predict future lures and popular topics to be used in future SPAM attacks, thereby improving the detection of SPAM emails by the Proofpoint SPAM detection engines.
     </p>
- <p>Proofpoint shields their clients from millions of spam emails per day. By analyzing terabytes of email data, Proofpoint can predict future cyber security attacks and prevent them before they happen, increasing the security and reliability of their system and the web.</p>
+ <p>Proofpoint shields their clients from millions of spam emails per day. Using this application, Proofpoint can predict future cyber security attacks and prevent them before they happen, increasing the security and reliability of their system.</p>
 </div>
 
 <div id = "box2">
@@ -63,10 +64,10 @@ class Home extends React.Component{
         </Carousel.Item>
         <Carousel.Item>
             <img
-                className="d-block w-100"
-                src="./images/stockmarket.jpg"
-                alt="Third slide"
-                width = "400px"
+                className="stockpic"
+                src="./images/stockmarket.png"
+                alt="stockMarket"
+                width = "100px"
                 height = "300px"
                 onClick={event=> window.location.href='/stocks'}
             />
