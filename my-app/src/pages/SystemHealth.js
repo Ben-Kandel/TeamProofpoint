@@ -39,8 +39,12 @@ class SystemHealth extends React.Component{
         fetch("http://127.0.0.1:8000/api/stocks/", this.requestOptions)
             .then(response => response.json())
             .then(result => {
+                let emailTotal = 0;
+                result.forEach(element => {
+                    emailTotal += element.volume;
+                });
                 this.setState({
-                    stockEmails: result.length
+                    stockEmails: emailTotal
                 })
             })
             .catch(error => console.log('error', error));

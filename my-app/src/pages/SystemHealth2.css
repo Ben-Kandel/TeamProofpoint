@@ -64,8 +64,8 @@
 }
 
 .bar-graph{
-    grid-row: 2/4;
-    grid-column: 2/4;
+    grid-row: 2/3;
+    grid-column: 2/3;
     margin: auto;
     padding-bottom: 0px;
 }
@@ -79,20 +79,16 @@
     color: green;
 }
 
-.neutral-sentiment{
-    grid-row: 3;
-    grid-column: 1;
-}
-
-.neutral-sentiment p1{
-    color: blue;
-}
-
 .negative-sentiment{
-    grid-row: 4;
+    grid-row: 3;
     grid-column: 1;
 }
 
 .negative-sentiment p1{
     color: red;
+}
+
+#system-health-chart-container-2{
+    width: 1300px;
+    height: 400px;
 }
