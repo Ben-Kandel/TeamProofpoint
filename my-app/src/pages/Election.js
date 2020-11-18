@@ -417,21 +417,7 @@ class Model extends React.Component{
 
                         <hr/>
                         <table>
-                            <tr className="sb">
-                                <td># Emails with URLS: </td>
-                                <td>&nbsp;</td>
-                                <td>0</td>
-                            </tr>
-                            <tr className="sb">
-                                <td># Emails with Attachments:</td>
-                                <td>&nbsp;</td>
-                                <td>0</td>
-                            </tr>
-                            <tr className="sb">
-                                <td># Emails with Promotions: </td>
-                                <td>&nbsp;</td>
-                                <td>0</td>
-                            </tr>
+                            
                             <tr className="sb-toggle">
 
                                 <td id="positiveDay">Most Positive Emails:</td>
