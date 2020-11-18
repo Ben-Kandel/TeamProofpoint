@@ -58,7 +58,7 @@ def transfer(nameDB, copyTable, db):
     aapl = pd.read_csv("AAPL.csv")
     amzn = pd.read_csv("AMZN.csv")
     goog = pd.read_csv("GOOG.csv")
-    tsla = pd.read_csv("TSLA.csv")
+    tsla = pd.read_csv("HD.csv")
     msft = pd.read_csv("MSFT.csv")
     master = pd.DataFrame(columns = ["date", "price", "name"])
 
@@ -69,7 +69,7 @@ def transfer(nameDB, copyTable, db):
         master.loc[len(master.index)] = [aapl['Date'][d], aapl["Adj Close"][d], "AAPL"]
         master.loc[len(master.index)] = [amzn['Date'][d], amzn["Adj Close"][d], "AMZN"]
         master.loc[len(master.index)] = [msft['Date'][d], msft["Adj Close"][d], "MSFT"]
-        master.loc[len(master.index)] = [tsla['Date'][d], tsla["Adj Close"][d], "TSLA"]
+        master.loc[len(master.index)] = [tsla['Date'][d], tsla["Adj Close"][d], "HD"]
         master.loc[len(master.index)] = [goog['Date'][d], goog["Adj Close"][d], "GOOG"]
     master.index.name = "id"
     master.to_sql("prices_prices", con =conn2, if_exists = "replace")
