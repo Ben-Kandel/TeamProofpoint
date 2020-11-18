@@ -417,6 +417,7 @@ class Model extends React.Component{
 
                         <hr/>
                         <table>
+<<<<<<< HEAD
                             <tr className="sb">
                                 <td># Emails with URLS: </td>
                                 <td>&nbsp;</td>
@@ -427,6 +428,9 @@ class Model extends React.Component{
                                 <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
+=======
+                            
+>>>>>>> 056f4929c7da940914ad8a04e8d69acdecd73721
                             <tr className="sb-toggle">
 
                                 <td id="positiveDay">Peak Positive Emails:</td>
