@@ -378,6 +378,8 @@ class Model extends React.Component{
                                          {/*document.getElementById("trump").style.width = this.state.tPrediction;*/}
                                          {/*}*/}
                                          {/*}*/}
+                                         <p>%'s in vote percentage. Date of prediction: 11/1/2020.</p>
+
                                      </div>
                                  </div> : null
 
