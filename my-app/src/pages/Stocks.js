@@ -18,6 +18,9 @@ class Model extends React.Component{
             stock3: false,
             stock4: false,
             stock5: false,
+            stock6: false,
+            stock7: false,
+            stock8: false,
             dowPrices: [],
             nasdaqPrices: [],
             sp500Prices: [],
@@ -65,7 +68,7 @@ class Model extends React.Component{
     async getDataForGraph(){
         const result = await this.fetchData("stocks");
         let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))
-        let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "TSLA"];
+        let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "TSLA", "DOW", "NASDAQ", "SP"];
         result.forEach(element =>{
             let tempMap = new Map();
 
@@ -196,6 +199,21 @@ class Model extends React.Component{
         positiveEmails += temp[3];
         let teslaE = [temp[2], temp[3]];
         let teslaPrices = await this.fetchPriceData("TSLA");
+        temp = await this.getStockVolume("DOW", dateMap);
+        let dowEmails = temp[0];
+        totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails +=temp[3];
+        temp = await this.getStockVolume("NASDAQ", dateMap);
+        let nasdaqEmails = temp[0];
+        totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails +=temp[3];
+        temp = await this.getStockVolume("SP", dateMap);
+        let spEmails = temp[0];
+        totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails +=temp[3];
         //-----------------------------------------------------------------------
         this.setState({
             dowPrices: DOW,
@@ -207,6 +225,9 @@ class Model extends React.Component{
             goog : {emailData: googleEmails, priceData: googlePrices},
             msft : {emailData: microsoftEmails, priceData: microsoftPrices},
             tsla : {emailData: teslaEmails, priceData: teslaPrices},
+            dow : dowEmails,
+            nasdaq : nasdaqEmails,
+            sp : spEmails,
             emailCount : totalEmails,
             negativeTotal : negativeEmails,
             positiveTotal : positiveEmails,
@@ -329,33 +350,52 @@ class Model extends React.Component{
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: !this.state.stock1, stock2: false, stock3: false,
-                                        stock4: false, stock5: false
+                                        stock4: false, stock5: false, stock6: false, stock7: false, stock8: false
                                     })
                                 }}>{this.state.stock1 ? 'Hide' : 'Show'} &nbsp; AAPL</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: !this.state.stock2, stock3: false,
-                                        stock4: false, stock5: false
+                                        stock4: false, stock5: false, stock6: false, stock7: false, stock8: false
                                     })
                                 }}>{this.state.stock2 ? 'Hide' : 'Show'}&nbsp; AMZN</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: !this.state.stock3,
-                                        stock4: false, stock5: false
+                                        stock4: false, stock5: false, stock6: false, stock7: false, stock8: false
                                     })
                                 }}>{this.state.stock3 ? 'Hide' : 'Show'}&nbsp; GOOG</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: false,
-                                        stock4: !this.state.stock4, stock5: false
+                                        stock4: !this.state.stock4, stock5: false, stock6: false, stock7: false, stock8: false
                                     })
                                 }}>{this.state.stock4 ? 'Hide' : 'Show'}&nbsp; MSFT</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: false,
-                                        stock4: false, stock5: !this.state.stock5
+                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
                                     })
                                 }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; TSLA</Dropdown.Item>
+
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({
+                                        stock1: false, stock2: false, stock3: false,
+                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+                                    })
+                                }}>{this.state.stock6 ? 'Hide' : 'Show'}&nbsp; DOW</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({
+                                        stock1: false, stock2: false, stock3: false,
+                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+                                    })
+                                }}>{this.state.stock7 ? 'Hide' : 'Show'}&nbsp; S&P</Dropdown.Item>
+                                <Dropdown.Item onClick={() => {
+                                    this.setState({
+                                        stock1: false, stock2: false, stock3: false,
+                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+                                    })
+                                }}>{this.state.stock8 ? 'Hide' : 'Show'}&nbsp; NASDAQ</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                         {
@@ -410,6 +450,30 @@ class Model extends React.Component{
                                 </div>
                                 <div class = "priceData">
                                     <IndivStockPricesChart data={this.state.tsla.priceData}/>
+                                </div>
+                            </div> : null
+                        }
+                        {
+                            this.state.stock6 ? <div className="stock1">
+                                <h2>DOW</h2>
+                                <div class = "volumeData">
+                                    <IndivStockEmailsChart data={this.state.dow}/>
+                                </div>
+                            </div> : null
+                        }
+                        {
+                            this.state.stock7 ? <div className="stock1">
+                                <h2>NASDAQ</h2>
+                                <div class = "volumeData">
+                                    <IndivStockEmailsChart data={this.state.nasdaq}/>
+                                </div>
+                            </div> : null
+                        }
+                        {
+                            this.state.stock7 ? <div className="stock1">
+                                <h2>S&P500</h2>
+                                <div class = "volumeData">
+                                    <IndivStockEmailsChart data={this.state.sp}/>
                                 </div>
                             </div> : null
                         }
