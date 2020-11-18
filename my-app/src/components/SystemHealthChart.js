@@ -1,17 +1,13 @@
-import { Line } from "react-chartjs-2";
+import { Line, HorizontalBar } from "react-chartjs-2";
 import React from "react";
 
 export function SystemHealthChart1(props){
-
-    console.log('data received asdf:');
-    console.log(props.data);
 
     let fixData = (data) => {
         return data.map(element => {
             return {x: element[0], y: element[1]} 
         });
     };
-
 
     const data = {
         datasets: [
@@ -73,5 +69,39 @@ export function SystemHealthChart1(props){
 }
 
 export function SystemHealthChart2(props){
+
+    const data = {
+        labels: ['Positive', 'Negative'],
+        datasets: [{            
+            backgroundColor: ['rgba(0, 128, 0)', 'rgba(255, 0, 0)'],
+            label: 'Number of Emails',
+            data: [props.data.posElectionEmails + props.data.posStocksEmails, props.data.negElectionEmails + props.data.negStocksEmails],
+        }]
+    };
+
+    const options = {
+        maintainAspectRatio: false,
+        legend: {
+            display: false,
+        },
+        scales: {
+            xAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                }
+            }],
+            yAxes: [{
+                ticks: {
+                    beginAtZero: false,
+                }
+            }],
+        }
+    };
+
+    return(
+        <div id="system-health-chart-container-2">
+            <HorizontalBar data={data} options={options}/>
+        </div>
+    );
 
 }
