@@ -12,7 +12,7 @@ from transferData import transfer
 def transferDatabase(request):
 
     transfer("leads_lead", "stats", "proofpointDB.db")
-    transfer("stocks_stocks", "statsStocks", "proofpointDBstockdata.db")
+    transfer("stocks_stocks", "statsStocks", "proofpointDBnewnew.db")
     # transfer("stocks_stocks", "trumpTesting")
     # transfer("consumers_consumer", "realData")
     return HttpResponse("Transfer Complete!")

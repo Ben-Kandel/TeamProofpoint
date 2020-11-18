@@ -18,7 +18,8 @@ def transfer(nameDB, copyTable, db):
 
     conn = sqlite3.connect(db)
     data = pd.read_sql_query(f"select * from {copyTable}", conn)
-    pred = pd.read_sql_query(f"select * FROM predictions", conn)
+    if nameDB == "proofpointDB.db":
+        pred = pd.read_sql_query(f"select * FROM predictions", conn)
 
     e_amount = 0
     positive= 0
@@ -43,8 +44,9 @@ def transfer(nameDB, copyTable, db):
     stats = pd.DataFrame(data = d)
     conn2 = sqlite3.connect("db.sqlite3")
     data.index.name = "id"
-    pred.index.name = "id"
-    pred.to_sql("predictions_predictions", con = conn2, if_exists = "replace")
+    if nameDB == "proofpointDB.db":
+        pred.index.name = "id"
+        pred.to_sql("predictions_predictions", con = conn2, if_exists = "replace")
     data.to_sql(nameDB, con=conn2, if_exists = "replace")
     stats.to_sql(statisticsNameDB, con=conn2, if_exists = "replace")
 
