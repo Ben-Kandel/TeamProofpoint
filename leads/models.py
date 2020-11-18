@@ -8,7 +8,7 @@ class Lead(models.Model):
     # date = models.CharField(max_length=50, default='2020/10/01 12:05:00')
     # pn = models.CharField(max_length=2, default='unspecified')
 
-    date = models.CharField(max_length=50, default='2020/10/01')
+    date = models.CharField(max_length=50, default='2020-10-01')
     volume = models.IntegerField(default=0)
     subject = models.CharField(max_length=100, default='candidate')
     ASS = models.DecimalField(decimal_places=4, max_digits=8, default=0)

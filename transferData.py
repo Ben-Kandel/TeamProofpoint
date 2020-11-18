@@ -9,14 +9,14 @@
 import sqlite3
 import pandas as pd
 
-def transfer(nameDB, copyTable):
+def transfer(nameDB, copyTable, db):
 
 
 
 
     statisticsNameDB = "statistics_" + nameDB
 
-    conn = sqlite3.connect("proofpointDB.db")
+    conn = sqlite3.connect(db)
     data = pd.read_sql_query(f"select * from {copyTable}", conn)
     pred = pd.read_sql_query(f"select * FROM predictions", conn)
 

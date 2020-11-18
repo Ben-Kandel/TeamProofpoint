@@ -425,38 +425,33 @@ class Model extends React.Component{
                                 <td>&nbsp;</td>
                                 <td>0</td>
                             </tr>
-                            <tr className="sb">
-                                <td># Emails with Promotions: </td>
-                                <td>&nbsp;</td>
-                                <td>0</td>
-                            </tr>
                             <tr className="sb-toggle">
 
-                                <td id="positiveDay">Most Positive Emails:</td>
+                                <td id="positiveDay">Peak Positive Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="positiveCount"> {this.state.bidenMostPositive} </td>
                             </tr>
                             <tr className="sb-toggle">
 
-                                <td id="positiveDayDate">Date of Most Positive Emails:</td>
+                                <td id="positiveDayDate">Date of Peak Positive Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="positiveCountDate"> {this.state.bidenMostPositiveDate} </td>
                             </tr>
                             <tr className="sb-toggle">
 
-                                <td id="negativeDay">Most Negative Emails:</td>
+                                <td id="negativeDay">Peak Negative Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="negativeCount"> {this.state.bidenMostNegative} </td>
                             </tr>
                             <tr className="sb-toggle">
 
-                                <td id="negativeDayDate">Date of Most Negative Emails:</td>
+                                <td id="negativeDayDate">Date of Peak Negative Emails:</td>
                                 <td>&nbsp;</td>
                                 <td id ="negativeCountDate"> {this.state.bidenMostNegativeDate} </td>
                             </tr>
                             <tr className="sb">
 
-                                <td id="avgSentiment">Total Email Deviation per Day:</td>
+                                <td id="avgSentiment">Email Standard Deviation per Day:</td>
                                 <td>&nbsp;</td>
                                 <td id ="avgSentimentNum"> {(this.state.emailStd)} </td>
                             </tr>
