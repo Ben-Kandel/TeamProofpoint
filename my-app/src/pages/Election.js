@@ -429,35 +429,58 @@ class Model extends React.Component{
 
                         <hr/>
                         <table>
+<<<<<<< HEAD
 
 
                             <tr className="sb-toggle">
 
                                 <td id="positiveDay">Peak Positive Emails:</td>
+=======
+                            
+                            <tr className="sb-toggle">
+
+                                <td id="positiveDay">Most Positive Emails:</td>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                 <td>&nbsp;</td>
                                 <td id ="positiveCount"> {this.state.bidenMostPositive} </td>
                             </tr>
                             <tr className="sb-toggle">
 
+<<<<<<< HEAD
                                 <td id="positiveDayDate">Date of Peak Positive Emails:</td>
+=======
+                                <td id="positiveDayDate">Date of Most Positive Emails:</td>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                 <td>&nbsp;</td>
                                 <td id ="positiveCountDate"> {this.state.bidenMostPositiveDate} </td>
                             </tr>
                             <tr className="sb-toggle">
 
+<<<<<<< HEAD
                                 <td id="negativeDay">Peak Negative Emails:</td>
+=======
+                                <td id="negativeDay">Most Negative Emails:</td>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                 <td>&nbsp;</td>
                                 <td id ="negativeCount"> {this.state.bidenMostNegative} </td>
                             </tr>
                             <tr className="sb-toggle">
 
+<<<<<<< HEAD
                                 <td id="negativeDayDate">Date of Peak Negative Emails:</td>
+=======
+                                <td id="negativeDayDate">Date of Most Negative Emails:</td>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                 <td>&nbsp;</td>
                                 <td id ="negativeCountDate"> {this.state.bidenMostNegativeDate} </td>
                             </tr>
                             <tr className="sb">
 
+<<<<<<< HEAD
                                 <td id="avgSentiment">Email Standard Deviation per Day:</td>
+=======
+                                <td id="avgSentiment">Total Email Deviation per Day:</td>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                 <td>&nbsp;</td>
                                 <td id ="avgSentimentNum"> {(this.state.emailStd)} </td>
                             </tr>

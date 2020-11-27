@@ -76,8 +76,13 @@ class Model extends React.Component{
      */
     async getDataForGraph(){
         const result = await this.fetchData("stocks");
+<<<<<<< HEAD
         let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))  add "NASDAQ", "SP" later
         let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "HD", "DOW"];
+=======
+        let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))
+        let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "TSLA", "DOW", "NASDAQ", "SP"];
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
         result.forEach(element =>{
             let tempMap = new Map();
 
@@ -85,6 +90,7 @@ class Model extends React.Component{
                 if (element.subject === stockList[i]){ //Make sure we are adding to the right stock dict.
                     if (dateMap.get(element.subject)) { //If stock exists already.
                         if (dateMap.get(element.subject).get(element.date)) { //If Date exists
+<<<<<<< HEAD
                                 console.log(dateMap.get(element.subject).get(element.date), "hhhhhhh");
                             if (dateMap.get(element.subject).get(element.date).get(element.P_N)) { //If sentiment record of that date exists.
                                 console.log(element.P_N)
@@ -93,13 +99,23 @@ class Model extends React.Component{
                             } else {
 
                                 dateMap.get(element.subject).get(element.date).set(element.P_N, element.volume);
+=======
+                            if (dateMap.get(element.subject.get(element.date.get(element.P_N)))) { //If sentiment record of that date exists.
+                                dateMap.get(element.subject.get(element.date.set(element.P_N,
+                                    dateMap.get(element.date.get(element.P_N) + element.volume))));
+                            } else {
+                                dateMap.get(element.subject.get(element.date.set(element.P_N, element.volume)));
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                             }
                         }
                         else{ //Date does not exist, add a map there.
                             dateMap.get(element.subject).set(element.date, new Map());
                             dateMap.get(element.subject).get(element.date).set(element.P_N, element.volume);
                         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                     }
                     else{ //if stock does not exist
                        dateMap.set(element.subject, new Map());
@@ -149,7 +165,10 @@ class Model extends React.Component{
         let totalEmails = 0;
         let positiveEmails = 0;
         let negativeEmails = 0;
+<<<<<<< HEAD
         console.log(name, 'afsfjaofjaiofjioasfjasdiofjasdiofjo');
+=======
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
         (dateMap.get(name)).forEach(function(values, key2){ //Key2 are dates
 
             if ((dateMap.get(name)).get(key2).get("NEGATIVE")) {
@@ -213,18 +232,27 @@ class Model extends React.Component{
         positiveEmails += temp[3];
         let microsoftE = [temp[2], temp[3]];
         let microsoftPrices = await this.fetchPriceData("MSFT");
+<<<<<<< HEAD
         temp = await this.getStockVolume("HD", dateMap);
+=======
+        temp = await this.getStockVolume("TSLA", dateMap);
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
         let teslaEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails += temp[3];
         let teslaE = [temp[2], temp[3]];
+<<<<<<< HEAD
         let teslaPrices = await this.fetchPriceData("HD");
+=======
+        let teslaPrices = await this.fetchPriceData("TSLA");
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
         temp = await this.getStockVolume("DOW", dateMap);
         let dowEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails +=temp[3];
+<<<<<<< HEAD
         // temp = await this.getStockVolume("NASDAQ", dateMap);
         // let nasdaqEmails = temp[0];
         // totalEmails += temp[1];
@@ -235,6 +263,18 @@ class Model extends React.Component{
         // totalEmails += temp[1];
         // negativeEmails += temp[2];
         // positiveEmails +=temp[3];
+=======
+        temp = await this.getStockVolume("NASDAQ", dateMap);
+        let nasdaqEmails = temp[0];
+        totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails +=temp[3];
+        temp = await this.getStockVolume("SP", dateMap);
+        let spEmails = temp[0];
+        totalEmails += temp[1];
+        negativeEmails += temp[2];
+        positiveEmails +=temp[3];
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
         //-----------------------------------------------------------------------
         this.setState({
             dowPrices: DOW,
@@ -247,8 +287,13 @@ class Model extends React.Component{
             msft : {emailData: microsoftEmails, priceData: microsoftPrices},
             tsla : {emailData: teslaEmails, priceData: teslaPrices},
             dow : dowEmails,
+<<<<<<< HEAD
             nasdaq : [],
             sp : [],
+=======
+            nasdaq : nasdaqEmails,
+            sp : spEmails,
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
             emailCount : totalEmails,
             negativeTotal : negativeEmails,
             positiveTotal : positiveEmails,
@@ -350,9 +395,15 @@ class Model extends React.Component{
                             <tr>
                                 {
                                     this.state.stock5 ? <div className="stockstats">
+<<<<<<< HEAD
                                         <tr className="line-title"><td>Total HD Emails:   {this.state.tslaStats[0] + this.state.tslaStats[1]}</td></tr>
                                         <tr className="positive"><td>Positive HD Emails:   {this.state.tslaStats[1]}</td></tr>
                                         <tr className="negative"><td>Negative HD Emails:   {this.state.tslaStats[0]}</td></tr>
+=======
+                                        <tr className="line-title"><td>Total TSLA Emails: {this.state.tslaStats[0] + this.state.tslaStats[1]}</td></tr>
+                                        <tr className="positive"><td>Positive TSLA Emails: {this.state.tslaStats[1]}</td></tr>
+                                        <tr className="negative"><td>Negative TSLA Emails: {this.state.tslaStats[0]}</td></tr>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                         <tr><td>Ratio: {(this.state.tslaStats[1] / this.state.tslaStats[0]).toFixed(3)}</td></tr>
                                     </div> : null
                                 }
@@ -397,18 +448,30 @@ class Model extends React.Component{
                                         stock1: false, stock2: false, stock3: false,
                                         stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
                                     })
+<<<<<<< HEAD
                                 }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; HD</Dropdown.Item>
+=======
+                                }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; TSLA</Dropdown.Item>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
 
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: false,
+<<<<<<< HEAD
                                         stock4: false, stock5: false, stock6: !this.state.stock6, stock7: false, stock8: false
+=======
+                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                     })
                                 }}>{this.state.stock6 ? 'Hide' : 'Show'}&nbsp; DOW</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: false,
+<<<<<<< HEAD
                                         stock4: false, stock5: false, stock6: !this.state.stock6, stock7: false, stock8: false
+=======
+                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                     })
                                 }}>{this.state.stock7 ? 'Hide' : 'Show'}&nbsp; S&P</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
@@ -465,7 +528,11 @@ class Model extends React.Component{
                         }
                         {
                             this.state.stock5 ? <div className="stock1">
+<<<<<<< HEAD
                                 <h2>Home Depot</h2>
+=======
+                                <h2>Tesla</h2>
+>>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                 <div class = "volumeData">
                                     <IndivStockEmailsChart data={this.state.tsla.emailData}/>
                                 </div>
