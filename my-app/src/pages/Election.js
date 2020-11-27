@@ -35,6 +35,9 @@ class Model extends React.Component{
         };
     }
 
+    /***
+     * Function to fetch data and convert to json object.
+     */
     async fetchData(leadName="leads", subject="", P_N=""){
         let url = new URL(`http://127.0.0.1:8000/api/${leadName}/`);
         if(subject){ //if keywords is not an empty string
@@ -48,6 +51,9 @@ class Model extends React.Component{
         const json = await response.json(); //we have to wait when converting this to json
         return json; //return it
     }
+    /***
+     * Function to fetch predictive model's output that is stored in the database.
+     */
     async getPrediction() {
         const result = await this.fetchData("predictions");
         console.log(result)
@@ -63,7 +69,12 @@ class Model extends React.Component{
         return predictions;
 
     }
-
+    /***
+     * Function to get data from a table in the database and convert it into presentable graph data.
+     * Stores api call data into map(candidate + sentiment, map(date, volume))
+     * ex: biden positive = BP
+        * map would be ("BP", map(date, volume)).
+     */
     async getDataForGraph(){
         const result = await this.fetchData("leads");
         let dateMap = new Map();
@@ -141,7 +152,7 @@ class Model extends React.Component{
         let bidenN = [];
         let trumpP = [];
         let trumpN = [];
-
+        //This part loops through map and adds dates and volumes into respective lists.
         dateMap.forEach((value, key) => {
             value.forEach((incremented, dates) =>{
                 if (key === "BP"){
@@ -218,6 +229,7 @@ class Model extends React.Component{
         let bidenMostPositiveDate = new Date();
 
         let trumpPositiveTotal = 0;
+        //Getting stats for Trump
         trumpPositive.forEach((row) => {
             trumpPositiveTotal = trumpPositiveTotal + row.volume
             if (row.volume > 5) {
@@ -229,7 +241,7 @@ class Model extends React.Component{
 
             }
         })
-
+        //Getting stats for Trump
         let trumpNegativeTotal = 0;
         trumpNegative.forEach((row) => {
             trumpNegativeTotal = trumpNegativeTotal + row.volume
@@ -241,7 +253,7 @@ class Model extends React.Component{
                 trumpMostNegativeDate = row.date
             }
         })
-
+        //Getting stats for Biden
         let bidenPositiveTotal = 0;
         bidenPositive.forEach((row) => {
             bidenPositiveTotal = bidenPositiveTotal + row.volume
@@ -253,7 +265,7 @@ class Model extends React.Component{
                 bidenMostPositiveDate = row.date
             }
         })
-
+        //Getting stats for Biden
         let bidenNegativeTotal = 0;
         bidenNegative.forEach((row) => {
             bidenNegativeTotal = bidenNegativeTotal + row.volume
