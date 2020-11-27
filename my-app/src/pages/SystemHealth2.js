@@ -23,7 +23,9 @@ class SystemHealth2 extends React.Component{
             redirect: 'follow'
         };
     }
-
+    /***
+     * Function to fetch positive and negative emails
+     */
     async getPosNegEmails(){
 
         let getJsonData = async (url) => {

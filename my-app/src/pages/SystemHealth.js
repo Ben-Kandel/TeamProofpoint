@@ -19,7 +19,9 @@ class SystemHealth extends React.Component{
             redirect: 'follow'
         };
     }
-
+    /***
+     * Function to fetch total election emails amount
+     */
     getElectionEmailsProcessed(){
         const result = fetch("http://127.0.0.1:8000/api/leads/", this.requestOptions)
         .then(response => response.json())
@@ -35,6 +37,9 @@ class SystemHealth extends React.Component{
         })
         .catch(error => console.log('error', error));
     }
+    /***
+     * Function to fetch total stock data emails
+     */
     getStockEmailsProcessed(){
         fetch("http://127.0.0.1:8000/api/stocks/", this.requestOptions)
             .then(response => response.json())
@@ -49,7 +54,9 @@ class SystemHealth extends React.Component{
             })
             .catch(error => console.log('error', error));
     }
-
+    /***
+     * Function to populate graph data
+     */
     getChartData(){
         fetch("http://127.0.0.1:8000/api/leads/", this.requestOptions)
         .then(response => response.json())
