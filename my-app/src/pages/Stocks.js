@@ -38,6 +38,13 @@ class Model extends React.Component{
             redirect: 'follow'
         };
     }
+
+    /***
+     *
+     * This is a function that is not used. It's purpose is to get stock data from the database without storing it in
+     * a map. It can be used if the stock data in the database are tables of individual stocks.
+     *
+     */
     async getStockGraphData(leadName){ //We want tables of individual stocks. Do not aggregate any dates.
         const result = await this.fetchData(leadName); //Change this to actual stock table/view name
         let PositiveDateMap = new Map();
@@ -64,7 +71,9 @@ class Model extends React.Component{
         DateMap.push(PositiveDateMap, NegativeDateMap);
         return DateMap;
     }
-
+    /***
+     * Function to store data in a map to display data onto graphs.
+     */
     async getDataForGraph(){
         const result = await this.fetchData("stocks");
         let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))  add "NASDAQ", "SP" later
@@ -103,7 +112,9 @@ class Model extends React.Component{
 
         return dateMap;
     }
-
+    /***
+     * Function to fetch stock data and store into json object.
+     */
     async fetchData(leadName="stocks", keywords="", pn=""){
         let url = new URL(`http://127.0.0.1:8000/api/${leadName}/`);
         if(keywords){ //if keywords is not an empty string
@@ -117,7 +128,10 @@ class Model extends React.Component{
         const json = await response.json(); //we have to wait when converting this to json
         return json; //return it
     }
-
+    /***
+     * Function to fetch historical stock price data. This function draws from database which draws from excel price
+     * sheets. Must update excel price sheets from Yahoo historical stock price data to get new data.
+     */
     async fetchPriceData(indexName=""){
         let url = new URL(`http://127.0.0.1:8000/api/prices/`);
         if(indexName){
@@ -127,7 +141,9 @@ class Model extends React.Component{
         const json = await response.json();
         return json;
     }
-    //-----------------------Matt code (untested)--------------------
+    /***
+     * Unpacks the map from getDataForGraph().
+     */
     async getStockVolume(name, dateMap){
         let result = [];
         let totalEmails = 0;
