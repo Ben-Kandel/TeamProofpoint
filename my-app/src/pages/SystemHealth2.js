@@ -74,7 +74,7 @@ class SystemHealth2 extends React.Component{
                         <h1>Last Email Processed</h1>
                         <hr></hr>
                         <p1>
-                            11/18/2020
+                            11/17/2020
                         </p1>
                     </div>
                     <div class= "grid-item-2 runtime">
