@@ -27,7 +27,7 @@ class Model extends React.Component{
             aapl: {},
             goog: {},
             amzn: {},
-            tsla: {},
+            homedepot: {},
             msft: {},
             positiveTotal: 0,
             negativeTotal: 0,
@@ -77,7 +77,7 @@ class Model extends React.Component{
     async getDataForGraph(){
         const result = await this.fetchData("stocks");
         let dateMap = new Map(); // Map(Stock Symbol, Map(Date, Map(P or N, count)))
-        let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "TSLA", "DOW", "NASDAQ", "SP"];
+        let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "HD", "DOW", "NASDAQ", "SP"];
         result.forEach(element =>{
             let tempMap = new Map();
 
@@ -208,13 +208,13 @@ class Model extends React.Component{
         positiveEmails += temp[3];
         let microsoftE = [temp[2], temp[3]];
         let microsoftPrices = await this.fetchPriceData("MSFT");
-        temp = await this.getStockVolume("TSLA", dateMap);
-        let teslaEmails = temp[0];
+        temp = await this.getStockVolume("HD", dateMap);
+        let homeDepotEmails = temp[0];
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails += temp[3];
-        let teslaE = [temp[2], temp[3]];
-        let teslaPrices = await this.fetchPriceData("TSLA");
+        let homeDepotE = [temp[2], temp[3]];
+        let homeDepotPrices = await this.fetchPriceData("HD");
         temp = await this.getStockVolume("DOW", dateMap);
         let dowEmails = temp[0];
         totalEmails += temp[1];
@@ -240,7 +240,7 @@ class Model extends React.Component{
             amzn : {emailData: amazonEmails, priceData: amazonPrices},
             goog : {emailData: googleEmails, priceData: googlePrices},
             msft : {emailData: microsoftEmails, priceData: microsoftPrices},
-            tsla : {emailData: teslaEmails, priceData: teslaPrices},
+            homedepot : {emailData: homeDepotEmails, priceData: homeDepotPrices},
             dow : dowEmails,
             nasdaq : nasdaqEmails,
             sp : spEmails,
@@ -250,7 +250,7 @@ class Model extends React.Component{
             aaplStats : appleE,
             amznStats : amazonE,
             msftStats : microsoftE,
-            tslaStats : teslaE,
+            homeDepotStats : homeDepotE,
             googStats : googleE,
         });
     }
@@ -345,10 +345,10 @@ class Model extends React.Component{
                             <tr>
                                 {
                                     this.state.stock5 ? <div className="stockstats">
-                                        <tr className="line-title"><td>Total TSLA Emails: {this.state.tslaStats[0] + this.state.tslaStats[1]}</td></tr>
-                                        <tr className="positive"><td>Positive TSLA Emails: {this.state.tslaStats[1]}</td></tr>
-                                        <tr className="negative"><td>Negative TSLA Emails: {this.state.tslaStats[0]}</td></tr>
-                                        <tr><td>Ratio: {(this.state.tslaStats[1] / this.state.tslaStats[0]).toFixed(3)}</td></tr>
+                                        <tr className="line-title"><td>Total HD Emails: {this.state.homeDepotStats[0] + this.state.homeDepotStats[1]}</td></tr>
+                                        <tr className="positive"><td>Positive HD Emails: {this.state.homeDepotStats[1]}</td></tr>
+                                        <tr className="negative"><td>Negative HD Emails: {this.state.homeDepotStats[0]}</td></tr>
+                                        <tr><td>Ratio: {(this.state.homeDepotStats[1] / this.state.homeDepotStats[0]).toFixed(3)}</td></tr>
                                     </div> : null
                                 }
                             </tr>
@@ -392,7 +392,7 @@ class Model extends React.Component{
                                         stock1: false, stock2: false, stock3: false,
                                         stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
                                     })
-                                }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; TSLA</Dropdown.Item>
+                                }}>{this.state.stock5 ? 'Hide' : 'Show'}&nbsp; HD</Dropdown.Item>
 
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
@@ -460,12 +460,12 @@ class Model extends React.Component{
                         }
                         {
                             this.state.stock5 ? <div className="stock1">
-                                <h2>Tesla</h2>
+                                <h2>Home Depot</h2>
                                 <div class = "volumeData">
-                                    <IndivStockEmailsChart data={this.state.tsla.emailData}/>
+                                    <IndivStockEmailsChart data={this.state.homedepot.emailData}/>
                                 </div>
                                 <div class = "priceData">
-                                    <IndivStockPricesChart data={this.state.tsla.priceData}/>
+                                    <IndivStockPricesChart data={this.state.homedepot.priceData}/>
                                 </div>
                             </div> : null
                         }
