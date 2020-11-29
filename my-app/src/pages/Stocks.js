@@ -397,19 +397,19 @@ class Model extends React.Component{
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: false,
-                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+                                        stock4: false, stock5: false, stock6: !this.state.stock6, stock7: false, stock8: false
                                     })
                                 }}>{this.state.stock6 ? 'Hide' : 'Show'}&nbsp; DOW</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: false,
-                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+                                        stock4: false, stock5: false, stock6: false, stock7: !this.state.stock7, stock8: false
                                     })
                                 }}>{this.state.stock7 ? 'Hide' : 'Show'}&nbsp; S&P</Dropdown.Item>
                                 <Dropdown.Item onClick={() => {
                                     this.setState({
                                         stock1: false, stock2: false, stock3: false,
-                                        stock4: false, stock5: !this.state.stock5, stock6: false, stock7: false, stock8: false
+                                        stock4: false, stock5: false, stock6: false, stock7: false, stock8: !this.state.stock8
                                     })
                                 }}>{this.state.stock8 ? 'Hide' : 'Show'}&nbsp; NASDAQ</Dropdown.Item>
                             </Dropdown.Menu>
