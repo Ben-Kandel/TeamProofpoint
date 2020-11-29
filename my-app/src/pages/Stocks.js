@@ -225,11 +225,11 @@ class Model extends React.Component{
         totalEmails += temp[1];
         negativeEmails += temp[2];
         positiveEmails +=temp[3];
-        temp = await this.getStockVolume("SP", dateMap);
-        let spEmails = temp[0];
-        totalEmails += temp[1];
-        negativeEmails += temp[2];
-        positiveEmails +=temp[3];
+        // temp = await this.getStockVolume("SP", dateMap);
+        // let spEmails = temp[0];
+        // totalEmails += temp[1];
+        // negativeEmails += temp[2];
+        // positiveEmails +=temp[3];
         //-----------------------------------------------------------------------
         this.setState({
             dowPrices: DOW,
@@ -243,7 +243,7 @@ class Model extends React.Component{
             homedepot : {emailData: homeDepotEmails, priceData: homeDepotPrices},
             dow : dowEmails,
             nasdaq : nasdaqEmails,
-            sp : spEmails,
+            // sp : spEmails,
             emailCount : totalEmails,
             negativeTotal : negativeEmails,
             positiveTotal : positiveEmails,
