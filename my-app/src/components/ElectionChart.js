@@ -10,7 +10,9 @@ export default function ElectionChart(props){
             return {x: element[0], y: element[1]} 
         });
     };
-
+    // the data for the chart. see https://www.chartjs.org/docs/latest/
+    // in this case, the data for each line on the chart will be an array of objects with x and y keys, ie.
+    // [{x: Date(2020, 10, 9), y: 30}, {x: Date(2020, 10, 10), y: 25}, ...]
     const data = {
         datasets: [
             {
@@ -20,7 +22,6 @@ export default function ElectionChart(props){
                 backgroundColor: 'rgba(255, 0, 0)',
                 borderColor: 'rgba(255, 0, 0)',
                 pointRadius: 4,
-                // pointBorderColor: 'rgba(0,0,0)',
             },
             {
                 label: 'Negative Trump Emails',
@@ -48,7 +49,7 @@ export default function ElectionChart(props){
             },
         ]
     };
-
+    // the chart options. https://www.chartjs.org/docs/latest/
     const options = {
         maintainAspectRatio: false,
         scales: {
@@ -79,7 +80,7 @@ export default function ElectionChart(props){
             }],
         }
     };
-    
+    // wrap the chart in a div so we can style it with css later
     return(
         <div id="election-chart-container">
             <Line data={data} options={options}></Line>

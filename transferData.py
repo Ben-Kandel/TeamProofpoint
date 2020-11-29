@@ -1,24 +1,20 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
-
 #Create statistics of the data
 #Transfer data from back end database to django database
 import sqlite3
 import pandas as pd
 
-def transfer(nameDB, copyTable):
-
-
+def transfer(nameDB, copyTable, db):
 
 
     statisticsNameDB = "statistics_" + nameDB
 
+    conn = sqlite3.connect(db)
+    data = pd.read_sql_query(f"select * from {copyTable}", conn)
+    if nameDB == "proofpointDB.db":
+        pred = pd.read_sql_query(f"select * FROM predictions", conn)
     conn = sqlite3.connect("proofpointDB.db")
     data = pd.read_sql_query(f"select * from {copyTable}", conn)
-    pred = pd.read_sql_query(f"select * FROM predictions", conn)
+    
 
     e_amount = 0
     positive= 0
@@ -34,22 +30,21 @@ def transfer(nameDB, copyTable):
             negative +=1
         else:
             neutral +=1
-
     sentiments = data['ASS']
     d = {'Positives': [positive], 'Negatives': [negative], 'Neutrals': [neutral], 'Amount' : [len(data)], 'Election_amount'
         : [e_amount]}
 
-
     stats = pd.DataFrame(data = d)
     conn2 = sqlite3.connect("db.sqlite3")
     data.index.name = "id"
-    pred.index.name = "id"
-    pred.to_sql("predictions_predictions", con = conn2, if_exists = "replace")
+    if nameDB == "proofpointDB.db":
+        pred.index.name = "id"
+        pred.to_sql("predictions_predictions", con = conn2, if_exists = "replace")
+    
+    
     data.to_sql(nameDB, con=conn2, if_exists = "replace")
     stats.to_sql(statisticsNameDB, con=conn2, if_exists = "replace")
-
     #------------------------------------------------------Index Funds and Stock Prices
-
     sp = pd.read_csv("^GSPC.csv")
     dow = pd.read_csv("^DJI.csv")
     nasdaq = pd.read_csv("^IXIC.csv")
@@ -59,7 +54,6 @@ def transfer(nameDB, copyTable):
     tsla = pd.read_csv("HD.csv")
     msft = pd.read_csv("MSFT.csv")
     master = pd.DataFrame(columns = ["date", "price", "name"])
-
     for d, i in enumerate(dow['Date']):
         master.loc[len(master.index)] = [dow['Date'][d], dow["Adj Close"][d], "DOW"]
         master.loc[len(master.index)] = [sp['Date'][d], sp["Adj Close"][d], "S&P500"]
@@ -72,24 +66,8 @@ def transfer(nameDB, copyTable):
     master.index.name = "id"
     master.to_sql("prices_prices", con =conn2, if_exists = "replace")
 
-
     #------------------------------------------------------------------
-
     #data2= pd.read_sql_query(f"select * from {nameDB}", conn2)
     #test =  pd.read_sql_query(f"select * from {statisticsNameDB}", conn2)
     conn.close()
     conn2.close()
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-

@@ -80,16 +80,15 @@ class Model extends React.Component{
         let stockList = ["GOOG", "AMZN", "MSFT", "AAPL", "TSLA", "DOW", "NASDAQ", "SP"];
         result.forEach(element =>{
             let tempMap = new Map();
-
             for (let i = 0; i < stockList.length; i ++){
                 if (element.subject === stockList[i]){ //Make sure we are adding to the right stock dict.
                     if (dateMap.get(element.subject)) { //If stock exists already.
                         if (dateMap.get(element.subject).get(element.date)) { //If Date exists
-                            if (dateMap.get(element.subject.get(element.date.get(element.P_N)))) { //If sentiment record of that date exists.
-                                dateMap.get(element.subject.get(element.date.set(element.P_N,
-                                    dateMap.get(element.date.get(element.P_N) + element.volume))));
+                            if (dateMap.get(element.subject).get(element.date).get(element.P_N)) { //If sentiment record of that date exists.
+                                dateMap.get(element.subject).get(element.date).set(element.P_N,
+                                    dateMap.get(element.date).get(element.P_N) + element.volume);
                             } else {
-                                dateMap.get(element.subject.get(element.date.set(element.P_N, element.volume)));
+                                dateMap.get(element.subject).get(element.date).set(element.P_N, element.volume);
                             }
                         }
                         else{ //Date does not exist, add a map there.
@@ -105,7 +104,8 @@ class Model extends React.Component{
                 }
             }
         });
-
+        console.log('here is the date map:');
+        console.log(dateMap);
         return dateMap;
     }
     /***

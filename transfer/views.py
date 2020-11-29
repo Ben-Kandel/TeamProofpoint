@@ -11,7 +11,7 @@ from transferData import transfer
 # Create your views here.
 def transferDatabase(request):
 
-    transfer("leads_lead", "stats")
-    # transfer("stocks_stocks", "trumpTesting")
-    # transfer("consumers_consumer", "realData")
+    transfer("leads_lead", "stats", "proofpointDB.db")
+    transfer("stocks_stocks", "statsStocks", "proofpointDB.db")
+    
     return HttpResponse("Transfer Complete!")

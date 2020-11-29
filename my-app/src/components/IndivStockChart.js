@@ -3,6 +3,8 @@ import React from "react";
 
 export function IndivStockEmailsChart(props){
 
+    //so our data comes in an array of arrays
+    //we need to turn that into an array of objects with x:y pairs
     let fixData = (data) => {
         return data.map(element => {
             return {x: element[0], y: element[1]}
@@ -11,7 +13,9 @@ export function IndivStockEmailsChart(props){
 
     console.log('this is what email data looks like:');
     console.log(props.data);
-
+    // the data for the chart. see https://www.chartjs.org/docs/latest/
+    // in this case, the data for each line on the chart will be an array of objects with x and y keys, ie.
+    // [{x: Date(2020, 10, 9), y: 30}, {x: Date(2020, 10, 10), y: 25}, ...]
     const data = {
         datasets: [
             {
@@ -23,7 +27,8 @@ export function IndivStockEmailsChart(props){
 
         ],
     };
-
+    
+    // the chart options. https://www.chartjs.org/docs/latest/
     const options = {
         maintainAspectRatio: false,
         title: {

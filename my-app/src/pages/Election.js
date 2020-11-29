@@ -3,7 +3,6 @@ import { Bar } from "react-chartjs-2";
 
 //css   
 import "./Results.css";
-import MyChart from "../components/MyChart";
 import { Chart } from "react-charts";
 import { variance, std } from 'mathjs'
 
