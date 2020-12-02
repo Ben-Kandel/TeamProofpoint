@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'predictions.apps.PredictionsConfig'
 ]
 
+# make sure corsheaders is above authenticationMiddleware
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,6 +83,7 @@ WSGI_APPLICATION = 'base.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+# can be changed to other types of databases here
 
 DATABASES = {
     'default': {
@@ -137,10 +140,13 @@ REST_FRAMEWORK = {
     ]
 }
 
+# localhost:3000 is react front end web page
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000'
 ]
 
+# default headers + coustom proofpoint header
+# custom proofpoint header to authorize our api calls
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',

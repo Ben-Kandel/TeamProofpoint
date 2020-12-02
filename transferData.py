@@ -9,27 +9,25 @@
 import sqlite3
 import pandas as pd
 
-<<<<<<< HEAD
+
 def transfer(nameDB, copyTable, db):
-=======
-def transfer(nameDB, copyTable):
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
+
 
 
 
 
     statisticsNameDB = "statistics_" + nameDB
 
-<<<<<<< HEAD
+
     conn = sqlite3.connect(db)
     data = pd.read_sql_query(f"select * from {copyTable}", conn)
     if nameDB == "proofpointDB.db":
         pred = pd.read_sql_query(f"select * FROM predictions", conn)
-=======
+
     conn = sqlite3.connect("proofpointDB.db")
     data = pd.read_sql_query(f"select * from {copyTable}", conn)
     pred = pd.read_sql_query(f"select * FROM predictions", conn)
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
+
 
     e_amount = 0
     positive= 0
@@ -54,14 +52,14 @@ def transfer(nameDB, copyTable):
     stats = pd.DataFrame(data = d)
     conn2 = sqlite3.connect("db.sqlite3")
     data.index.name = "id"
-<<<<<<< HEAD
+
     if nameDB == "proofpointDB.db":
         pred.index.name = "id"
         pred.to_sql("predictions_predictions", con = conn2, if_exists = "replace")
-=======
+
     pred.index.name = "id"
     pred.to_sql("predictions_predictions", con = conn2, if_exists = "replace")
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
+
     data.to_sql(nameDB, con=conn2, if_exists = "replace")
     stats.to_sql(statisticsNameDB, con=conn2, if_exists = "replace")
 

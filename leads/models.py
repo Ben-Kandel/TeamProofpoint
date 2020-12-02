@@ -2,17 +2,10 @@ from django.db import models
 
 # Create your models here.
 class Lead(models.Model):
-    # subject = models.CharField(max_length=100, default='candidate')
-    # sentiment_score = models.DecimalField(decimal_places=2, max_digits=4, default=0)
-    # keywords = models.CharField(max_length=100, default='unspecified')
-    # date = models.CharField(max_length=50, default='2020/10/01 12:05:00')
-    # pn = models.CharField(max_length=2, default='unspecified')
+    # model fields here
+    # 1 for 1 make each field equal a category (row) in the SQLite3 database
 
-<<<<<<< HEAD
-    date = models.CharField(max_length=50, default='2020-10-01')
-=======
     date = models.CharField(max_length=50, default='2020/10/01')
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
     volume = models.IntegerField(default=0)
     subject = models.CharField(max_length=100, default='candidate')
     ASS = models.DecimalField(decimal_places=4, max_digits=8, default=0)

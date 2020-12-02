@@ -11,6 +11,8 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
+# base wsgi (not modified for web server)
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'base.settings')
 
 application = get_wsgi_application()

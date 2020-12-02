@@ -429,58 +429,49 @@ class Model extends React.Component{
 
                         <hr/>
                         <table>
-<<<<<<< HEAD
+
 
 
                             <tr className="sb-toggle">
 
                                 <td id="positiveDay">Peak Positive Emails:</td>
-=======
-                            
-                            <tr className="sb-toggle">
 
-                                <td id="positiveDay">Most Positive Emails:</td>
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
                                 <td>&nbsp;</td>
                                 <td id ="positiveCount"> {this.state.bidenMostPositive} </td>
                             </tr>
                             <tr className="sb-toggle">
 
-<<<<<<< HEAD
-                                <td id="positiveDayDate">Date of Peak Positive Emails:</td>
-=======
+
                                 <td id="positiveDayDate">Date of Most Positive Emails:</td>
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
+
                                 <td>&nbsp;</td>
                                 <td id ="positiveCountDate"> {this.state.bidenMostPositiveDate} </td>
                             </tr>
                             <tr className="sb-toggle">
 
-<<<<<<< HEAD
+
                                 <td id="negativeDay">Peak Negative Emails:</td>
-=======
-                                <td id="negativeDay">Most Negative Emails:</td>
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
+
+
                                 <td>&nbsp;</td>
                                 <td id ="negativeCount"> {this.state.bidenMostNegative} </td>
                             </tr>
                             <tr className="sb-toggle">
 
-<<<<<<< HEAD
+
                                 <td id="negativeDayDate">Date of Peak Negative Emails:</td>
-=======
-                                <td id="negativeDayDate">Date of Most Negative Emails:</td>
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
+
+
+
                                 <td>&nbsp;</td>
                                 <td id ="negativeCountDate"> {this.state.bidenMostNegativeDate} </td>
                             </tr>
                             <tr className="sb">
 
-<<<<<<< HEAD
+
                                 <td id="avgSentiment">Email Standard Deviation per Day:</td>
-=======
-                                <td id="avgSentiment">Total Email Deviation per Day:</td>
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
+
+
                                 <td>&nbsp;</td>
                                 <td id ="avgSentimentNum"> {(this.state.emailStd)} </td>
                             </tr>
@@ -593,13 +584,16 @@ class Model extends React.Component{
 }
 
 // stats page for candidate specific stats
+// global variable used to keep track between the two candidates being compared
 var statBiden = true;
 function toggle(test) {
+    // on button hit, reverse the boolean
         statBiden = !statBiden
 
         console.log("swapping stats")
 
         window.onclick = function(){
+            // get element of each line
             let statTitle = document.getElementById("stat-title")
 
             let negativeDay = document.getElementById("negativeDay")
@@ -614,7 +608,7 @@ function toggle(test) {
             let positiveDayDate = document.getElementById("positiveDayDate")
             let positiveCountDate = document.getElementById("positiveCountDate")
 
-
+            // depending on boolean change data to display Trump or Biden information
             if (statBiden) {
                 statTitle.innerHTML = "Biden"
                 negativeCount.innerHTML = test.bidenMostNegative
@@ -622,6 +616,7 @@ function toggle(test) {
                 negativeCountDate.innerHTML = test.bidenMostNegativeDate
                 positiveCountDate.innerHTML = test.bidenMostPositiveDate
 
+                // change color of labels based on party affiliation
                 statTitle.style.color = 'blue'
                 negativeDay.style.color = 'blue'
                 negativeCount.style.color = 'blue'

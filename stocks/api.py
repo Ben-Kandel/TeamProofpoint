@@ -6,7 +6,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 
 # Lead Viewset
-# overided by api.py
+
 
 class StocksViewSet(viewsets.ModelViewSet):
     queryset = Stocks.objects.all()

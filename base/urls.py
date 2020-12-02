@@ -17,6 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 
+# url patterns
+# leads -> election data api
+# transfer -> transferData.py functions
+# stocks -> stocks data api
+# consumers -> consumer sentiment data api (scrapped in development)
+# prices -> stocks historical data
+# predictions -> stores data from our prediction models
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('leads.urls')),

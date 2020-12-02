@@ -10,14 +10,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname('transferData'), os
 from transferData import transfer
 # Create your views here.
 def transferDatabase(request):
+    # run transfer data calls to refresh database when called
 
-<<<<<<< HEAD
     transfer("leads_lead", "stats", "proofpointDB.db")
     transfer("stocks_stocks", "statsStocks", "proofpointDBnewnew.db")
-
-=======
-    transfer("leads_lead", "stats")
->>>>>>> 0d370a9d1f406c47a1be49abbdd9776e05dad6dd
-    # transfer("stocks_stocks", "trumpTesting")
-    # transfer("consumers_consumer", "realData")
+    # update user that transfer was done successfully
     return HttpResponse("Transfer Complete!")
